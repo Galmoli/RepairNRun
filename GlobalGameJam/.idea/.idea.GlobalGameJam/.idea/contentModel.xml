@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\iastr\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\iastr\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_GlobalGameJam.-1622795678.00" t="ExcludeRecursive" />
+    <e p="C:\Users\iastr\Documents\GitHub\GlobalGameJam2020\GlobalGameJam" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="hinput" t="Include">
+          <e p="Licenses" t="Include">
+            <e p="ThirdPartyLicense_XInputDotNet.txt" t="Include" />
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="Gamepad" t="Include">
+              <e p="hAnyGamepad.cs" t="Include" />
+              <e p="hAnyGamepadStick.cs" t="Include" />
+              <e p="hAnyInput.cs" t="Include" />
+              <e p="hAxis.cs" t="Include" />
+              <e p="hButton.cs" t="Include" />
+              <e p="hDirection.cs" t="Include" />
+              <e p="hGamepad.cs" t="Include" />
+              <e p="hPressable.cs" t="Include" />
+              <e p="hStick.cs" t="Include" />
+              <e p="hStickPressedZone.cs" t="Include" />
+              <e p="hTrigger.cs" t="Include" />
+              <e p="hVibration.cs" t="Include" />
+            </e>
+            <e p="Setup" t="Include">
+              <e p="hSetUp.cs" t="Include" />
+            </e>
+            <e p="Utils" t="Include">
+              <e p="hinput.cs" t="Include" />
+              <e p="hSettings.cs" t="Include" />
+              <e p="hUpdater.cs" t="Include" />
+              <e p="hUtils.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="CameraManager.cs" t="Include" />
+          <e p="Car.cs" t="Include" />
+          <e p="CarMovement.cs" t="Include" />
+        </e>
+        <e p="TextMesh Pro" t="Include">
+          <e p="Fonts" t="Include">
+            <e p="LiberationSans - OFL.txt" t="Include" />
+          </e>
+          <e p="Resources" t="Include">
+            <e p="LineBreaking Following Characters.txt" t="Include" />
+            <e p="LineBreaking Leading Characters.txt" t="Include" />
+            <e p="Shaders" t="Include">
+              <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
+              <e p="TMP_Bitmap-Mobile.shader" t="Include" />
+              <e p="TMP_Bitmap.shader" t="Include" />
+              <e p="TMP_SDF Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface.shader" t="Include" />
+              <e p="TMP_SDF.shader" t="Include" />
+              <e p="TMP_Sprite.shader" t="Include" />
+              <e p="TMPro.cginc" t="Include" />
+              <e p="TMPro_Properties.cginc" t="Include" />
+              <e p="TMPro_Surface.cginc" t="Include" />
+            </e>
+          </e>
+          <e p="Sprites" t="Include">
+            <e p="EmojiOne Attribution.txt" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="GlobalGameJam.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
