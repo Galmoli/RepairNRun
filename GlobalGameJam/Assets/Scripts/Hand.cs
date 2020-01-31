@@ -21,10 +21,17 @@ public class Hand : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("firstProblem"))
+        if (other.CompareTag("firstProblem") && player1Hand.rightStickClick)
         {
-            //Aqui s'hauria d'activar un timer al problema que el faria desapareixer en x segons
-            Debug.Log("tocat");
+            Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("secondProblem") && player1Hand.A)
+        {
+            Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("thirdProblem") && player1Hand.X)
+        {
+            Destroy(other.gameObject);
         }
     }
     private void OnTriggerStay(Collider other)
@@ -34,6 +41,10 @@ public class Hand : MonoBehaviour
             Destroy(other.gameObject);
         }
         else if (other.CompareTag("secondProblem") && player1Hand.A)
+        {
+            Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("thirdProblem") && player1Hand.X)
         {
             Destroy(other.gameObject);
         }

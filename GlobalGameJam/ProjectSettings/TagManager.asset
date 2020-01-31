@@ -6,6 +6,7 @@ TagManager:
   tags:
   - firstProblem
   - secondProblem
+  - thirdProblem
   layers:
   - Default
   - TransparentFX
