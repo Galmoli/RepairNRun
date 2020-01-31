@@ -38,17 +38,20 @@ public class ObjectSpawner : MonoBehaviour
             if (randomItemSelector == 0)
             {
                 Debug.Log("first");
-                Instantiate(firstProblem, transformPosition, new Quaternion(0, 0, 0, 0));
+                var obj =Instantiate(firstProblem, transformPosition, new Quaternion(0, 0, 0, 0), transform);
+                obj.transform.localPosition = transformPosition;
             }
             else if (randomItemSelector == 1)
             {
                 Debug.Log("second");
-                Instantiate(secondProblem, transformPosition, new Quaternion(0, 0, 0, 0));
+                var obj = Instantiate(secondProblem, transformPosition, new Quaternion(0, 0, 0, 0), transform);
+                obj.transform.localPosition = transformPosition;
             }
             else
             {
                 Debug.Log("third");
-                Instantiate(thirdProblem, transformPosition, new Quaternion(0, 0, 0, 0));
+                var obj = Instantiate(thirdProblem, transformPosition, new Quaternion(0, 0, 0, 0), transform);
+                obj.transform.localPosition = transformPosition;
             }
 
             timer = Random.Range(maxTimerValue - timerVariator, maxTimerValue + (timerVariator/3)); //Fer que a mesura que avanci la partida, aquest timer cada vegada sigui mes petit
