@@ -30,7 +30,7 @@ public class ObjectSpawner : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            Vector3 transformPosition = new Vector3(Mathf.RoundToInt(Random.Range(-xMaxValue, xMaxValue)), Mathf.RoundToInt(Random.Range(-yMaxValue - 1, yMaxValue)), 0);
+            Vector3 transformPosition = new Vector3(Mathf.RoundToInt(Random.Range(-xMaxValue, xMaxValue)), Mathf.RoundToInt(Random.Range(-yMaxValue, yMaxValue)), 0);
 
             randomItemSelector = Random.Range(0, 3);
             if (randomItemSelector != 0) randomItemSelector = Random.Range(0, 3);
