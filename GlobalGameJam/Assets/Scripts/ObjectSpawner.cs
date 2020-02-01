@@ -37,19 +37,16 @@ public class ObjectSpawner : MonoBehaviour
 
             if (randomItemSelector == 0)
             {
-                Debug.Log("first");
                 var obj =Instantiate(firstProblem, transformPosition, new Quaternion(0, 0, 0, 0), transform);
                 obj.transform.localPosition = transformPosition;
             }
             else if (randomItemSelector == 1)
             {
-                Debug.Log("second");
                 var obj = Instantiate(secondProblem, transformPosition, new Quaternion(0, 0, 0, 0), transform);
                 obj.transform.localPosition = transformPosition;
             }
             else
             {
-                Debug.Log("third");
                 var obj = Instantiate(thirdProblem, transformPosition, new Quaternion(0, 0, 0, 0), transform);
                 obj.transform.localPosition = transformPosition;
             }

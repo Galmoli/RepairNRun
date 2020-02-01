@@ -197,3 +197,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handSpeed: 12.5
+  heBeFixin: 0
+  fixinTimer: 1
