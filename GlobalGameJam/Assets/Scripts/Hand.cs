@@ -20,7 +20,7 @@ public class Hand : MonoBehaviour
     public float XClamper = 3.14f;
     public float YClamper = 1.5f;
 
-    [HideInInspector] public Animator animatorController;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -79,23 +79,7 @@ public class Hand : MonoBehaviour
             heJusPressFam = false;
         }
 
-
-        if (player1Hand.rightStickClick.justReleased)
-        {
-            heJusReleaseFam = true;
-            heJusReleaseFamIntTimer = 10;
-        }
-        if (heJusReleaseFam)
-        {
-            heJusReleaseFamIntTimer--;
-        }
-        if (heJusReleaseFamIntTimer <= 0)
-        {
-            heJusReleaseFam = false;
-        }
-    }
-    /*
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusPressFam)
         {
@@ -109,14 +93,14 @@ public class Hand : MonoBehaviour
         if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusPressFam)
         {
             other.transform.parent = this.gameObject.transform;
-            animatorController.SetBool("Action", false);
-            animatorController.SetBool("Idle", true);
+            anim.SetBool("Action", false);
+            anim.SetBool("idle", true);
         }
         if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusReleaseFam)
         {
             other.transform.parent = FindObjectOfType<ObjectSpawner>().gameObject.transform;
-            animatorController.SetBool("Idle", false);
-            animatorController.SetBool("Action", true);
+            anim.SetBool("Action", true);
+            anim.SetBool("idle", false);
         }
     }
 }
