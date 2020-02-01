@@ -11,13 +11,15 @@ public class CarMovement : MonoBehaviour
         Left,
         None
     }
-    [SerializeField] private float speed;
-    [SerializeField] private float rotationSpeed;
+    public float speed;
+    public float acceleration;
+    public float rotationSpeed;
     [SerializeField] private float wheelRotation;
     [SerializeField] private GameObject leftWheel;
     [SerializeField] private GameObject rightWheel;
     [SerializeField] private CameraManager _cameraManager;
-    private Vector3 _velocity;
+    [HideInInspector] public Vector3 _velocity;
+    [HideInInspector] public float currentSpeed;
     private Rigidbody _rb;
     private Direction carDirection = Direction.None;
 
@@ -26,18 +28,23 @@ public class CarMovement : MonoBehaviour
         _rb = GetComponentInChildren<Rigidbody>();
     }
 
-    void Start()
-    {
-        
-    }
-
-    
     void Update()
     {
         //Forward
-        if (hinput.anyGamepad.rightTrigger) _velocity = transform.forward * speed;
-        else _velocity = Vector3.zero;
-        if (hinput.anyGamepad.leftTrigger) _velocity = Vector3.zero;
+        if (hinput.anyGamepad.rightTrigger)
+        {
+            if (currentSpeed <= speed) currentSpeed += acceleration * Time.deltaTime;
+        }
+        else
+        {
+            if (currentSpeed > 0) currentSpeed -= acceleration * 0.5f * Time.deltaTime;
+            if (currentSpeed < 0) currentSpeed += acceleration * 0.5f * Time.deltaTime;
+        }
+        if (hinput.anyGamepad.leftTrigger)
+        {
+            if (currentSpeed >= -speed) currentSpeed -= acceleration * 2 * Time.deltaTime;
+        }
+        _velocity = transform.forward * currentSpeed;
         
         //Direction
         if(hinput.anyGamepad.leftStick.left)
@@ -68,19 +75,39 @@ public class CarMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(_velocity.magnitude < 0.05f) _velocity = Vector3.zero;
         _rb.velocity = _velocity;
-        if (carDirection == Direction.Left)
+        if (carDirection == Direction.Left && _velocity.magnitude > 0.75f)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
-                                               transform.rotation.eulerAngles.y - rotationSpeed * Time.deltaTime, 
-                                                  transform.rotation.eulerAngles.z);
+            if (currentSpeed > 0)
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
+                                                   transform.rotation.eulerAngles.y - rotationSpeed * Time.deltaTime, 
+                                                      transform.rotation.eulerAngles.z);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
+                                                   transform.rotation.eulerAngles.y + rotationSpeed * Time.deltaTime, 
+                                                      transform.rotation.eulerAngles.z);
+            }
+            
         }
 
-        if (carDirection == Direction.Right)
+        if (carDirection == Direction.Right && _velocity.magnitude > 0.75f)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
-                                               transform.rotation.eulerAngles.y + rotationSpeed * Time.deltaTime, 
-                                                  transform.rotation.eulerAngles.z);
+            if (currentSpeed > 0)
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
+                    transform.rotation.eulerAngles.y + rotationSpeed * Time.deltaTime, 
+                    transform.rotation.eulerAngles.z);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
+                    transform.rotation.eulerAngles.y - rotationSpeed * Time.deltaTime, 
+                    transform.rotation.eulerAngles.z);
+            }
         }
     }
 }

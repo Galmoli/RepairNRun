@@ -30,26 +30,23 @@ public class ObjectSpawner : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            Vector3 transformPosition = new Vector3(Mathf.RoundToInt(Random.Range(-xMaxValue, xMaxValue)), Mathf.RoundToInt(Random.Range(-yMaxValue - 1, yMaxValue)), 0);
+            Vector3 transformPosition = new Vector3(Mathf.RoundToInt(Random.Range(-xMaxValue, xMaxValue)), Mathf.RoundToInt(Random.Range(-yMaxValue, yMaxValue)), 0);
 
             randomItemSelector = Random.Range(0, 3);
             if (randomItemSelector != 0) randomItemSelector = Random.Range(0, 3);
 
             if (randomItemSelector == 0)
             {
-                Debug.Log("first");
                 var obj =Instantiate(firstProblem, transformPosition, new Quaternion(0, 0, 0, 0), transform);
                 obj.transform.localPosition = transformPosition;
             }
             else if (randomItemSelector == 1)
             {
-                Debug.Log("second");
                 var obj = Instantiate(secondProblem, transformPosition, new Quaternion(0, 0, 0, 0), transform);
                 obj.transform.localPosition = transformPosition;
             }
             else
             {
-                Debug.Log("third");
                 var obj = Instantiate(thirdProblem, transformPosition, new Quaternion(0, 0, 0, 0), transform);
                 obj.transform.localPosition = transformPosition;
             }
