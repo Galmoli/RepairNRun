@@ -183,7 +183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433518292103426473}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.5729998, y: -0.15899998, z: -1.1629997}
+  m_LocalPosition: {x: 1.93, y: -0.15899998, z: -1.083}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3028602528063649223}
@@ -196,7 +196,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433518292103426473}
-  m_Mesh: {fileID: 4300006, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  m_Mesh: {fileID: 4300008, guid: d5a53462ed818034f8916a8c90ac0fa5, type: 3}
 --- !u!23 &7633039145486695194
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -214,7 +214,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  - {fileID: 2100000, guid: 55e9648534140eb4eb933093b816d475, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -260,7 +260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481397385462745151}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.5729998, y: -0.15899998, z: -1.1629997}
+  m_LocalPosition: {x: 1.93, y: -0.15899998, z: 1.119}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8612445549165888025}
@@ -273,7 +273,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481397385462745151}
-  m_Mesh: {fileID: 4300006, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  m_Mesh: {fileID: 4300006, guid: d5a53462ed818034f8916a8c90ac0fa5, type: 3}
 --- !u!23 &8835816121251760902
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -291,7 +291,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  - {fileID: 2100000, guid: 55e9648534140eb4eb933093b816d475, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -388,7 +388,7 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.1
   m_ForceAppPointDistance: 0
-  m_Mass: 20
+  m_Mass: 2
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -539,7 +539,7 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.1
   m_ForceAppPointDistance: 0
-  m_Mass: 20
+  m_Mass: 2
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -669,7 +669,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4212160071829240672}
-  m_Mesh: {fileID: 4300012, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  m_Mesh: {fileID: 4300010, guid: d5a53462ed818034f8916a8c90ac0fa5, type: 3}
 --- !u!23 &4212160071827039648
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -687,7 +687,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  - {fileID: 2100000, guid: 3eda15a509ca9284f9b0bb1d89b6e3d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -746,7 +746,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4212160071829240678}
-  m_Mesh: {fileID: 4300000, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  m_Mesh: {fileID: 4300014, guid: d5a53462ed818034f8916a8c90ac0fa5, type: 3}
 --- !u!23 &4212160071827039654
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -764,7 +764,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  - {fileID: 2100000, guid: 4eb1893a3c6dd444cbd732a820a93c69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 4212160071828809544}
   - component: {fileID: 4212160071825942376}
   - component: {fileID: 4212160071827039656}
-  - component: {fileID: 6471720875622656098}
+  - component: {fileID: 8603856915783149584}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -824,7 +824,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4212160071829240680}
-  m_Mesh: {fileID: 4300002, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  m_Mesh: {fileID: 4300000, guid: d5a53462ed818034f8916a8c90ac0fa5, type: 3}
 --- !u!23 &4212160071827039656
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -842,7 +842,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  - {fileID: 2100000, guid: 641431c9230b67f48a0bd001ab72aeb1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -862,7 +862,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &6471720875622656098
+--- !u!64 &8603856915783149584
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -875,7 +875,7 @@ MeshCollider:
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
-  m_Mesh: {fileID: 4300002, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  m_Mesh: {fileID: 4300000, guid: d5a53462ed818034f8916a8c90ac0fa5, type: 3}
 --- !u!1 &4212160071829240684
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,7 +996,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4212160071829240686}
-  m_Mesh: {fileID: 4300014, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  m_Mesh: {fileID: 4300012, guid: d5a53462ed818034f8916a8c90ac0fa5, type: 3}
 --- !u!23 &4212160071827039662
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1014,7 +1014,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  - {fileID: 2100000, guid: 7d09315023393ed489aa7c4ba10a6aef, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1073,7 +1073,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4212160071829240700}
-  m_Mesh: {fileID: 4300006, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  m_Mesh: {fileID: 4300004, guid: d5a53462ed818034f8916a8c90ac0fa5, type: 3}
 --- !u!23 &4212160071827039676
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1091,7 +1091,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  - {fileID: 2100000, guid: 55e9648534140eb4eb933093b816d475, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1157,7 +1157,7 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.1
   m_ForceAppPointDistance: 0
-  m_Mass: 20
+  m_Mass: 2
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -1277,7 +1277,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8338671320842376940}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.5729998, y: -0.15899998, z: -1.1629997}
+  m_LocalPosition: {x: -0.57, y: -0.15899998, z: 1.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 550253403017795868}
@@ -1290,7 +1290,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8338671320842376940}
-  m_Mesh: {fileID: 4300006, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  m_Mesh: {fileID: 4300002, guid: d5a53462ed818034f8916a8c90ac0fa5, type: 3}
 --- !u!23 &4079200013385160681
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1308,7 +1308,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e6977e8fa28961a4ebf9e229d169ae43, type: 3}
+  - {fileID: 2100000, guid: 55e9648534140eb4eb933093b816d475, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1374,7 +1374,7 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.1
   m_ForceAppPointDistance: 0
-  m_Mass: 20
+  m_Mass: 2
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4

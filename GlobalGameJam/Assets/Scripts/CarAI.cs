@@ -163,7 +163,7 @@ public class CarAI : MonoBehaviour
 
     private void CheckWayPointDistance()
     {
-        if (Vector3.Distance(transform.position, nodes[currentNode].position) < 0.5f)
+        if (Vector3.Distance(transform.position, nodes[currentNode].position) < 10f)
         {
             if (currentNode == nodes.Count - 1) currentNode = 0;
             else currentNode++;
