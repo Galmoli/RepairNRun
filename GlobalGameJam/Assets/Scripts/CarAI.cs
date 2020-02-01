@@ -8,15 +8,16 @@ public class CarAI : MonoBehaviour
 
     [SerializeField] private Transform path;
     [SerializeField] private float maxSteerAngle = 45;
-    [SerializeField] private float maxMotorTorque = 100f;
+    public float maxMotorTorque = 100f;
     [SerializeField] private float maxBreakTorque = 150f;
-    [SerializeField] private float maxSpeed = 100f;
+    public float maxSpeed = 100f;
     [SerializeField] private float maxTimeOnGrass = 20f;
     [SerializeField] private WheelCollider wheelFL;
     [SerializeField] private WheelCollider wheelFR;
     [SerializeField] private WheelCollider wheelRL;
     [SerializeField] private WheelCollider wheelRR;
     [SerializeField] private int currentNode = 0;
+    [HideInInspector] public float steerVariance;
     private List<Transform> nodes;
     
     private float currentSpeed;
@@ -61,6 +62,7 @@ public class CarAI : MonoBehaviour
         if(avoiding) return;
         Vector3 relativeVector = transform.InverseTransformPoint(nodes[currentNode].position);
         float newSteer = (relativeVector.x / relativeVector.magnitude) * maxSteerAngle;
+        newSteer += steerVariance;
         wheelFL.steerAngle = newSteer;
         wheelFR.steerAngle = newSteer;
     }
@@ -145,7 +147,6 @@ public class CarAI : MonoBehaviour
     private void Drive()
     {
         currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60 / 1000;
-
         if (currentSpeed < maxSpeed && !isBreaking)
         {
             wheelFL.motorTorque = maxMotorTorque;
