@@ -6,17 +6,52 @@ ModelImporter:
     100000: //RootNode
     100002: P1
     100004: P2
+    100006: Brazos
+    100008: Car
+    100010: Delantera_D
+    100012: Delantera_I
+    100014: Personita
+    100016: Trasera_D
+    100018: Trasera_I
     400000: //RootNode
     400002: P1
     400004: P2
+    400006: Brazos
+    400008: Car
+    400010: Delantera_D
+    400012: Delantera_I
+    400014: Personita
+    400016: Trasera_D
+    400018: Trasera_I
     2100000: Material.001
     2100002: No Name
     2300000: P1
     2300002: P2
+    2300004: Brazos
+    2300006: Car
+    2300008: Delantera_D
+    2300010: Delantera_I
+    2300012: Personita
+    2300014: Trasera_D
+    2300016: Trasera_I
     3300000: P1
     3300002: P2
+    3300004: Brazos
+    3300006: Car
+    3300008: Delantera_D
+    3300010: Delantera_I
+    3300012: Personita
+    3300014: Trasera_D
+    3300016: Trasera_I
     4300000: P1
     4300002: P2
+    4300004: Car
+    4300006: Trasera_D
+    4300008: Trasera_I
+    4300010: Delantera_D
+    4300012: Delantera_I
+    4300014: Personita
+    4300016: Brazos
   externalObjects: {}
   materials:
     importMaterials: 1

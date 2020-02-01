@@ -4,11 +4,50 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Brazos
+    100004: Car
+    100006: Delantera_D
+    100008: Delantera_I
+    100010: P1
+    100012: Personita
+    100014: Trasera_D
+    100016: Trasera_I
     400000: //RootNode
+    400002: Brazos
+    400004: Car
+    400006: Delantera_D
+    400008: Delantera_I
+    400010: P1
+    400012: Personita
+    400014: Trasera_D
+    400016: Trasera_I
     2100000: Material.001
     2300000: //RootNode
+    2300002: Brazos
+    2300004: Car
+    2300006: Delantera_D
+    2300008: Delantera_I
+    2300010: P1
+    2300012: Personita
+    2300014: Trasera_D
+    2300016: Trasera_I
     3300000: //RootNode
+    3300002: Brazos
+    3300004: Car
+    3300006: Delantera_D
+    3300008: Delantera_I
+    3300010: P1
+    3300012: Personita
+    3300014: Trasera_D
+    3300016: Trasera_I
     4300000: P1
+    4300002: Car
+    4300004: Trasera_D
+    4300006: Trasera_I
+    4300008: Delantera_D
+    4300010: Delantera_I
+    4300012: Personita
+    4300014: Brazos
   externalObjects: {}
   materials:
     importMaterials: 1
