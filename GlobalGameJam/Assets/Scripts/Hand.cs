@@ -72,50 +72,19 @@ public class Hand : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.CompareTag("firstProblem") && player1Hand.rightStickClick)
-        //{
-        //    heBeFixin = true;
-        //    Destroy(other.gameObject);
-        //}
-        //else if (other.CompareTag("secondProblem") && player1Hand.A)
-        //{
-        //    heBeFixin = true;
-        //    Destroy(other.gameObject);
-        //}
-        //else if (other.CompareTag("thirdProblem") && player1Hand.X)
-        //{
-        //    heBeFixin = true;
-        //    Destroy(other.gameObject);
-        //}
-
-        if (other.CompareTag("fourthProblem") && heJusPressFam)
+        if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusPressFam)
         {
             other.transform.parent = this.gameObject.transform;
         }
     }
     private void OnTriggerStay(Collider other)
     {
-        //if (other.CompareTag("firstProblem") && player1Hand.rightStickClick)
-        //{
-        //    heBeFixin = true;
-        //    Destroy(other.gameObject);
-        //}
-        //else if (other.CompareTag("secondProblem") && player1Hand.A)
-        //{
-        //    heBeFixin = true;
-        //    Destroy(other.gameObject);
-        //}
-        //else if (other.CompareTag("thirdProblem") && player1Hand.X)
-        //{
-        //    heBeFixin = true;
-        //    Destroy(other.gameObject);
-        //}
 
-        if (other.CompareTag("fourthProblem") && heJusPressFam)
+        if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusPressFam)
         {
             other.transform.parent = this.gameObject.transform;
         }
-        if (other.CompareTag("fourthProblem") && player1Hand.rightStickClick.released)
+        if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && player1Hand.rightStickClick.released)
         {
             other.transform.parent = FindObjectOfType<ObjectSpawner>().gameObject.transform;
         }
