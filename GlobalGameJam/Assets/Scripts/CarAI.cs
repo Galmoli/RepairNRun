@@ -8,9 +8,9 @@ public class CarAI : MonoBehaviour
 
     [SerializeField] private Transform path;
     [SerializeField] private float maxSteerAngle = 45;
-    [SerializeField] private float maxMotorTorque = 100f;
+    public float maxMotorTorque = 100f;
     [SerializeField] private float maxBreakTorque = 150f;
-    [SerializeField] private float maxSpeed = 100f;
+    public float maxSpeed = 100f;
     [SerializeField] private float maxTimeOnGrass = 20f;
     [SerializeField] private WheelCollider wheelFL;
     [SerializeField] private WheelCollider wheelFR;
@@ -145,7 +145,6 @@ public class CarAI : MonoBehaviour
     private void Drive()
     {
         currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60 / 1000;
-
         if (currentSpeed < maxSpeed && !isBreaking)
         {
             wheelFL.motorTorque = maxMotorTorque;

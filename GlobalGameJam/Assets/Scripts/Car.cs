@@ -15,14 +15,17 @@ public class Car : MonoBehaviour
 
     [SerializeField] private float brokenEngineSpeed;
     [SerializeField] private float brokenTireAngle;
-    private float speed;
-    private CarMovement _carMovement;
+    [SerializeField] private float maxTorqueOnGrass = 200;
+    private float maxTorque;
+    private CarAI _carMovement;
     private List<BrokenPart> _brokenParts = new List<BrokenPart>();
+    private RaycastHit hit;
+    private bool isInGrass;
 
     private void Awake()
     {
-        _carMovement = GetComponent<CarMovement>();
-        speed = _carMovement.maxSpeed;
+        _carMovement = GetComponent<CarAI>();
+        maxTorque = _carMovement.maxMotorTorque;
     }
 
     private void Update()
@@ -30,6 +33,20 @@ public class Car : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L)) BreakLeftWheel();
         if(Input.GetKeyDown(KeyCode.R)) BreakRightWheel();
         if(Input.GetKeyDown(KeyCode.E)) BreakEngine();
+        
+        if(Physics.Raycast(transform.position, Vector3.down, out hit,  3))
+        {
+            if (hit.collider.gameObject.name == "cespedA" || hit.collider.gameObject.name == "CespedB")
+            {
+                isInGrass = true;
+                _carMovement.maxMotorTorque = maxTorqueOnGrass;
+            }
+            else
+            {
+                isInGrass = false;
+                _carMovement.maxMotorTorque = maxTorque;
+            }
+        }
     }
 
     void FixedUpdate()
@@ -50,9 +67,9 @@ public class Car : MonoBehaviour
     {
         if (_brokenParts.Contains(BrokenPart.Engine))
         {
-            _carMovement.maxSpeed = brokenEngineSpeed;
+            _carMovement.maxMotorTorque = brokenEngineSpeed;
         }
-        else _carMovement.maxSpeed = speed;
+        else if(!isInGrass) _carMovement.maxMotorTorque = maxTorque;
     }
 
     public void BreakEngine()

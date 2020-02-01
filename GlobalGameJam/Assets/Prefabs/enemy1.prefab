@@ -888,6 +888,7 @@ GameObject:
   - component: {fileID: 6275883654796340994}
   - component: {fileID: 1640233021}
   - component: {fileID: 393760833}
+  - component: {fileID: 3517155144769214963}
   m_Layer: 0
   m_Name: enemy1
   m_TagString: Untagged
@@ -949,6 +950,7 @@ MonoBehaviour:
   maxMotorTorque: 1000
   maxBreakTorque: 150
   maxSpeed: 100
+  maxTimeOnGrass: 20
   wheelFL: {fileID: 7143873127149559659}
   wheelFR: {fileID: 3730782789254472748}
   wheelRL: {fileID: 1512464884159157166}
@@ -972,6 +974,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToFlip: 2.5
+--- !u!114 &3517155144769214963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4212160071829240684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816b74a8b2a19ec4989ee5e242d3f46d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenEngineSpeed: 0
+  brokenTireAngle: 0
 --- !u!1 &4212160071829240686
 GameObject:
   m_ObjectHideFlags: 0
