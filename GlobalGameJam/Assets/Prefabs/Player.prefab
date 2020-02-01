@@ -1018,6 +1018,7 @@ GameObject:
   - component: {fileID: 6275883654796340994}
   - component: {fileID: 2071966871219004842}
   - component: {fileID: 1489347258992847241}
+  - component: {fileID: 1547899400}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1092,7 +1093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSteerAngle: 80
   maxMotorTorque: 1000
-  maxBreakTorque: 150
+  maxBreakTorque: 2000
   maxSpeed: 100
   wheelFL: {fileID: 7143873127149559659}
   wheelFR: {fileID: 3730782789254472748}
@@ -1103,6 +1104,19 @@ MonoBehaviour:
   centerSensor: {fileID: 2097428352}
   rightSensor: {fileID: 1610987196}
   leftSensor: {fileID: 1303321245}
+--- !u!114 &1547899400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4212160071829240684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 723949450c233cd4293ffe4cf50f0d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToFlip: 2.5
 --- !u!1 &4212160071829240686
 GameObject:
   m_ObjectHideFlags: 0
