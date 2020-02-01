@@ -14,6 +14,8 @@ public class Hand : MonoBehaviour
     [HideInInspector] public bool heJusPressFam = false;
     [HideInInspector] public int heJusPressFamIntTimer = 0;
 
+    [HideInInspector] public bool heJusReleaseFam = false;
+    [HideInInspector] public int heJusReleaseFamIntTimer = 0;
 
     public float XClamper = 3.14f;
     public float YClamper = 1.5f;
@@ -26,6 +28,12 @@ public class Hand : MonoBehaviour
         player1Hand = hinput.gamepad[0];
 
         //fixinTimerCapsule = fixinTimer;
+
+        animatorController = this.GetComponentInChildren<Animator>();
+
+
+        animatorController.SetBool("Idle", false);
+        animatorController.SetBool("Action", false);
     }
 
     // Update is called once per frame
@@ -70,13 +78,13 @@ public class Hand : MonoBehaviour
         {
             heJusPressFam = false;
         }
-    }
 
     /*private void OnTriggerEnter(Collider other)
     {
         if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusPressFam)
         {
             other.transform.parent = this.gameObject.transform;
+
         }
     }*/
     private void OnTriggerStay(Collider other)
@@ -88,7 +96,7 @@ public class Hand : MonoBehaviour
             anim.SetBool("Action", false);
             anim.SetBool("idle", true);
         }
-        if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && player1Hand.rightStickClick.released)
+        if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusReleaseFam)
         {
             other.transform.parent = FindObjectOfType<ObjectSpawner>().gameObject.transform;
             anim.SetBool("Action", true);
