@@ -11,27 +11,18 @@ public class CarMovement : MonoBehaviour
         Left,
         None
     }
-    [SerializeField] private float maxSteerAngle = 45;
-   public float maxMotorTorque = 100f;
+    
+    public float maxMotorTorque = 100f;
     [SerializeField] private float maxBreakTorque = 150f;
-    public float maxSpeed = 100f;
     public WheelCollider wheelFL;
     public WheelCollider wheelFR;
     [SerializeField] private WheelCollider wheelRL;
     [SerializeField] private WheelCollider wheelRR;
     [HideInInspector] public float steerVariance = 0;
     private float avoidMultiplier;
-    private float currentSpeed;
     private bool isBreaking;
     private bool isAccelerating;
     private Direction currentDirection = Direction.None;
-
-    [Header("Sensors")] 
-    [SerializeField] private float sensorLength = 5f;
-    [SerializeField] private float frontSensorAngle = 30;
-    [SerializeField] private Transform centerSensor;
-    [SerializeField] private Transform rightSensor;
-    [SerializeField] private Transform leftSensor;
 
     private void FixedUpdate()
     {
@@ -54,7 +45,7 @@ public class CarMovement : MonoBehaviour
 
     private void ApplySteer()
     {
-        float newSteer = 0 + steerVariance;
+        float newSteer = 0;
         switch (currentDirection)
         {
             case Direction.Right:
@@ -67,14 +58,14 @@ public class CarMovement : MonoBehaviour
                 newSteer = 0;
                 break;
         }
+        newSteer += steerVariance;
+        
         wheelFL.steerAngle = newSteer;
         wheelFR.steerAngle = newSteer;
     }
 
     private void Drive()
     {
-        currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60 / 1000;
-
         if (isAccelerating && !isBreaking)
         {
             wheelFL.motorTorque = maxMotorTorque;
@@ -99,6 +90,5 @@ public class CarMovement : MonoBehaviour
             wheelRL.brakeTorque = 0;
             wheelRR.brakeTorque = 0;
         }
-        
     }
 }
