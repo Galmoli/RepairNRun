@@ -30,6 +30,7 @@ public class Car : MonoBehaviour
         if (isPlayer)
         {
             _carMovement = GetComponent<CarMovement>();
+            maxTorque = _carMovement.maxMotorTorque;
         }
         else
         {

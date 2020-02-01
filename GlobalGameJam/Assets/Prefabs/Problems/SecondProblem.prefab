@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1154768267491179907}
   - component: {fileID: 1154768267491179906}
   - component: {fileID: 1154768267491179905}
-  - component: {fileID: 1154768267491179904}
   - component: {fileID: 8962441258658847761}
+  - component: {fileID: 54051876012777384}
   m_Layer: 9
   m_Name: SecondProblem
   m_TagString: secondProblem
@@ -93,22 +93,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1154768267491179904
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154768267491180159}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &8962441258658847761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,3 +105,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e42e5b9af0c3854fabde0031f0c0318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &54051876012777384
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154768267491180159}
+  serializedVersion: 2
+  m_Mass: 0.1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

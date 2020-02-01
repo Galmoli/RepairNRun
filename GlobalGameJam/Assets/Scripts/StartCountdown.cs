@@ -14,6 +14,7 @@ public class StartCountdown : MonoBehaviour
     [HideInInspector] public bool restartThisTimer = true;
     [HideInInspector] public bool restartThisSecondTimer = true;
     [HideInInspector] public bool restartThisThirdTimer = true;
+    [HideInInspector] public bool cantPlayAnymore = true;
     [HideInInspector] public AudioSource countdownSounds;
 
     // Start is called before the first frame update
@@ -34,22 +35,24 @@ public class StartCountdown : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= 4.5f)
         {
+            countdownSounds.Stop();
             countdownTimer.enabled = false;
             countdownTimer.gameObject.SetActive(false);
         }
         else if (timer >= 4)
         {
-            if (!countdownSounds.isPlaying)
-            {
-                countdownSounds.pitch = 1.5f;
-                countdownSounds.Play();
-            }
             restartThisSecondTimer = true;
             restartThisTimer = true;
         }
         else if (timer >= 3)
         {
-            if (!countdownSounds.isPlaying) countdownSounds.Play();
+            if (!countdownSounds.isPlaying && cantPlayAnymore)
+            {
+                countdownSounds.pitch = 1.5f;
+                countdownSounds.Play();
+                cantPlayAnymore = false;
+            }
+
             if (restartThisThirdTimer)
             {
                 countdownTimer.color = new Color(countdownTimer.color.r, countdownTimer.color.g, countdownTimer.color.b, Time.deltaTime);
@@ -82,7 +85,11 @@ public class StartCountdown : MonoBehaviour
         }
         else if (timer >= 1)
         {
-            if (!countdownSounds.isPlaying) countdownSounds.Play();
+            if (!countdownSounds.isPlaying)
+            {
+                countdownSounds.Play();
+            }
+
             if (restartThisTimer)
             {
                 countdownTimer.color = new Color(countdownTimer.color.r, countdownTimer.color.g, countdownTimer.color.b, Time.deltaTime);
