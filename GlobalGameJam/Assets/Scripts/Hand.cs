@@ -18,6 +18,8 @@ public class Hand : MonoBehaviour
     public float XClamper = 3.14f;
     public float YClamper = 1.5f;
 
+    public Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,23 +72,27 @@ public class Hand : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusPressFam)
         {
             other.transform.parent = this.gameObject.transform;
         }
-    }
+    }*/
     private void OnTriggerStay(Collider other)
     {
 
         if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusPressFam)
         {
             other.transform.parent = this.gameObject.transform;
+            anim.SetBool("Action", false);
+            anim.SetBool("idle", true);
         }
         if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && player1Hand.rightStickClick.released)
         {
             other.transform.parent = FindObjectOfType<ObjectSpawner>().gameObject.transform;
+            anim.SetBool("Action", true);
+            anim.SetBool("idle", false);
         }
     }
 }
