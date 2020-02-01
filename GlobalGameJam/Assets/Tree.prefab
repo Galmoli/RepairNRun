@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 3207292949454770248}
   - component: {fileID: 1000576142173704286}
   - component: {fileID: 935539462312852072}
+  - component: {fileID: 4324855096937921654}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -301,7 +302,7 @@ Transform:
   m_GameObject: {fileID: 8528748041103167446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.889655, y: 0.88965476, z: 0.8896549}
+  m_LocalScale: {x: 0.8896564, y: 0.8896549, z: 0.8896564}
   m_Children:
   - {fileID: 4106090254255080475}
   - {fileID: 4947618486153787377}
@@ -364,6 +365,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!70 &4324855096937921654
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8528748041103167446}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.5780578, y: 6.0556474}
+  m_Size: {x: 4.188357, y: 12.111294}
+  m_Direction: 0
 --- !u!1 &8859977771674953842
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,17 +832,17 @@ MonoBehaviour:
     rootSpread: 5
     groundOffset: 0
     rootMatrix:
-      e00: 0.9999845
-      e01: -0.000035857902
-      e02: 0.005567089
+      e00: -0.4261762
+      e01: 0
+      e02: -0.9046402
       e03: 0
-      e10: 1.4041463e-12
-      e11: 0.99997926
-      e12: 0.006440915
+      e10: 0
+      e11: 1
+      e12: 0
       e13: 0
-      e20: -0.005567205
-      e21: -0.006440816
-      e22: 0.9999637
+      e20: 0.90464014
+      e21: 0
+      e22: -0.42617622
       e23: 0
       e30: 0
       e31: 0
@@ -1330,17 +1347,17 @@ MonoBehaviour:
     pitch: -0
     rotation: {x: 0, y: 0, z: 0, w: 1}
     matrix:
-      e00: 0.9999845
-      e01: -0.000035857902
-      e02: 0.005567089
+      e00: -0.4261762
+      e01: 0
+      e02: -0.9046402
       e03: 0
-      e10: 1.4041463e-12
-      e11: 0.99997926
-      e12: 0.006440915
+      e10: 0
+      e11: 1
+      e12: 0
       e13: 0
-      e20: -0.005567205
-      e21: -0.006440816
-      e22: 0.9999637
+      e20: 0.90464014
+      e21: 0
+      e22: -0.42617622
       e23: 0
       e30: 0
       e31: 0
