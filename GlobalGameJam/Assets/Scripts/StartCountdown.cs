@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class StartCountdown : MonoBehaviour
 {
-    public CarMovement[] allCarsMovement;
+    public CarMovement playerCarMovement;
+    public CarAI[] allCarsMovement;
     [HideInInspector] public float timer = 0;
     [HideInInspector] public float maxTimer = 3;
 
@@ -13,6 +14,7 @@ public class StartCountdown : MonoBehaviour
     [HideInInspector] public bool restartThisTimer = true;
     [HideInInspector] public bool restartThisSecondTimer = true;
     [HideInInspector] public bool restartThisThirdTimer = true;
+    [HideInInspector] public AudioSource countdownSounds;
 
     // Start is called before the first frame update
     void Start()
@@ -23,21 +25,31 @@ public class StartCountdown : MonoBehaviour
         }
 
         countdownTimer.color = new Color(countdownTimer.color.r, countdownTimer.color.g, countdownTimer.color.b, 0); //Comença sent transparent
+        countdownSounds = countdownTimer.gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= 4)
+        if (timer >= 4.5f)
         {
             countdownTimer.enabled = false;
+            countdownTimer.gameObject.SetActive(false);
+        }
+        else if (timer >= 4)
+        {
+            if (!countdownSounds.isPlaying)
+            {
+                countdownSounds.pitch = 1.5f;
+                countdownSounds.Play();
+            }
             restartThisSecondTimer = true;
             restartThisTimer = true;
-            countdownTimer.gameObject.SetActive(false);
         }
         else if (timer >= 3)
         {
+            if (!countdownSounds.isPlaying) countdownSounds.Play();
             if (restartThisThirdTimer)
             {
                 countdownTimer.color = new Color(countdownTimer.color.r, countdownTimer.color.g, countdownTimer.color.b, Time.deltaTime);
@@ -56,6 +68,7 @@ public class StartCountdown : MonoBehaviour
         }
         else if (timer >= 2)
         {
+            if (!countdownSounds.isPlaying) countdownSounds.Play();
             if (restartThisSecondTimer)
             {
                 countdownTimer.color = new Color(countdownTimer.color.r, countdownTimer.color.g, countdownTimer.color.b, Time.deltaTime);
@@ -69,6 +82,7 @@ public class StartCountdown : MonoBehaviour
         }
         else if (timer >= 1)
         {
+            if (!countdownSounds.isPlaying) countdownSounds.Play();
             if (restartThisTimer)
             {
                 countdownTimer.color = new Color(countdownTimer.color.r, countdownTimer.color.g, countdownTimer.color.b, Time.deltaTime);
