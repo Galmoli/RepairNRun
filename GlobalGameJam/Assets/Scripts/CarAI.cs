@@ -8,9 +8,9 @@ public class CarAI : MonoBehaviour
 
     [SerializeField] private Transform path;
     [SerializeField] private float maxSteerAngle = 45;
-    public float maxMotorTorque = 100f;
+    [SerializeField] private float maxMotorTorque = 100f;
     [SerializeField] private float maxBreakTorque = 150f;
-    public float maxSpeed = 100f;
+    [SerializeField] private float maxSpeed = 100f;
     [SerializeField] private float maxTimeOnGrass = 20f;
     [SerializeField] private WheelCollider wheelFL;
     [SerializeField] private WheelCollider wheelFR;

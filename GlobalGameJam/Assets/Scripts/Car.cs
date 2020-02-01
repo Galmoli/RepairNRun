@@ -15,26 +15,25 @@ public class Car : MonoBehaviour
 
     [SerializeField] private bool isPlayer;
     [SerializeField] private float brokenTireAngle;
-    [SerializeField] private float maxTorqueOnGrass = 200;
-    [SerializeField] private float maxTorqueBroken = 400;
-    private float maxTorque;
+    [SerializeField] private float speedOnGrass = 10;
+    [SerializeField] private float speedBrokenEngine = 5;
     private CarAI _carAIMove;
     private CarMovement _carMovement;
     private List<BrokenPart> _brokenParts = new List<BrokenPart>();
     private RaycastHit hit;
+    private Rigidbody _rb;
     private bool isInGrass;
 
     private void Awake()
     {
+        _rb = GetComponent<Rigidbody>();
         if (isPlayer)
         {
             _carMovement = GetComponent<CarMovement>();
-            maxTorque = _carAIMove.maxMotorTorque;
         }
         else
         {
             _carAIMove = GetComponent<CarAI>();
-            maxTorque = _carAIMove.maxMotorTorque;
         }
         
     }
@@ -57,14 +56,11 @@ public class Car : MonoBehaviour
             if (hit.collider.gameObject.name == "cespedA" || hit.collider.gameObject.name == "CespedB")
             {
                 isInGrass = true;
-                if (isPlayer) _carMovement.maxMotorTorque = maxTorqueOnGrass;
-                else _carAIMove.maxMotorTorque = maxTorqueOnGrass;
+                _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, speedOnGrass);
             }
             else
             {
                 isInGrass = false;
-                if (isPlayer) _carMovement.maxMotorTorque = maxTorque;
-                else _carAIMove.maxMotorTorque = maxTorque;
             }
         }
     }
@@ -99,13 +95,7 @@ public class Car : MonoBehaviour
     {
         if (_brokenParts.Contains(BrokenPart.Engine))
         {
-            if (isPlayer) _carMovement.maxMotorTorque = maxTorqueBroken;
-            else _carAIMove.maxMotorTorque = maxTorqueBroken;
-        }
-        else if (!isInGrass)
-        {
-            if (isPlayer) _carMovement.maxMotorTorque = maxTorque;
-            else _carAIMove.maxMotorTorque = maxTorque;
+            _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, speedBrokenEngine);
         }
     }
 
