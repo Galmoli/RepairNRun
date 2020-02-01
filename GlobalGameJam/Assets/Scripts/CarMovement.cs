@@ -14,6 +14,7 @@ public class CarMovement : MonoBehaviour
     public float speed;
     public float acceleration;
     public float rotationSpeed;
+    public float timeToDesiredSpeed;
     [SerializeField] private float wheelRotation;
     [SerializeField] private GameObject leftWheel;
     [SerializeField] private GameObject rightWheel;
@@ -37,8 +38,8 @@ public class CarMovement : MonoBehaviour
         }
         else
         {
-            if (currentSpeed > 0) currentSpeed -= acceleration * 0.5f * Time.deltaTime;
-            if (currentSpeed < 0) currentSpeed += acceleration * 0.5f * Time.deltaTime;
+            if (currentSpeed > 0) currentSpeed -= acceleration * timeToDesiredSpeed * Time.deltaTime;
+            if (currentSpeed < 0) currentSpeed += acceleration * timeToDesiredSpeed * Time.deltaTime;
         }
         if (hinput.anyGamepad.leftTrigger)
         {
