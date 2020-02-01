@@ -14,9 +14,9 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hinput.anyGamepad.A)
-        {
-            SceneManager.LoadScene("MainScene");
-        }
+        //if (hinput.anyGamepad.A)
+        //{
+        //    SceneManager.LoadScene("MainScene");
+        //}
     }
 }
