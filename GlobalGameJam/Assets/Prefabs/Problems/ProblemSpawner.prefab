@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f5f478002ba8a43834d00a3fbeb803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMaxValue: 4
+  parentCamera: {fileID: 0}
+  xMaxValue: 3
   yMaxValue: 2
   timer: 3
   timerVariator: 1.5

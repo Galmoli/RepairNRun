@@ -8,13 +8,13 @@ public class ProblemBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
