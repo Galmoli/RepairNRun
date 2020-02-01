@@ -905,7 +905,7 @@ Transform:
   m_GameObject: {fileID: 4212160071829240684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children:
   - {fileID: 4212160071828809550}
   - {fileID: 4212160071828809544}
@@ -956,6 +956,7 @@ MonoBehaviour:
   wheelRL: {fileID: 1512464884159157166}
   wheelRR: {fileID: 5062798421273948314}
   currentNode: 0
+  steerVariance: 0
   sensorLength: 2
   frontSensorAngle: 30
   centerSensor: {fileID: 2097428352}
@@ -986,8 +987,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816b74a8b2a19ec4989ee5e242d3f46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokenEngineSpeed: 0
-  brokenTireAngle: 0
+  isPlayer: 0
+  brokenTireAngle: 10
+  maxTorqueOnGrass: 400
+  maxTorqueBroken: 250
 --- !u!1 &4212160071829240686
 GameObject:
   m_ObjectHideFlags: 0
