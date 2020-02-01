@@ -887,6 +887,7 @@ GameObject:
   - component: {fileID: 4212160071828809548}
   - component: {fileID: 6275883654796340994}
   - component: {fileID: 1640233021}
+  - component: {fileID: 393760833}
   m_Layer: 0
   m_Name: enemy1
   m_TagString: Untagged
@@ -903,7 +904,7 @@ Transform:
   m_GameObject: {fileID: 4212160071829240684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4212160071828809550}
   - {fileID: 4212160071828809544}
@@ -944,19 +945,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 0}
-  maxSteerAngle: 60
-  maxMotorTorque: 250
+  maxSteerAngle: 80
+  maxMotorTorque: 1000
   maxBreakTorque: 150
   maxSpeed: 100
   wheelFL: {fileID: 7143873127149559659}
   wheelFR: {fileID: 3730782789254472748}
   wheelRL: {fileID: 1512464884159157166}
   wheelRR: {fileID: 5062798421273948314}
+  currentNode: 0
   sensorLength: 2
   frontSensorAngle: 30
   centerSensor: {fileID: 2097428352}
   rightSensor: {fileID: 1610987196}
   leftSensor: {fileID: 1303321245}
+--- !u!114 &393760833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4212160071829240684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 723949450c233cd4293ffe4cf50f0d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToFlip: 2.5
 --- !u!1 &4212160071829240686
 GameObject:
   m_ObjectHideFlags: 0
