@@ -11,15 +11,15 @@ public class CarMovement : MonoBehaviour
         Left,
         None
     }
-    [SerializeField] private float speed;
-    [SerializeField] private float acceleration;
-    [SerializeField] private float rotationSpeed;
+    public float speed;
+    public float acceleration;
+    public float rotationSpeed;
     [SerializeField] private float wheelRotation;
     [SerializeField] private GameObject leftWheel;
     [SerializeField] private GameObject rightWheel;
     [SerializeField] private CameraManager _cameraManager;
-    private float currentSpeed;
-    private Vector3 _velocity;
+    [HideInInspector] public Vector3 _velocity;
+    [HideInInspector] public float currentSpeed;
     private Rigidbody _rb;
     private Direction carDirection = Direction.None;
 
@@ -28,12 +28,6 @@ public class CarMovement : MonoBehaviour
         _rb = GetComponentInChildren<Rigidbody>();
     }
 
-    void Start()
-    {
-        
-    }
-
-    
     void Update()
     {
         //Forward
