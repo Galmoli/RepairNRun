@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
+    //public GameObject parentCamera;
+
     public int xMaxValue = 12;
     public int yMaxValue = 5;
 
