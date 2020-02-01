@@ -14,6 +14,7 @@ public class CarMovement : MonoBehaviour
     
     public float maxMotorTorque = 100f;
     [SerializeField] private float maxBreakTorque = 150f;
+    [SerializeField] private float turnAngle = 50f;
     public WheelCollider wheelFL;
     public WheelCollider wheelFR;
     [SerializeField] private WheelCollider wheelRL;
@@ -22,13 +23,20 @@ public class CarMovement : MonoBehaviour
     private float avoidMultiplier;
     private bool isBreaking;
     private bool isAccelerating;
+    private bool backwards;
     private Direction currentDirection = Direction.None;
+    private Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void FixedUpdate()
     {
         ApplySteer();
-        Breaking();
         Drive();
+        Breaking();
     }
 
     // Update is called once per frame
@@ -39,8 +47,22 @@ public class CarMovement : MonoBehaviour
         if (hinput.anyGamepad.leftStick.inDeadZone) currentDirection = Direction.None;
         if (hinput.anyGamepad.rightTrigger.pressed) isAccelerating = true;
         else isAccelerating = false;
-        if (hinput.anyGamepad.leftTrigger.pressed) isBreaking = true;
-        else isBreaking = false;
+        if (hinput.anyGamepad.leftTrigger.pressed)
+        {
+            isBreaking = true;
+            var velocity = rb.velocity;
+            var localVel = transform.InverseTransformDirection(velocity);
+            if (localVel.z <= 0.01f)
+            {
+                isBreaking = false;
+                backwards = true;
+            }
+        }
+        else
+        {
+            isBreaking = false;
+            backwards = false;
+        }
     }
 
     private void ApplySteer()
@@ -49,17 +71,16 @@ public class CarMovement : MonoBehaviour
         switch (currentDirection)
         {
             case Direction.Right:
-                newSteer = 45;
+                newSteer = turnAngle;
                 break;
             case Direction.Left:
-                newSteer = -45;
+                newSteer = -turnAngle;
                 break;
             case Direction.None:
                 newSteer = 0;
                 break;
         }
         newSteer += steerVariance;
-        
         wheelFL.steerAngle = newSteer;
         wheelFR.steerAngle = newSteer;
     }
@@ -71,7 +92,7 @@ public class CarMovement : MonoBehaviour
             wheelFL.motorTorque = maxMotorTorque;
             wheelFR.motorTorque = maxMotorTorque;
         }
-        else
+        else if(!backwards)
         {
             wheelFL.motorTorque = 0;
             wheelFR.motorTorque = 0;
@@ -82,13 +103,28 @@ public class CarMovement : MonoBehaviour
     {
         if (isBreaking)
         {
+            wheelFL.brakeTorque = maxBreakTorque;
+            wheelFR.brakeTorque = maxBreakTorque;
             wheelRL.brakeTorque = maxBreakTorque;
             wheelRR.brakeTorque = maxBreakTorque;
         }
         else
         {
+            wheelFL.brakeTorque = 0;
+            wheelFR.brakeTorque = 0;
             wheelRL.brakeTorque = 0;
             wheelRR.brakeTorque = 0;
+        }
+        
+        if (backwards)
+        {
+            wheelFL.motorTorque = -maxMotorTorque;
+            wheelFR.motorTorque = -maxMotorTorque;
+        }
+        else if(!isAccelerating)
+        {
+            wheelFL.motorTorque = 0;
+            wheelFR.motorTorque = 0;
         }
     }
 }
