@@ -11,6 +11,7 @@ public class CarAI : MonoBehaviour
     [SerializeField] private float maxMotorTorque = 100f;
     [SerializeField] private float maxBreakTorque = 150f;
     [SerializeField] private float maxSpeed = 100f;
+    [SerializeField] private float maxTimeOnGrass = 20f;
     [SerializeField] private WheelCollider wheelFL;
     [SerializeField] private WheelCollider wheelFR;
     [SerializeField] private WheelCollider wheelRL;
@@ -19,8 +20,10 @@ public class CarAI : MonoBehaviour
     private List<Transform> nodes;
     
     private float currentSpeed;
+    private float currentTimeOnGrass;
     private bool isBreaking;
     private bool avoiding;
+    private Vector3 lastNodePos;
 
     [Header("Sensors")] 
     [SerializeField] private float sensorLength = 5f;
@@ -51,12 +54,6 @@ public class CarAI : MonoBehaviour
         Breaking();
         Drive();
         CheckWayPointDistance();
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        
     }
 
     private void ApplySteer()
@@ -124,6 +121,20 @@ public class CarAI : MonoBehaviour
             }
         }
 
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, sensorLength))
+        {
+            if (hit.collider.gameObject.name == "cespedA" || hit.collider.gameObject.name == "CespedB")
+            {
+                currentTimeOnGrass += Time.deltaTime;
+                if (currentTimeOnGrass >= maxTimeOnGrass)
+                {
+                    GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    transform.position = lastNodePos;
+                }
+            }
+            else currentTimeOnGrass = 0;
+        }
+
         if (avoiding)
         {
             wheelFL.steerAngle = maxSteerAngle * avoidMultiplier;
@@ -166,6 +177,7 @@ public class CarAI : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, nodes[currentNode].position) < 10f)
         {
+            lastNodePos = nodes[currentNode].position;
             if (currentNode == nodes.Count - 1) currentNode = 0;
             else currentNode++;
         }
