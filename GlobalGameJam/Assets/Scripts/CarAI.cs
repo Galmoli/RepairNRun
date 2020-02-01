@@ -17,6 +17,7 @@ public class CarAI : MonoBehaviour
     [SerializeField] private WheelCollider wheelRL;
     [SerializeField] private WheelCollider wheelRR;
     [SerializeField] private int currentNode = 0;
+    [HideInInspector] public float steerVariance;
     private List<Transform> nodes;
     
     private float currentSpeed;
@@ -61,6 +62,7 @@ public class CarAI : MonoBehaviour
         if(avoiding) return;
         Vector3 relativeVector = transform.InverseTransformPoint(nodes[currentNode].position);
         float newSteer = (relativeVector.x / relativeVector.magnitude) * maxSteerAngle;
+        newSteer += steerVariance;
         wheelFL.steerAngle = newSteer;
         wheelFR.steerAngle = newSteer;
     }

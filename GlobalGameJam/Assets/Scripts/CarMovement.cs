@@ -12,13 +12,14 @@ public class CarMovement : MonoBehaviour
         None
     }
     [SerializeField] private float maxSteerAngle = 45;
-    [SerializeField] private float maxMotorTorque = 100f;
+   public float maxMotorTorque = 100f;
     [SerializeField] private float maxBreakTorque = 150f;
     public float maxSpeed = 100f;
     public WheelCollider wheelFL;
     public WheelCollider wheelFR;
     [SerializeField] private WheelCollider wheelRL;
     [SerializeField] private WheelCollider wheelRR;
+    [HideInInspector] public float steerVariance = 0;
     private float avoidMultiplier;
     private float currentSpeed;
     private bool isBreaking;
@@ -53,7 +54,7 @@ public class CarMovement : MonoBehaviour
 
     private void ApplySteer()
     {
-        float newSteer = 0;
+        float newSteer = 0 + steerVariance;
         switch (currentDirection)
         {
             case Direction.Right:

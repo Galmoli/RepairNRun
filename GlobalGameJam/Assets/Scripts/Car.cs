@@ -13,19 +13,30 @@ public class Car : MonoBehaviour
         Engine
     }
 
-    [SerializeField] private float brokenEngineSpeed;
+    [SerializeField] private bool isPlayer;
     [SerializeField] private float brokenTireAngle;
     [SerializeField] private float maxTorqueOnGrass = 200;
+    [SerializeField] private float maxTorqueBroken = 400;
     private float maxTorque;
-    private CarAI _carMovement;
+    private CarAI _carAIMove;
+    private CarMovement _carMovement;
     private List<BrokenPart> _brokenParts = new List<BrokenPart>();
     private RaycastHit hit;
     private bool isInGrass;
 
     private void Awake()
     {
-        _carMovement = GetComponent<CarAI>();
-        maxTorque = _carMovement.maxMotorTorque;
+        if (isPlayer)
+        {
+            _carMovement = GetComponent<CarMovement>();
+            maxTorque = _carAIMove.maxMotorTorque;
+        }
+        else
+        {
+            _carAIMove = GetComponent<CarAI>();
+            maxTorque = _carAIMove.maxMotorTorque;
+        }
+        
     }
 
     private void Update()
@@ -33,18 +44,27 @@ public class Car : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L)) BreakLeftWheel();
         if(Input.GetKeyDown(KeyCode.R)) BreakRightWheel();
         if(Input.GetKeyDown(KeyCode.E)) BreakEngine();
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            RepairEngine();
+            RepairLeftWheel();
+            RepairRightWheel();
+        }
         
         if(Physics.Raycast(transform.position, Vector3.down, out hit,  3))
         {
             if (hit.collider.gameObject.name == "cespedA" || hit.collider.gameObject.name == "CespedB")
             {
                 isInGrass = true;
-                _carMovement.maxMotorTorque = maxTorqueOnGrass;
+                if (isPlayer) _carMovement.maxMotorTorque = maxTorqueOnGrass;
+                else _carAIMove.maxMotorTorque = maxTorqueOnGrass;
             }
             else
             {
                 isInGrass = false;
-                _carMovement.maxMotorTorque = maxTorque;
+                if (isPlayer) _carMovement.maxMotorTorque = maxTorque;
+                else _carAIMove.maxMotorTorque = maxTorque;
             }
         }
     }
@@ -53,12 +73,24 @@ public class Car : MonoBehaviour
     {
         if (_brokenParts.Contains(BrokenPart.LeftWheel))
         {
-            
+            if (isPlayer) _carMovement.steerVariance = -brokenTireAngle;
+            else _carAIMove.steerVariance = -brokenTireAngle;
+        }
+        else
+        {
+            if (isPlayer) _carMovement.steerVariance = 0;
+            else _carAIMove.steerVariance = 0;
         }
 
         if (_brokenParts.Contains(BrokenPart.RightWheel))
         {
-            
+            if (isPlayer) _carMovement.steerVariance = brokenTireAngle;
+            else _carAIMove.steerVariance = brokenTireAngle;
+        }
+        else
+        {
+            if (isPlayer) _carMovement.steerVariance = 0;
+            else _carAIMove.steerVariance = 0;
         }
     }
 
@@ -67,9 +99,14 @@ public class Car : MonoBehaviour
     {
         if (_brokenParts.Contains(BrokenPart.Engine))
         {
-            _carMovement.maxMotorTorque = brokenEngineSpeed;
+            if (isPlayer) _carMovement.maxMotorTorque = maxTorqueBroken;
+            else _carAIMove.maxMotorTorque = maxTorqueBroken;
         }
-        else if(!isInGrass) _carMovement.maxMotorTorque = maxTorque;
+        else if (!isInGrass)
+        {
+            if (isPlayer) _carMovement.maxMotorTorque = maxTorque;
+            else _carAIMove.maxMotorTorque = maxTorque;
+        }
     }
 
     public void BreakEngine()
