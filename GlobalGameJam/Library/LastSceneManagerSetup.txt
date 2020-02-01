@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/VisualsTest.unity
+- path: Assets/Scenes/VisualsTest 1.unity
   isLoaded: 1
   isActive: 1
