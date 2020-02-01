@@ -204,10 +204,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78e1e47327acef44a81f40aa1a4e38b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  acceleration: 5
-  rotationSpeed: 90
-  wheelRotation: 25
+  speed: 30
+  acceleration: 15
+  rotationSpeed: 100
+  timeToDesiredSpeed: 0.65
+  wheelRotation: 65
   leftWheel: {fileID: 7373794194271633925}
   rightWheel: {fileID: 7373794194472046637}
   _cameraManager: {fileID: 0}
