@@ -15,10 +15,13 @@ public class CarMovement : MonoBehaviour
     public float maxMotorTorque = 100f;
     [SerializeField] private float maxBreakTorque = 150f;
     [SerializeField] private float turnAngle = 50f;
+    [SerializeField] private float wheelVisualAngle = 20f;
     public WheelCollider wheelFL;
     public WheelCollider wheelFR;
     [SerializeField] private WheelCollider wheelRL;
     [SerializeField] private WheelCollider wheelRR;
+    [SerializeField] private GameObject leftWheel;
+    [SerializeField] private GameObject rightWheel;
     [HideInInspector] public float steerVariance = 0;
     private float avoidMultiplier;
     private bool isBreaking;
@@ -72,12 +75,18 @@ public class CarMovement : MonoBehaviour
         {
             case Direction.Right:
                 newSteer = turnAngle;
+                rightWheel.transform.localRotation = Quaternion.AngleAxis(wheelVisualAngle, Vector3.up);
+                leftWheel.transform.localRotation = Quaternion.AngleAxis(wheelVisualAngle, Vector3.up);
                 break;
             case Direction.Left:
                 newSteer = -turnAngle;
+                rightWheel.transform.localRotation = Quaternion.AngleAxis(-wheelVisualAngle, Vector3.up);
+                leftWheel.transform.localRotation = Quaternion.AngleAxis(-wheelVisualAngle, Vector3.up);
                 break;
             case Direction.None:
-                newSteer = 0;
+                rightWheel.transform.localRotation = Quaternion.AngleAxis(0, Vector3.up);
+                leftWheel.transform.localRotation = Quaternion.AngleAxis(0, Vector3.up);
+                newSteer = 0;   
                 break;
         }
         newSteer += steerVariance;
