@@ -21,10 +21,5 @@ public class CameraManager : MonoBehaviour
     {
         transform.position += _velocity * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, target.position, distanceDelta);
-    }
-
-    public void SetVelocity(Vector3 velocity)
-    {
-        _velocity = velocity;
-    }
+    }    
 }

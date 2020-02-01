@@ -16,6 +16,8 @@ public class CarAI : MonoBehaviour
     [SerializeField] private WheelCollider wheelFR;
     [SerializeField] private WheelCollider wheelRL;
     [SerializeField] private WheelCollider wheelRR;
+    [SerializeField] private GameObject rightWheel;
+    [SerializeField] private GameObject leftWheel;
     [SerializeField] private int currentNode = 0;
     [HideInInspector] public float steerVariance;
     private List<Transform> nodes;
@@ -65,6 +67,9 @@ public class CarAI : MonoBehaviour
         newSteer += steerVariance;
         wheelFL.steerAngle = newSteer;
         wheelFR.steerAngle = newSteer;
+        
+        rightWheel.transform.localRotation = Quaternion.AngleAxis(newSteer /2, Vector3.up);
+        leftWheel.transform.localRotation = Quaternion.AngleAxis(newSteer /2, Vector3.up);
     }
 
     private void Sensors()
