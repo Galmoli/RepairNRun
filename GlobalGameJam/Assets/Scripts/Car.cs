@@ -22,7 +22,7 @@ public class Car : MonoBehaviour
     private void Awake()
     {
         _carMovement = GetComponent<CarMovement>();
-        speed = _carMovement.speed;
+        speed = _carMovement.maxSpeed;
     }
 
     private void Update()
@@ -36,18 +36,12 @@ public class Car : MonoBehaviour
     {
         if (_brokenParts.Contains(BrokenPart.LeftWheel))
         {
-            var magMulti = Mathf.Clamp(_carMovement._velocity.magnitude, 0, 1);
-            _carMovement.gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
-                transform.rotation.eulerAngles.y - brokenTireAngle * magMulti * Time.deltaTime, 
-                transform.rotation.eulerAngles.z);
+            
         }
 
         if (_brokenParts.Contains(BrokenPart.RightWheel))
         {
-            var magMulti = Mathf.Clamp(_carMovement._velocity.magnitude, 0, 1);
-            _carMovement.gameObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
-                transform.rotation.eulerAngles.y + brokenTireAngle * magMulti * Time.deltaTime, 
-                transform.rotation.eulerAngles.z);
+            
         }
     }
 
@@ -56,9 +50,9 @@ public class Car : MonoBehaviour
     {
         if (_brokenParts.Contains(BrokenPart.Engine))
         {
-            _carMovement.speed = brokenEngineSpeed;
+            _carMovement.maxSpeed = brokenEngineSpeed;
         }
-        else _carMovement.speed = speed;
+        else _carMovement.maxSpeed = speed;
     }
 
     public void BreakEngine()

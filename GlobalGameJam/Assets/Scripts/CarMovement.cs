@@ -11,104 +11,93 @@ public class CarMovement : MonoBehaviour
         Left,
         None
     }
-    public float speed;
-    public float acceleration;
-    public float rotationSpeed;
-    public float timeToDesiredSpeed;
-    [SerializeField] private float wheelRotation;
-    [SerializeField] private GameObject leftWheel;
-    [SerializeField] private GameObject rightWheel;
-    [SerializeField] private CameraManager _cameraManager;
-    [HideInInspector] public Vector3 _velocity;
-    [HideInInspector] public float currentSpeed;
-    private Rigidbody _rb;
-    private Direction carDirection = Direction.None;
+    [SerializeField] private float maxSteerAngle = 45;
+    [SerializeField] private float maxMotorTorque = 100f;
+    [SerializeField] private float maxBreakTorque = 150f;
+    public float maxSpeed = 100f;
+    public WheelCollider wheelFL;
+    public WheelCollider wheelFR;
+    [SerializeField] private WheelCollider wheelRL;
+    [SerializeField] private WheelCollider wheelRR;
+    private float avoidMultiplier;
+    private float currentSpeed;
+    private bool isBreaking;
+    private bool isAccelerating;
+    private Direction currentDirection = Direction.None;
 
-    private void Awake()
-    {
-        _rb = GetComponentInChildren<Rigidbody>();
-    }
-
-    void Update()
-    {
-        //Forward
-        if (hinput.anyGamepad.rightTrigger)
-        {
-            if (currentSpeed <= speed) currentSpeed += acceleration * Time.deltaTime;
-        }
-        else
-        {
-            if (currentSpeed > 0) currentSpeed -= acceleration * timeToDesiredSpeed * Time.deltaTime;
-            if (currentSpeed < 0) currentSpeed += acceleration * timeToDesiredSpeed * Time.deltaTime;
-        }
-        if (hinput.anyGamepad.leftTrigger)
-        {
-            if (currentSpeed >= -speed) currentSpeed -= acceleration * 2 * Time.deltaTime;
-        }
-        _velocity = transform.forward * currentSpeed;
-        
-        //Direction
-        if(hinput.anyGamepad.leftStick.left)
-        {
-            if (_velocity != Vector3.zero) carDirection = Direction.Left;
-            
-            
-            leftWheel.transform.localRotation = Quaternion.Euler(0, -wheelRotation, 0);
-            rightWheel.transform.localRotation = Quaternion.Euler(0, -wheelRotation, 0);
-        }
-        if(hinput.anyGamepad.leftStick.right)
-        {
-            if (_velocity != Vector3.zero) carDirection = Direction.Right;
-            
-            leftWheel.transform.localRotation = Quaternion.Euler(0, wheelRotation, 0);
-            rightWheel.transform.localRotation = Quaternion.Euler(0, wheelRotation, 0);
-        }
-
-        if (hinput.anyGamepad.leftStick.inDeadZone)
-        {
-            leftWheel.transform.localRotation = Quaternion.Euler(Vector3.zero);
-            rightWheel.transform.localRotation = Quaternion.Euler(Vector3.zero);
-            carDirection = Direction.None;
-        }
-        
-        _cameraManager.SetVelocity(_velocity);
-    }
+    [Header("Sensors")] 
+    [SerializeField] private float sensorLength = 5f;
+    [SerializeField] private float frontSensorAngle = 30;
+    [SerializeField] private Transform centerSensor;
+    [SerializeField] private Transform rightSensor;
+    [SerializeField] private Transform leftSensor;
 
     private void FixedUpdate()
     {
-        if(_velocity.magnitude < 0.05f) _velocity = Vector3.zero;
-        _rb.velocity = _velocity;
-        if (carDirection == Direction.Left && _velocity.magnitude > 0.75f)
-        {
-            if (currentSpeed > 0)
-            {
-                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
-                                                   transform.rotation.eulerAngles.y - rotationSpeed * Time.deltaTime, 
-                                                      transform.rotation.eulerAngles.z);
-            }
-            else
-            {
-                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
-                                                   transform.rotation.eulerAngles.y + rotationSpeed * Time.deltaTime, 
-                                                      transform.rotation.eulerAngles.z);
-            }
-            
-        }
+        ApplySteer();
+        Breaking();
+        Drive();
+    }
 
-        if (carDirection == Direction.Right && _velocity.magnitude > 0.75f)
+    // Update is called once per frame
+    private void Update()
+    {
+        if (hinput.anyGamepad.leftStick.right) currentDirection = Direction.Right;
+        if (hinput.anyGamepad.leftStick.left) currentDirection = Direction.Left;
+        if (hinput.anyGamepad.leftStick.inDeadZone) currentDirection = Direction.None;
+        if (hinput.anyGamepad.rightTrigger.pressed) isAccelerating = true;
+        else isAccelerating = false;
+        if (hinput.anyGamepad.leftTrigger.pressed) isBreaking = true;
+        else isBreaking = false;
+    }
+
+    private void ApplySteer()
+    {
+        float newSteer = 0;
+        switch (currentDirection)
         {
-            if (currentSpeed > 0)
-            {
-                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
-                    transform.rotation.eulerAngles.y + rotationSpeed * Time.deltaTime, 
-                    transform.rotation.eulerAngles.z);
-            }
-            else
-            {
-                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 
-                    transform.rotation.eulerAngles.y - rotationSpeed * Time.deltaTime, 
-                    transform.rotation.eulerAngles.z);
-            }
+            case Direction.Right:
+                newSteer = 45;
+                break;
+            case Direction.Left:
+                newSteer = -45;
+                break;
+            case Direction.None:
+                newSteer = 0;
+                break;
         }
+        wheelFL.steerAngle = newSteer;
+        wheelFR.steerAngle = newSteer;
+    }
+
+    private void Drive()
+    {
+        currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60 / 1000;
+
+        if (isAccelerating && !isBreaking)
+        {
+            wheelFL.motorTorque = maxMotorTorque;
+            wheelFR.motorTorque = maxMotorTorque;
+        }
+        else
+        {
+            wheelFL.motorTorque = 0;
+            wheelFR.motorTorque = 0;
+        }
+    }
+
+    private void Breaking()
+    {
+        if (isBreaking)
+        {
+            wheelRL.brakeTorque = maxBreakTorque;
+            wheelRR.brakeTorque = maxBreakTorque;
+        }
+        else
+        {
+            wheelRL.brakeTorque = 0;
+            wheelRR.brakeTorque = 0;
+        }
+        
     }
 }

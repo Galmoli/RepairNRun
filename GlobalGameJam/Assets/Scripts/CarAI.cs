@@ -15,8 +15,9 @@ public class CarAI : MonoBehaviour
     [SerializeField] private WheelCollider wheelFR;
     [SerializeField] private WheelCollider wheelRL;
     [SerializeField] private WheelCollider wheelRR;
+    [SerializeField] private int currentNode = 0;
     private List<Transform> nodes;
-    private int currentNode = 0;
+    
     private float currentSpeed;
     private bool isBreaking;
     private bool avoiding;
