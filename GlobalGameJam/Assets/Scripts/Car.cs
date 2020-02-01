@@ -10,7 +10,7 @@ public class Car : MonoBehaviour
     {
         LeftWheel,
         RightWheel,
-        Engine,
+        Engine
     }
 
     [SerializeField] private float brokenEngineSpeed;
