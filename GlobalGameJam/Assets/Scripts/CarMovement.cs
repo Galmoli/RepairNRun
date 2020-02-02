@@ -29,6 +29,7 @@ public class CarMovement : MonoBehaviour
     private bool backwards;
     private Direction currentDirection = Direction.None;
     private Rigidbody rb;
+    [HideInInspector] public SoundManager sManager;
 
     private void Awake()
     {
@@ -127,6 +128,7 @@ public class CarMovement : MonoBehaviour
         
         if (backwards)
         {
+            if (!sManager.backwardsBeep.isPlaying) sManager.backwardsBeep.Play();
             wheelFL.motorTorque = -maxMotorTorque;
             wheelFR.motorTorque = -maxMotorTorque;
         }
