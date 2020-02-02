@@ -6,6 +6,7 @@ public class Hand : MonoBehaviour
 {
     [HideInInspector] public hGamepad player1Hand;
     public float handSpeed;
+    public bool isIniScene;
 
     //[HideInInspector] public bool heBeFixin = false; //Quan aixo s'activi al ontriggerenter, que s'activi una animacio a la hand arreglant el problema (i q duri el mateix q el timer)
     //public float fixinTimer = 1f;
@@ -27,20 +28,13 @@ public class Hand : MonoBehaviour
     {
         player1Hand = hinput.anyGamepad;
 
-        //fixinTimerCapsule = fixinTimer;
-
-        //animatorController = this.GetComponentInChildren<Animator>();
-
-
-        animatorController.SetBool("NoAction", false);
-        animatorController.SetBool("Action", false);
+        if(!isIniScene)animatorController.SetBool("NoAction", false);
+        if(!isIniScene)animatorController.SetBool("Action", false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (!heBeFixin)
-        //{
         this.gameObject.transform.position += player1Hand.rightStick.worldPositionCamera * handSpeed * Time.deltaTime;
 
         if (transform.localPosition.x > XClamper)
@@ -52,17 +46,6 @@ public class Hand : MonoBehaviour
             transform.localPosition = new Vector3(transform.localPosition.x, YClamper, transform.localPosition.z);
         if (transform.localPosition.y < -YClamper)
             transform.localPosition = new Vector3(transform.localPosition.x, -YClamper, transform.localPosition.z);
-
-        //}
-        //else if (heBeFixin)
-        //{
-        //    fixinTimer -= Time.deltaTime;
-        //    if (fixinTimer <= 0)
-        //    {
-        //        heBeFixin = false;
-        //        fixinTimer = fixinTimerCapsule;
-        //    }
-        //}
 
         if (player1Hand.rightStickClick.justPressed)
         {
@@ -77,15 +60,6 @@ public class Hand : MonoBehaviour
         {
             heJusPressFam = false;
         }
-
-        /*private void OnTriggerEnter(Collider other)
-        {
-            if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusPressFam)
-            {
-                other.transform.parent = this.gameObject.transform;
-
-            }
-        }*/
     }
     private void OnTriggerStay(Collider other)
     {
@@ -93,16 +67,14 @@ public class Hand : MonoBehaviour
         if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusPressFam)
         {
             other.transform.parent = this.gameObject.transform;
-            Debug.Log("press");
-            animatorController.SetBool("Action", true);
-            animatorController.SetBool("NoAction", false);
+            if(!isIniScene)animatorController.SetBool("Action", true);
+            if(!isIniScene)animatorController.SetBool("NoAction", false);
         }
         if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusReleaseFam)
         {
             other.transform.parent = FindObjectOfType<ObjectSpawner>().gameObject.transform;
-            Debug.Log("release");
-            animatorController.SetBool("Action", false);
-            animatorController.SetBool("NoAction", true);
+            if(!isIniScene)animatorController.SetBool("Action", false);
+            if(!isIniScene)animatorController.SetBool("NoAction", true);
         }
     }
 }

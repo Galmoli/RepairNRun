@@ -562,6 +562,11 @@ PrefabInstance:
       propertyPath: XClamper
       value: 2.4
       objectReference: {fileID: 0}
+    - target: {fileID: 5122166018421049563, guid: c71ca977c3265a042a99095c835254cc,
+        type: 3}
+      propertyPath: isIniScene
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5122166018421049567, guid: c71ca977c3265a042a99095c835254cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11927,6 +11932,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: dafae85db5c31634cb908497209f21f7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 34bf405cf2f076a44b74f15687828962, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dafae85db5c31634cb908497209f21f7, type: 3}
 --- !u!1 &1758288106
