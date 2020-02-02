@@ -23,6 +23,7 @@ public class CarMovement : MonoBehaviour
     [SerializeField] private GameObject leftWheel;
     [SerializeField] private GameObject rightWheel;
     [HideInInspector] public float steerVariance = 0;
+    [HideInInspector] public bool canMove = false;
     private float avoidMultiplier;
     private bool isBreaking;
     private bool isAccelerating;
@@ -136,6 +137,7 @@ public class CarMovement : MonoBehaviour
 
     private void Drive()
     {
+        if (!canMove) return;
         if (isAccelerating && !isBreaking)
         {
             wheelFL.motorTorque = maxMotorTorque;
@@ -152,6 +154,7 @@ public class CarMovement : MonoBehaviour
 
     private void Breaking()
     {
+        if (!canMove) return;
         if (isBreaking)
         {
             wheelFL.brakeTorque = maxBreakTorque;

@@ -71,6 +71,7 @@ public class LapManager : MonoBehaviour
                     }
                     hinput.anyGamepad.StopVibration();
                     finsishCamera.enabled = true;
+                    GetComponent<Car>().raceFinished = true;
                 }
                 else LapsSingleton.Instance.carsFinished++;
             }

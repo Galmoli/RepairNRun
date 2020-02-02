@@ -63,7 +63,7 @@ public class StartCountdown : MonoBehaviour
                 countdownTimer.color += new Color(countdownTimer.color.r, countdownTimer.color.g, countdownTimer.color.b, Time.deltaTime);
             }
             countdownTimer.text = "GO!";
-
+            playerCarMovement.canMove = true;
             for (int i = 0; i <= allCarsMovement.Length - 1; i++)
             {
                 allCarsMovement[i].enabled = true;

@@ -26,6 +26,7 @@ public class Car : MonoBehaviour
     private RaycastHit hit;
     private Rigidbody _rb;
     [HideInInspector] public bool isInGrass;
+    [HideInInspector] public bool raceFinished = false;
     [HideInInspector] public SoundManager sManager;
 
     public ParticleSystem brokenMotorParticles;
@@ -48,13 +49,6 @@ public class Car : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S) || hinput.anyGamepad.rightBumper)
-        {
-            RepairEngine();
-            RepairLeftWheel();
-            RepairRightWheel();
-        }
-        
         if(Physics.Raycast(transform.position, Vector3.down, out hit,  3))
         {
             if (hit.collider.gameObject.name == "cespedA" || hit.collider.gameObject.name == "CespedB")
@@ -119,7 +113,7 @@ public class Car : MonoBehaviour
 
     public void BreakEngine()
     {
-        if (!isPlayer) return;
+        if (!isPlayer || raceFinished) return;
         if(!_brokenParts.Contains(BrokenPart.Engine)) _brokenParts.Add(BrokenPart.Engine);
         if (!sManager.embrague.isPlaying && this.isPlayer) sManager.embrague.Play();
         cableManager.SpawnProblem(2);
@@ -135,7 +129,7 @@ public class Car : MonoBehaviour
 
     public void BreakLeftWheel()
     {
-        if (!isPlayer) return;
+        if (!isPlayer || raceFinished) return;
         if (!_brokenParts.Contains(BrokenPart.LeftWheel)) _brokenParts.Add(BrokenPart.LeftWheel);
         if (!sManager.wheelPinchazo.isPlaying && this.isPlayer) sManager.wheelPinchazo.Play();
         cableManager.SpawnProblem(0);
@@ -149,7 +143,7 @@ public class Car : MonoBehaviour
 
     public void BreakRightWheel()
     {
-        if (!isPlayer) return;
+        if (!isPlayer || raceFinished) return;
         if (!_brokenParts.Contains(BrokenPart.RightWheel)) _brokenParts.Add(BrokenPart.RightWheel);
         if (!sManager.wheelPinchazo.isPlaying && this.isPlayer) sManager.wheelPinchazo.Play();
         cableManager.SpawnProblem(1);
