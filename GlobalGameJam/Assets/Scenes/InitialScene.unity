@@ -5810,7 +5810,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WHAT REPAIRS OF EDITH FINCH
+  m_Text: REPAIR AND RUN
 --- !u!222 &970162346
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6292,6 +6292,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb03d1d464caf24da124acba176cd8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  replay: 0
+  exit: 0
   canPressButton: 0
   buttonAnimator: {fileID: 0}
   triggerAnimationEnd: 0
