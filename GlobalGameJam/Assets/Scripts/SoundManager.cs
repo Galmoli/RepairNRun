@@ -15,12 +15,16 @@ public class SoundManager : MonoBehaviour
     public AudioSource woops;
     public AudioSource electroShock;
     public AudioSource backwardsBeep;
+    public AudioSource acceleration;
+
+    public ParticleSystem honk;
 
     private void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.W) || hinput.anyGamepad.leftStickClick) && !woops.isPlaying)
+        if ((hinput.anyGamepad.leftStickClick) && !woops.isPlaying)
         {
             woops.Play();
+            honk.Play();
             hinput.anyGamepad.Vibrate(0.25f, 0.05f, 0.5f);
         }
     }

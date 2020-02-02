@@ -25,6 +25,9 @@ public class StartCountdown : MonoBehaviour
             allCarsMovement[i].enabled = false;
         }
 
+
+        hinput.anyGamepad.Vibrate(0.25f, 0.25f, 0.5f);
+
         countdownTimer.color = new Color(countdownTimer.color.r, countdownTimer.color.g, countdownTimer.color.b, 0); //Comença sent transparent
         countdownSounds = countdownTimer.gameObject.GetComponent<AudioSource>();
     }
@@ -57,13 +60,14 @@ public class StartCountdown : MonoBehaviour
             {
                 countdownTimer.color = new Color(countdownTimer.color.r, countdownTimer.color.g, countdownTimer.color.b, Time.deltaTime);
                 restartThisThirdTimer = false;
+                hinput.anyGamepad.Vibrate(1, 1, 0.4f);
             }
             else
             {
                 countdownTimer.color += new Color(countdownTimer.color.r, countdownTimer.color.g, countdownTimer.color.b, Time.deltaTime);
             }
             countdownTimer.text = "GO!";
-
+            playerCarMovement.canMove = true;
             for (int i = 0; i <= allCarsMovement.Length - 1; i++)
             {
                 allCarsMovement[i].enabled = true;
@@ -76,6 +80,7 @@ public class StartCountdown : MonoBehaviour
             {
                 countdownTimer.color = new Color(countdownTimer.color.r, countdownTimer.color.g, countdownTimer.color.b, Time.deltaTime);
                 restartThisSecondTimer = false;
+                hinput.anyGamepad.Vibrate(0.5f, 0.5f, 0.5f);
             }
             else
             {
@@ -94,6 +99,7 @@ public class StartCountdown : MonoBehaviour
             {
                 countdownTimer.color = new Color(countdownTimer.color.r, countdownTimer.color.g, countdownTimer.color.b, Time.deltaTime);
                 restartThisTimer = false;
+                hinput.anyGamepad.Vibrate(0.25f, 0.25f, 0.5f);
             }
             else
             {

@@ -202,8 +202,11 @@ MonoBehaviour:
   handSpeed: 12.5
   heJusPressFam: 0
   heJusPressFamIntTimer: 0
+  heJusReleaseFam: 0
+  heJusReleaseFamIntTimer: 0
   XClamper: 3.14
   YClamper: 1.5
+  animatorController: {fileID: 0}
 --- !u!65 &5697380339421863917
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -215,8 +218,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7836172, y: 1.4241104, z: 1}
-  m_Center: {x: 0.1081914, y: 0.2120552, z: 0}
+  m_Size: {x: 1.0265665, y: 1.9452555, z: 1}
+  m_Center: {x: -0.01328349, y: 0.47262987, z: 0.00000028479278}
 --- !u!65 &2916875148561499466
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -228,8 +231,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.36816227, y: 0.6624427, z: 1}
-  m_Center: {x: -0.5236463, y: 0.16877866, z: 0}
+  m_Size: {x: 0.5602632, y: 0.81270814, z: 1}
+  m_Center: {x: -0.6196956, y: 0.24391179, z: 0.0000001293083}
 --- !u!1001 &1978545309586902807
 PrefabInstance:
   m_ObjectHideFlags: 0
