@@ -18,7 +18,7 @@ public class SoundManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W) && !woops.isPlaying)
         {
-            objectAppeared.Play();
+            woops.Play();
         }
     }
 }
