@@ -17,39 +17,12 @@ public class ProblemBehaviour : MonoBehaviour
     {
         this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, 0);
         handerele = FindObjectOfType<Hand>();
+        sManager = FindObjectOfType<SoundManager>();
         objSpawner = FindObjectOfType<ObjectSpawner>();
         IKmaster1 = GameObject.FindGameObjectWithTag("IK1");
         IKmaster2 = GameObject.FindGameObjectWithTag("IK2");
         IKmaster3 = GameObject.FindGameObjectWithTag("IK3");
     }
-
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (this.CompareTag("firstProblem") && other.CompareTag("FirstSolution") && hinput.anyGamepad.rightStickClick.released)
-        {
-            hinput.anyGamepad.Vibrate(0.25f);
-            if (!sManager.electroShock.isPlaying) sManager.electroShock.Play();
-            handerele.animatorController.SetBool("Idle", false);
-            handerele.animatorController.SetBool("Action", true);
-            Destroy(this.gameObject);
-        }
-        else if (this.CompareTag("secondProblem") && other.CompareTag("SecondSolution") && hinput.anyGamepad.rightStickClick.released)
-        {
-            hinput.anyGamepad.Vibrate(0.25f);
-            if (!sManager.electroShock.isPlaying) sManager.electroShock.Play();
-            handerele.animatorController.SetBool("Idle", false);
-            handerele.animatorController.SetBool("Action", true);
-            Destroy(this.gameObject);
-        }
-        else if (this.CompareTag("thirdProblem") && other.CompareTag("ThirdSolution") && hinput.anyGamepad.rightStickClick.released)
-        {
-            hinput.anyGamepad.Vibrate(0.25f);
-            if (!sManager.electroShock.isPlaying) sManager.electroShock.Play();
-            handerele.animatorController.SetBool("Idle", false);
-            handerele.animatorController.SetBool("Action", true);
-            Destroy(this.gameObject);
-        }
-    }*/
     void Update()
     {
         if (this.CompareTag("firstProblem")) IKmaster1.transform.position = transform.position;

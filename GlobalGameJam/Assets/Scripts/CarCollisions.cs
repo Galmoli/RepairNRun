@@ -10,7 +10,7 @@ public class CarCollisions : MonoBehaviour
     private Car _car;
     private float timeSinceLastBrokenPiece = 0;
     private float nextPieceWillBreakIn;
-
+    private bool canTrigger = true;
     private void Awake()
     {
         _car = GetComponentInParent<Car>();
@@ -38,6 +38,7 @@ public class CarCollisions : MonoBehaviour
 
     private void Break()
     {
+        if (!canTrigger) return;
         if (isPlayer)
         {
             hinput.anyGamepad.Vibrate(0.55f, 0.25f, 0.5f);
@@ -83,8 +84,17 @@ public class CarCollisions : MonoBehaviour
                 }
             }
         } while (!broken);
+        StopAllCoroutines();
+        canTrigger = false;
+        StartCoroutine(TriggerCountdown());
         
         timeSinceLastBrokenPiece = 0;
         nextPieceWillBreakIn = Random.Range(15, 21);
+    }
+
+    private IEnumerator TriggerCountdown()
+    {
+        yield return new WaitForSeconds(0.5f);
+        canTrigger = true;
     }
 }
