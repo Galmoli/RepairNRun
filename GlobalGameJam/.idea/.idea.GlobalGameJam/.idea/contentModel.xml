@@ -57,6 +57,7 @@
           <e p="CarMovement.cs" t="Include" />
           <e p="CarWheel.cs" t="Include" />
           <e p="Hand.cs" t="Include" />
+          <e p="InitialCamera.cs" t="Include" />
           <e p="LapManager.cs" t="Include" />
           <e p="LapsSingleton.cs" t="Include" />
           <e p="MenuManager.cs" t="Include" />
