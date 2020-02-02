@@ -8,6 +8,12 @@ TagManager:
   - secondProblem
   - thirdProblem
   - Hand
+  - ThirdSolution
+  - SecondSolution
+  - FirstSolution
+  - IK1
+  - IK3
+  - IK2
   layers:
   - Default
   - TransparentFX
