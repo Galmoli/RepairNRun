@@ -16,6 +16,7 @@ TagManager:
   - IK2
   - LapChecker
   - Enemy
+  - Button
   layers:
   - Default
   - TransparentFX
