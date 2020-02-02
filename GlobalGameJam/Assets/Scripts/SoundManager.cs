@@ -17,9 +17,10 @@ public class SoundManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !woops.isPlaying)
+        if ((Input.GetKeyDown(KeyCode.W) || hinput.anyGamepad.leftStickClick) && !woops.isPlaying)
         {
             woops.Play();
+            hinput.anyGamepad.Vibrate(0.25f, 0.05f, 0.5f);
         }
     }
 }

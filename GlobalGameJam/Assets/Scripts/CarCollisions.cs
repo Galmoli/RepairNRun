@@ -40,6 +40,7 @@ public class CarCollisions : MonoBehaviour
     {
         if (isPlayer)
         {
+            hinput.anyGamepad.Vibrate(0.55f, 0.25f, 0.5f);
             SoundManager sm = FindObjectOfType<SoundManager>();
             if (!sm.carCrash.isPlaying) sm.carCrash.Play();
         }
