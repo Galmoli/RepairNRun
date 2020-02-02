@@ -19,6 +19,10 @@ public class SoundManager : MonoBehaviour
 
     public ParticleSystem honk;
 
+    void Start()
+    {
+        Cursor.visible = false;
+    }
     private void Update()
     {
         if ((hinput.anyGamepad.leftStickClick) && !woops.isPlaying)

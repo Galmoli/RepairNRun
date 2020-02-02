@@ -45,6 +45,7 @@ public class Car : MonoBehaviour
             _carAIMove = GetComponent<CarAI>();
         }
         sManager = FindObjectOfType<SoundManager>();
+        
     }
 
     private void Update()
