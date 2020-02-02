@@ -31,9 +31,18 @@ public class CarMovement : MonoBehaviour
     private Rigidbody rb;
     [HideInInspector] public SoundManager sManager;
 
+    private Animator anim;
+    private Car car;
+    public ParticleSystem accelerateParticles;
+    public ParticleSystem accelerateGrassParticles;
+    public ParticleSystem vroom;
+
     private void Awake()
     {
+        car = GetComponent<Car>();
         rb = GetComponent<Rigidbody>();
+        sManager = FindObjectOfType<SoundManager>();
+        anim = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -46,6 +55,7 @@ public class CarMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
         if (hinput.anyGamepad.leftStick.right) currentDirection = Direction.Right;
         if (hinput.anyGamepad.leftStick.left) currentDirection = Direction.Left;
         if (hinput.anyGamepad.leftStick.inDeadZone) currentDirection = Direction.None;
@@ -66,6 +76,35 @@ public class CarMovement : MonoBehaviour
         {
             isBreaking = false;
             backwards = false;
+        }
+        //if (!accelerateParticles.isPlaying) accelerateParticles.Play();
+        if (isAccelerating || backwards || isBreaking)
+        {
+            if (!vroom.isPlaying) vroom.Play();
+            anim.SetBool("run", true);
+        }
+        else
+        {
+            vroom.Stop();
+            anim.SetBool("run", false);
+        }
+        if (rb.velocity.magnitude > 0.5f) 
+        {
+            if (car.isInGrass)
+            {
+                if (!accelerateGrassParticles.isPlaying) accelerateGrassParticles.Play();
+                accelerateParticles.Stop();
+            }
+            else
+            {
+                if (!accelerateParticles.isPlaying) accelerateParticles.Play();
+                accelerateGrassParticles.Stop();
+            }
+        }
+        else
+        {
+            accelerateParticles.Stop();
+            accelerateParticles.Stop();
         }
     }
 

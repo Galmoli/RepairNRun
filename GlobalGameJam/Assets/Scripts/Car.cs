@@ -25,8 +25,12 @@ public class Car : MonoBehaviour
     [HideInInspector] public List<BrokenPart> _brokenParts = new List<BrokenPart>();
     private RaycastHit hit;
     private Rigidbody _rb;
-    private bool isInGrass;
+    [HideInInspector] public bool isInGrass;
     [HideInInspector] public SoundManager sManager;
+
+    public ParticleSystem brokenMotorParticles;
+    public ParticleSystem brokenWheelRightParticles;
+    public ParticleSystem brokenWheelLeftParticles;
 
     private void Awake()
     {
@@ -72,22 +76,28 @@ public class Car : MonoBehaviour
         if (_brokenParts.Contains(BrokenPart.LeftWheel) && _brokenParts.Contains(BrokenPart.RightWheel))
         {
             _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, speedBrokenBothWheels);
+            if (isPlayer && !brokenWheelRightParticles.isPlaying) brokenWheelRightParticles.Play();
+            if(isPlayer && !brokenWheelLeftParticles.isPlaying)brokenWheelLeftParticles.Play();
             return;
         }
         if (_brokenParts.Contains(BrokenPart.LeftWheel))
         {
             if (isPlayer) _carMovement.steerVariance = -brokenTireAngle;
             else _carAIMove.steerVariance = -brokenTireAngle;
+            if (isPlayer && !brokenWheelLeftParticles.isPlaying) brokenWheelLeftParticles.Play();
             return;
         }
+        else if (isPlayer) brokenWheelLeftParticles.Stop();
 
         if (_brokenParts.Contains(BrokenPart.RightWheel))
         {
             if (isPlayer) _carMovement.steerVariance = brokenTireAngle;
             else _carAIMove.steerVariance = brokenTireAngle;
+            if (isPlayer && !brokenWheelRightParticles.isPlaying) brokenWheelRightParticles.Play();
             return;
         }
-        
+        else if (isPlayer) brokenWheelRightParticles.Stop();
+
         if (isPlayer) _carMovement.steerVariance = 0;
         else _carAIMove.steerVariance = 0;
     }
@@ -103,7 +113,9 @@ public class Car : MonoBehaviour
         if (_brokenParts.Contains(BrokenPart.Engine))
         {
             _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, speedBrokenEngine);
+            if (isPlayer && !brokenMotorParticles.isPlaying) brokenMotorParticles.Play();
         }
+        else if (isPlayer) brokenMotorParticles.Stop();
     }
 
     public void BreakEngine()
