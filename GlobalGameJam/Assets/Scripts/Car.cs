@@ -23,6 +23,7 @@ public class Car : MonoBehaviour
     private RaycastHit hit;
     private Rigidbody _rb;
     private bool isInGrass;
+    [HideInInspector] public SoundManager sManager;
 
     private void Awake()
     {
@@ -36,7 +37,8 @@ public class Car : MonoBehaviour
         {
             _carAIMove = GetComponent<CarAI>();
         }
-        
+
+        sManager = FindObjectOfType<SoundManager>();
     }
 
     private void Update()
@@ -56,6 +58,7 @@ public class Car : MonoBehaviour
         {
             if (hit.collider.gameObject.name == "cespedA" || hit.collider.gameObject.name == "CespedB")
             {
+                if (!sManager.throughGrass.isPlaying) sManager.throughGrass.Play();
                 isInGrass = true;
                 _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, speedOnGrass);
             }
@@ -103,30 +106,36 @@ public class Car : MonoBehaviour
     public void BreakEngine()
     {
         if(!_brokenParts.Contains(BrokenPart.Engine)) _brokenParts.Add(BrokenPart.Engine);
+        if (!sManager.embrague.isPlaying) sManager.embrague.Play();
     }
 
     public void RepairEngine()
     {
         if (_brokenParts.Contains(BrokenPart.Engine)) _brokenParts.Remove(BrokenPart.Engine);
+        if (!sManager.fixedThat.isPlaying) sManager.fixedThat.Play();
     }
 
     public void BreakLeftWheel()
     {
         if (!_brokenParts.Contains(BrokenPart.LeftWheel)) _brokenParts.Add(BrokenPart.LeftWheel);
+        if (!sManager.wheelPinchazo.isPlaying) sManager.wheelPinchazo.Play();
     }
 
     public void RepairLeftWheel()
     {
         if (_brokenParts.Contains(BrokenPart.LeftWheel)) _brokenParts.Remove(BrokenPart.LeftWheel);
+        if (!sManager.fixedThat.isPlaying) sManager.fixedThat.Play();
     }
 
     public void BreakRightWheel()
     {
         if (!_brokenParts.Contains(BrokenPart.RightWheel)) _brokenParts.Add(BrokenPart.RightWheel);
+        if (!sManager.wheelPinchazo.isPlaying) sManager.wheelPinchazo.Play();
     }
 
     public void RepairRightWheel()
     {
         if (_brokenParts.Contains(BrokenPart.RightWheel)) _brokenParts.Remove(BrokenPart.RightWheel);
+        if (!sManager.fixedThat.isPlaying) sManager.fixedThat.Play();
     }
 }
