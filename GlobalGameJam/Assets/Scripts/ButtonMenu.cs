@@ -56,7 +56,7 @@ public class ButtonMenu : MonoBehaviour
         {
             if (replay) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             else if (exit) Application.Quit();
-            else SceneManager.LoadScene("VisualTest 1");
+            else SceneManager.LoadScene("VisualsTest");
         }
     }
 
