@@ -13,6 +13,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource carCrash;
     public AudioSource objectAppeared;
     public AudioSource woops;
+    public AudioSource electroShock;
 
     private void Update()
     {

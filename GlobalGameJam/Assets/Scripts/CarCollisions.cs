@@ -38,6 +38,11 @@ public class CarCollisions : MonoBehaviour
 
     private void Break()
     {
+        if (isPlayer)
+        {
+            SoundManager sm = FindObjectOfType<SoundManager>();
+            if (!sm.carCrash.isPlaying) sm.carCrash.Play();
+        }
         if (_car._brokenParts.Count == 3) return; //All things broken
         bool broken = false;
         do
