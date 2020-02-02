@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 99162964004542657}
   - component: {fileID: 99162964004542658}
   - component: {fileID: 99162964004542659}
+  - component: {fileID: 99162964004542663}
   - component: {fileID: 114759141773959440}
-  - component: {fileID: 54628590893586794}
   m_Layer: 9
   m_Name: FirstProblem
   m_TagString: firstProblem
@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 99162964004542716}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -91,8 +91,24 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &99162964004542663
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99162964004542716}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &114759141773959440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,19 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e42e5b9af0c3854fabde0031f0c0318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &54628590893586794
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99162964004542716}
-  serializedVersion: 2
-  m_Mass: 0.1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  handerele: {fileID: 0}
