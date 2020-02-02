@@ -50,6 +50,7 @@
         <e p="Scripts" t="Include">
           <e p="ButtonMenu.cs" t="Include" />
           <e p="CameraManager.cs" t="Include" />
+          <e p="CameraRotator.cs" t="Include" />
           <e p="Car.cs" t="Include" />
           <e p="CarAI.cs" t="Include" />
           <e p="CarCollisions.cs" t="Include" />
