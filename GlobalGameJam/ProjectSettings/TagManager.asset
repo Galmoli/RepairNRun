@@ -14,6 +14,8 @@ TagManager:
   - IK1
   - IK3
   - IK2
+  - LapChecker
+  - Enemy
   layers:
   - Default
   - TransparentFX

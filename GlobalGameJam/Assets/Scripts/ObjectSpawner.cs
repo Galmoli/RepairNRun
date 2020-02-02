@@ -39,13 +39,15 @@ public class ObjectSpawner : MonoBehaviour
     public GameObject lightOff1;
     public GameObject lightOff2;
     public GameObject lightOff3;
-
+    [HideInInspector] public SoundManager sManager;
     void Start()
     {
         ikStartPos1 = IKmaster1.transform.position;
         ikStartPos2 = IKmaster2.transform.position;
         ikStartPos3 = IKmaster3.transform.position;
         maxTimerValue = timer;
+
+        sManager = FindObjectOfType<SoundManager>();
     }
 
     /*void Update()
@@ -54,6 +56,8 @@ public class ObjectSpawner : MonoBehaviour
         if (timer <= 0)
         {
 
+
+            if (!sManager.objectAppeared.isPlaying) sManager.objectAppeared.Play();
 
             timer = Random.Range(maxTimerValue - timerVariator, maxTimerValue + (timerVariator/3)); //Fer que a mesura que avanci la partida, aquest timer cada vegada sigui mes petit
         }

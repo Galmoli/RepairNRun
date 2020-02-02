@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class CarCollisions : MonoBehaviour
 {
+    [SerializeField] private bool isPlayer;
     private Car _car;
     private float timeSinceLastBrokenPiece = 0;
     private float nextPieceWillBreakIn;
@@ -29,9 +30,10 @@ public class CarCollisions : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.collider.CompareTag("Enemy")) Break();
+        if(other.CompareTag("LapChecker")) GetComponentInParent<LapManager>().CheckLap();
+        if(isPlayer) if(other.CompareTag("Enemy")) Break();
     }
 
     private void Break()
