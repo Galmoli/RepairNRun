@@ -29,10 +29,10 @@ public class Hand : MonoBehaviour
 
         //fixinTimerCapsule = fixinTimer;
 
-        animatorController = this.GetComponentInChildren<Animator>();
+        //animatorController = this.GetComponentInChildren<Animator>();
 
 
-        animatorController.SetBool("Idle", false);
+        animatorController.SetBool("NoAction", false);
         animatorController.SetBool("Action", false);
     }
 
@@ -94,14 +94,16 @@ public class Hand : MonoBehaviour
         if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusPressFam)
         {
             other.transform.parent = this.gameObject.transform;
-            animatorController.SetBool("Action", false);
-            animatorController.SetBool("idle", true);
+            Debug.Log("press");
+            animatorController.SetBool("Action", true);
+            animatorController.SetBool("NoAction", false);
         }
         if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusReleaseFam)
         {
             other.transform.parent = FindObjectOfType<ObjectSpawner>().gameObject.transform;
-            animatorController.SetBool("Action", true);
-            animatorController.SetBool("idle", false);
+            Debug.Log("release");
+            animatorController.SetBool("Action", false);
+            animatorController.SetBool("NoAction", true);
         }
     }
 }
