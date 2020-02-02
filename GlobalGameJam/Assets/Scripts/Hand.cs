@@ -43,8 +43,6 @@ public class Hand : MonoBehaviour
         //{
         this.gameObject.transform.position += player1Hand.rightStick.worldPositionCamera * handSpeed * Time.deltaTime;
 
-        Debug.Log(player1Hand.leftStick.position);
-
         if (transform.localPosition.x > XClamper)
             transform.localPosition = new Vector3(XClamper, transform.localPosition.y, transform.localPosition.z);
         if (transform.localPosition.x < -XClamper)

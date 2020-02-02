@@ -21,6 +21,8 @@ public class LapManager : MonoBehaviour
     [SerializeField] private GameObject secondPos;
     [SerializeField] private GameObject thirdPos;
     [SerializeField] private GameObject otherPos;
+    [SerializeField] private GameObject volante;
+    [SerializeField] private GameObject Aparato;
     [SerializeField] private TextMeshProUGUI otherText;
     private bool midLap;
     private int currentLaps;
@@ -75,6 +77,8 @@ public class LapManager : MonoBehaviour
                     GetComponent<Car>().EnableIA();
                     GetComponent<Car>().raceFinished = true;
                     GetComponent<Car>()._brokenParts.Clear();
+                    volante.SetActive(false);
+                    Aparato.SetActive(false);
                     StartCoroutine(CinematicCamera());
                 }
                 else LapsSingleton.Instance.carsFinished++;
