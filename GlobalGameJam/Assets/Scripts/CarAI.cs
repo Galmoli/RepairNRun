@@ -36,7 +36,7 @@ public class CarAI : MonoBehaviour
     [SerializeField] private Transform rightSensor;
     [SerializeField] private Transform leftSensor;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
         nodes = new List<Transform>();

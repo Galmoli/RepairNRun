@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
 
@@ -76,7 +77,6 @@ public class Car : MonoBehaviour
         if (_brokenParts.Contains(BrokenPart.LeftWheel))
         {
             if (isPlayer) _carMovement.steerVariance = -brokenTireAngle;
-            else _carAIMove.steerVariance = -brokenTireAngle;
             if (isPlayer && !brokenWheelLeftParticles.isPlaying) brokenWheelLeftParticles.Play();
             return;
         }
@@ -85,14 +85,12 @@ public class Car : MonoBehaviour
         if (_brokenParts.Contains(BrokenPart.RightWheel))
         {
             if (isPlayer) _carMovement.steerVariance = brokenTireAngle;
-            else _carAIMove.steerVariance = brokenTireAngle;
             if (isPlayer && !brokenWheelRightParticles.isPlaying) brokenWheelRightParticles.Play();
             return;
         }
         else if (isPlayer) brokenWheelRightParticles.Stop();
 
         if (isPlayer) _carMovement.steerVariance = 0;
-        else _carAIMove.steerVariance = 0;
     }
 
     // Update is called once per frame
@@ -153,5 +151,13 @@ public class Car : MonoBehaviour
     {
         if (_brokenParts.Contains(BrokenPart.RightWheel)) _brokenParts.Remove(BrokenPart.RightWheel);
         if (!sManager.fixedThat.isPlaying && this.isPlayer) sManager.fixedThat.Play();
+    }
+
+    public void EnableIA()
+    {
+        isPlayer = false;
+        gameObject.GetComponent<CarAI>().enabled = true;
+        gameObject.GetComponent<CarMovement>().enabled = false;
+        gameObject.GetComponent<CarCollisions>().isPlayer = false;
     }
 }
