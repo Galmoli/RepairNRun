@@ -18,7 +18,7 @@ public class CarCollisions : MonoBehaviour
 
     private void Start()
     {
-        nextPieceWillBreakIn = Random.Range(15, 21);
+        nextPieceWillBreakIn = Random.Range(20, 30);
     }
 
     private void Update()
@@ -89,7 +89,7 @@ public class CarCollisions : MonoBehaviour
         StartCoroutine(TriggerCountdown());
         
         timeSinceLastBrokenPiece = 0;
-        nextPieceWillBreakIn = Random.Range(15, 21);
+        nextPieceWillBreakIn = Random.Range(20, 30);
     }
 
     private IEnumerator TriggerCountdown()
