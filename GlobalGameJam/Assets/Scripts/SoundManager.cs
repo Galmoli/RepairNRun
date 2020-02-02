@@ -10,4 +10,5 @@ public class SoundManager : MonoBehaviour
     public AudioSource fixedThat;
     public AudioSource throughGrass;
     public AudioSource wheelPinchazo;
+    public AudioSource carCrash;
 }
