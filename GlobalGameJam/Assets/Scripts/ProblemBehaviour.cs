@@ -10,6 +10,8 @@ public class ProblemBehaviour : MonoBehaviour
     GameObject IKmaster3;
     ObjectSpawner objSpawner;
 
+    [HideInInspector] public SoundManager sManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class ProblemBehaviour : MonoBehaviour
         if (this.CompareTag("firstProblem") && other.CompareTag("FirstSolution") && hinput.anyGamepad.rightStickClick.released)
         {
             hinput.anyGamepad.Vibrate(0.25f);
+            if (!sManager.electroShock.isPlaying) sManager.electroShock.Play();
             handerele.animatorController.SetBool("Idle", false);
             handerele.animatorController.SetBool("Action", true);
             Destroy(this.gameObject);
@@ -33,6 +36,7 @@ public class ProblemBehaviour : MonoBehaviour
         else if (this.CompareTag("secondProblem") && other.CompareTag("SecondSolution") && hinput.anyGamepad.rightStickClick.released)
         {
             hinput.anyGamepad.Vibrate(0.25f);
+            if (!sManager.electroShock.isPlaying) sManager.electroShock.Play();
             handerele.animatorController.SetBool("Idle", false);
             handerele.animatorController.SetBool("Action", true);
             Destroy(this.gameObject);
@@ -40,6 +44,7 @@ public class ProblemBehaviour : MonoBehaviour
         else if (this.CompareTag("thirdProblem") && other.CompareTag("ThirdSolution") && hinput.anyGamepad.rightStickClick.released)
         {
             hinput.anyGamepad.Vibrate(0.25f);
+            if (!sManager.electroShock.isPlaying) sManager.electroShock.Play();
             handerele.animatorController.SetBool("Idle", false);
             handerele.animatorController.SetBool("Action", true);
             Destroy(this.gameObject);
@@ -56,6 +61,7 @@ public class ProblemBehaviour : MonoBehaviour
         if (this.CompareTag("firstProblem") && other.CompareTag("FirstSolution") && hinput.anyGamepad.rightStickClick.released)
         {
             hinput.anyGamepad.Vibrate(0.25f);
+            if (!sManager.electroShock.isPlaying) sManager.electroShock.Play();
             handerele.animatorController.SetBool("Idle", false);
             handerele.animatorController.SetBool("Action", true);
             Destroy(this.gameObject);
@@ -65,6 +71,7 @@ public class ProblemBehaviour : MonoBehaviour
         else if (this.CompareTag("secondProblem") && other.CompareTag("SecondSolution") && hinput.anyGamepad.rightStickClick.released)
         {
             hinput.anyGamepad.Vibrate(0.25f);
+            if (!sManager.electroShock.isPlaying) sManager.electroShock.Play();
             handerele.animatorController.SetBool("Idle", false);
             handerele.animatorController.SetBool("Action", true);
             Destroy(this.gameObject);
@@ -74,6 +81,7 @@ public class ProblemBehaviour : MonoBehaviour
         else if (this.CompareTag("thirdProblem") && other.CompareTag("ThirdSolution") && hinput.anyGamepad.rightStickClick.released)
         {
             hinput.anyGamepad.Vibrate(0.25f);
+            if (!sManager.electroShock.isPlaying) sManager.electroShock.Play();
             handerele.animatorController.SetBool("Idle", false);
             handerele.animatorController.SetBool("Action", true);
             Destroy(this.gameObject);

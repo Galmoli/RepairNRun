@@ -13,12 +13,15 @@ public class SoundManager : MonoBehaviour
     public AudioSource carCrash;
     public AudioSource objectAppeared;
     public AudioSource woops;
+    public AudioSource electroShock;
+    public AudioSource backwardsBeep;
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.W) && !woops.isPlaying)
+        if ((Input.GetKeyDown(KeyCode.W) || hinput.anyGamepad.leftStickClick) && !woops.isPlaying)
         {
             woops.Play();
+            hinput.anyGamepad.Vibrate(0.25f, 0.05f, 0.5f);
         }
     }
 }
