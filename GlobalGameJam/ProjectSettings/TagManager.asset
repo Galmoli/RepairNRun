@@ -3,7 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - firstProblem
+  - secondProblem
+  - thirdProblem
+  - Hand
+  - ThirdSolution
+  - SecondSolution
+  - FirstSolution
+  - IK1
+  - IK3
+  - IK2
+  - LapChecker
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -14,7 +26,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
+  - RepairingHand
   - 
   - 
   - 
