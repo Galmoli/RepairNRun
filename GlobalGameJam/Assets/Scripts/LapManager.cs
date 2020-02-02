@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class LapManager : MonoBehaviour
     [SerializeField] private float midLapCheckSize = 20f;
     [SerializeField] private bool isPlayer;
     [SerializeField] private bool draw;
+    [SerializeField] private CinemachineVirtualCamera finsishCamera;
     [SerializeField] private GameObject replayButton;
     [SerializeField] private GameObject exitButton;
     [SerializeField] private GameObject finishedText;
@@ -68,6 +70,7 @@ public class LapManager : MonoBehaviour
                             break;
                     }
                     hinput.anyGamepad.StopVibration();
+                    finsishCamera.enabled = true;
                 }
                 else LapsSingleton.Instance.carsFinished++;
             }
