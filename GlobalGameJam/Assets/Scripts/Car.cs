@@ -6,7 +6,7 @@ using UnityEngine.Experimental.PlayerLoop;
 
 public class Car : MonoBehaviour
 {
-    enum BrokenPart
+    public enum BrokenPart
     {
         LeftWheel,
         RightWheel,
@@ -17,9 +17,11 @@ public class Car : MonoBehaviour
     [SerializeField] private float brokenTireAngle;
     [SerializeField] private float speedOnGrass = 10;
     [SerializeField] private float speedBrokenEngine = 5;
+    [SerializeField] private float speedBrokenBothWheels = 6;
+    [SerializeField] private float speedAllBroken = 3;
     private CarAI _carAIMove;
     private CarMovement _carMovement;
-    private List<BrokenPart> _brokenParts = new List<BrokenPart>();
+    [HideInInspector] public List<BrokenPart> _brokenParts = new List<BrokenPart>();
     private RaycastHit hit;
     private Rigidbody _rb;
     private bool isInGrass;
@@ -37,7 +39,6 @@ public class Car : MonoBehaviour
         {
             _carAIMove = GetComponent<CarAI>();
         }
-
         sManager = FindObjectOfType<SoundManager>();
     }
 
@@ -47,7 +48,7 @@ public class Car : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R)) BreakRightWheel();
         if(Input.GetKeyDown(KeyCode.E)) BreakEngine();
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) || hinput.anyGamepad.rightBumper)
         {
             RepairEngine();
             RepairLeftWheel();
@@ -71,32 +72,37 @@ public class Car : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (_brokenParts.Contains(BrokenPart.LeftWheel) && _brokenParts.Contains(BrokenPart.RightWheel))
+        {
+            _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, speedBrokenBothWheels);
+            return;
+        }
         if (_brokenParts.Contains(BrokenPart.LeftWheel))
         {
             if (isPlayer) _carMovement.steerVariance = -brokenTireAngle;
             else _carAIMove.steerVariance = -brokenTireAngle;
-        }
-        else
-        {
-            if (isPlayer) _carMovement.steerVariance = 0;
-            else _carAIMove.steerVariance = 0;
+            return;
         }
 
         if (_brokenParts.Contains(BrokenPart.RightWheel))
         {
             if (isPlayer) _carMovement.steerVariance = brokenTireAngle;
             else _carAIMove.steerVariance = brokenTireAngle;
+            return;
         }
-        else
-        {
-            if (isPlayer) _carMovement.steerVariance = 0;
-            else _carAIMove.steerVariance = 0;
-        }
+        
+        if (isPlayer) _carMovement.steerVariance = 0;
+        else _carAIMove.steerVariance = 0;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
+        if (_brokenParts.Count == 3)
+        {
+            _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, speedAllBroken);
+            return;
+        }
         if (_brokenParts.Contains(BrokenPart.Engine))
         {
             _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, speedBrokenEngine);

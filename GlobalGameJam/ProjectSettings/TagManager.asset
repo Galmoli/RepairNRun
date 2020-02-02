@@ -8,6 +8,11 @@ TagManager:
   - secondProblem
   - thirdProblem
   - Hand
+  - FirstSolution
+  - SecondSolution
+  - ThirdSolution
+  - LapChecker
+  - Enemy
   layers:
   - Default
   - TransparentFX

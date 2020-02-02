@@ -20,7 +20,7 @@ public class Hand : MonoBehaviour
     public float XClamper = 3.14f;
     public float YClamper = 1.5f;
 
-    public Animator anim;
+    public Animator animatorController;
 
     // Start is called before the first frame update
     void Start()
@@ -41,29 +41,29 @@ public class Hand : MonoBehaviour
     {
         //if (!heBeFixin)
         //{
-            this.gameObject.transform.position += player1Hand.rightStick.worldPositionCamera * handSpeed * Time.deltaTime;
+        this.gameObject.transform.position += player1Hand.rightStick.worldPositionCamera * handSpeed * Time.deltaTime;
 
 
-            if (transform.localPosition.x > XClamper)
-                transform.localPosition = new Vector3(XClamper, transform.localPosition.y, transform.localPosition.z);
-            if (transform.localPosition.x < -XClamper)
-                transform.localPosition = new Vector3(-XClamper, transform.localPosition.y, transform.localPosition.z);
+        if (transform.localPosition.x > XClamper)
+            transform.localPosition = new Vector3(XClamper, transform.localPosition.y, transform.localPosition.z);
+        if (transform.localPosition.x < -XClamper)
+            transform.localPosition = new Vector3(-XClamper, transform.localPosition.y, transform.localPosition.z);
 
-            if (transform.localPosition.y > YClamper)
-                transform.localPosition = new Vector3(transform.localPosition.x, YClamper, transform.localPosition.z);
-            if (transform.localPosition.y < -YClamper)
-                transform.localPosition = new Vector3(transform.localPosition.x, -YClamper, transform.localPosition.z);
+        if (transform.localPosition.y > YClamper)
+            transform.localPosition = new Vector3(transform.localPosition.x, YClamper, transform.localPosition.z);
+        if (transform.localPosition.y < -YClamper)
+            transform.localPosition = new Vector3(transform.localPosition.x, -YClamper, transform.localPosition.z);
 
         //}
-            //else if (heBeFixin)
-            //{
-            //    fixinTimer -= Time.deltaTime;
-            //    if (fixinTimer <= 0)
-            //    {
-            //        heBeFixin = false;
-            //        fixinTimer = fixinTimerCapsule;
-            //    }
-            //}
+        //else if (heBeFixin)
+        //{
+        //    fixinTimer -= Time.deltaTime;
+        //    if (fixinTimer <= 0)
+        //    {
+        //        heBeFixin = false;
+        //        fixinTimer = fixinTimerCapsule;
+        //    }
+        //}
 
         if (player1Hand.rightStickClick.justPressed)
         {
@@ -79,28 +79,29 @@ public class Hand : MonoBehaviour
             heJusPressFam = false;
         }
 
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusPressFam)
+        /*private void OnTriggerEnter(Collider other)
         {
-            other.transform.parent = this.gameObject.transform;
+            if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusPressFam)
+            {
+                other.transform.parent = this.gameObject.transform;
 
-        }
-    }*/
+            }
+        }*/
+    }
     private void OnTriggerStay(Collider other)
     {
 
         if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusPressFam)
         {
             other.transform.parent = this.gameObject.transform;
-            anim.SetBool("Action", false);
-            anim.SetBool("idle", true);
+            animatorController.SetBool("Action", false);
+            animatorController.SetBool("idle", true);
         }
         if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusReleaseFam)
         {
             other.transform.parent = FindObjectOfType<ObjectSpawner>().gameObject.transform;
-            anim.SetBool("Action", true);
-            anim.SetBool("idle", false);
+            animatorController.SetBool("Action", true);
+            animatorController.SetBool("idle", false);
         }
     }
 }
