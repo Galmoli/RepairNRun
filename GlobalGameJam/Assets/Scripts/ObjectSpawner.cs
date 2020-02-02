@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObjectSpawner : MonoBehaviour
 {
     //public GameObject parentCamera;
-
+    [SerializeField] private Car _car;
     public int xMaxValue = 12;
     public int yMaxValue = 5;
 
@@ -62,16 +62,11 @@ public class ObjectSpawner : MonoBehaviour
             timer = Random.Range(maxTimerValue - timerVariator, maxTimerValue + (timerVariator/3)); //Fer que a mesura que avanci la partida, aquest timer cada vegada sigui mes petit
         }
     }*/
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P)) SpawnProblem();
-    }
-    public void SpawnProblem()
+    public void SpawnProblem(int i)
     {
         Vector3 transformPosition = new Vector3(Mathf.RoundToInt(Random.Range(-xMaxValue, xMaxValue)), Mathf.RoundToInt(Random.Range(-yMaxValue, yMaxValue)), 0);
 
-        randomItemSelector = Random.Range(0, 3);
-        if (randomItemSelector != 0) randomItemSelector = Random.Range(0, 3);
+        randomItemSelector = i;
 
         //CHECK TYPE
         if (randomItemSelector == 0 && isHavingFirstProblem) randomItemSelector++;
@@ -117,6 +112,7 @@ public class ObjectSpawner : MonoBehaviour
             isHavingFirstProblem = false;
             lightOn1.SetActive(false);
             lightOff1.SetActive(true);
+            _car.RepairLeftWheel();
         }
         else if (i == 2)
         {
@@ -127,6 +123,7 @@ public class ObjectSpawner : MonoBehaviour
             isHavingSecondProblem = false;
             lightOn2.SetActive(false);
             lightOff2.SetActive(true);
+            _car.RepairRightWheel();
         }
         else if (i == 3)
         {
@@ -137,6 +134,7 @@ public class ObjectSpawner : MonoBehaviour
             isHavingThirdProblem = false;
             lightOn3.SetActive(false);
             lightOff3.SetActive(true);
+            _car.RepairEngine();
         }
     }
 }

@@ -55,7 +55,7 @@ public class CarCollisions : MonoBehaviour
                 {
                     if (!_car._brokenParts.Contains(Car.BrokenPart.Engine))
                     {
-                        _car._brokenParts.Add(Car.BrokenPart.Engine);
+                        _car.BreakEngine();
                         broken = true;
                     }
 
@@ -65,7 +65,7 @@ public class CarCollisions : MonoBehaviour
                 {
                     if (!_car._brokenParts.Contains(Car.BrokenPart.RightWheel))
                     {
-                        _car._brokenParts.Add(Car.BrokenPart.RightWheel);
+                        _car.BreakRightWheel();
                         broken = true;
                     }
 
@@ -75,7 +75,7 @@ public class CarCollisions : MonoBehaviour
                 {
                     if (!_car._brokenParts.Contains(Car.BrokenPart.LeftWheel))
                     {
-                        _car._brokenParts.Add(Car.BrokenPart.LeftWheel);
+                        _car.BreakLeftWheel();
                         broken = true;
                     }
 
