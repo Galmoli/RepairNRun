@@ -25,7 +25,7 @@ public class Hand : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player1Hand = hinput.gamepad[0];
+        player1Hand = hinput.anyGamepad;
 
         //fixinTimerCapsule = fixinTimer;
 
@@ -43,6 +43,7 @@ public class Hand : MonoBehaviour
         //{
         this.gameObject.transform.position += player1Hand.rightStick.worldPositionCamera * handSpeed * Time.deltaTime;
 
+        Debug.Log(player1Hand.leftStick.position);
 
         if (transform.localPosition.x > XClamper)
             transform.localPosition = new Vector3(XClamper, transform.localPosition.y, transform.localPosition.z);
