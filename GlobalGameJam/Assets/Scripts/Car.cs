@@ -113,7 +113,7 @@ public class Car : MonoBehaviour
     {
         if(!_brokenParts.Contains(BrokenPart.Engine)) _brokenParts.Add(BrokenPart.Engine);
         if (!sManager.embrague.isPlaying && this.isPlayer) sManager.embrague.Play();
-        hinput.anyGamepad.VibrateAdvanced(0.1f, 0.1f);
+        hinput.anyGamepad.VibrateAdvanced(0, 0.25f);
     }
 
     public void RepairEngine()
