@@ -20,10 +20,14 @@ public class ObjectSpawner : MonoBehaviour
     public GameObject secondProblem;
     public GameObject thirdProblem;
 
+    [HideInInspector] public SoundManager sManager;
+
     // Start is called before the first frame update
     void Start()
     {
         maxTimerValue = timer;
+
+        sManager = FindObjectOfType<SoundManager>();
     }
 
     // Update is called once per frame
@@ -52,6 +56,8 @@ public class ObjectSpawner : MonoBehaviour
                 var obj = Instantiate(thirdProblem, transformPosition, new Quaternion(0, 0, 0, 0), transform);
                 obj.transform.localPosition = transformPosition;
             }
+
+            if (!sManager.objectAppeared.isPlaying) sManager.objectAppeared.Play();
 
             timer = Random.Range(maxTimerValue - timerVariator, maxTimerValue + (timerVariator/3)); //Fer que a mesura que avanci la partida, aquest timer cada vegada sigui mes petit
         }
