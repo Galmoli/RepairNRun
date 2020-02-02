@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
 
@@ -26,6 +27,7 @@ public class Car : MonoBehaviour
     private RaycastHit hit;
     private Rigidbody _rb;
     [HideInInspector] public bool isInGrass;
+    [HideInInspector] public bool raceFinished = false;
     [HideInInspector] public SoundManager sManager;
 
     public ParticleSystem brokenMotorParticles;
@@ -48,13 +50,6 @@ public class Car : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S) || hinput.anyGamepad.rightBumper)
-        {
-            RepairEngine();
-            RepairLeftWheel();
-            RepairRightWheel();
-        }
-        
         if(Physics.Raycast(transform.position, Vector3.down, out hit,  3))
         {
             if (hit.collider.gameObject.name == "cespedA" || hit.collider.gameObject.name == "CespedB")
@@ -82,7 +77,6 @@ public class Car : MonoBehaviour
         if (_brokenParts.Contains(BrokenPart.LeftWheel))
         {
             if (isPlayer) _carMovement.steerVariance = -brokenTireAngle;
-            else _carAIMove.steerVariance = -brokenTireAngle;
             if (isPlayer && !brokenWheelLeftParticles.isPlaying) brokenWheelLeftParticles.Play();
             return;
         }
@@ -91,14 +85,12 @@ public class Car : MonoBehaviour
         if (_brokenParts.Contains(BrokenPart.RightWheel))
         {
             if (isPlayer) _carMovement.steerVariance = brokenTireAngle;
-            else _carAIMove.steerVariance = brokenTireAngle;
             if (isPlayer && !brokenWheelRightParticles.isPlaying) brokenWheelRightParticles.Play();
             return;
         }
         else if (isPlayer) brokenWheelRightParticles.Stop();
 
         if (isPlayer) _carMovement.steerVariance = 0;
-        else _carAIMove.steerVariance = 0;
     }
 
     // Update is called once per frame
@@ -119,7 +111,7 @@ public class Car : MonoBehaviour
 
     public void BreakEngine()
     {
-        if (!isPlayer) return;
+        if (!isPlayer || raceFinished) return;
         if(!_brokenParts.Contains(BrokenPart.Engine)) _brokenParts.Add(BrokenPart.Engine);
         if (!sManager.embrague.isPlaying && this.isPlayer) sManager.embrague.Play();
         cableManager.SpawnProblem(2);
@@ -135,7 +127,7 @@ public class Car : MonoBehaviour
 
     public void BreakLeftWheel()
     {
-        if (!isPlayer) return;
+        if (!isPlayer || raceFinished) return;
         if (!_brokenParts.Contains(BrokenPart.LeftWheel)) _brokenParts.Add(BrokenPart.LeftWheel);
         if (!sManager.wheelPinchazo.isPlaying && this.isPlayer) sManager.wheelPinchazo.Play();
         cableManager.SpawnProblem(0);
@@ -150,7 +142,7 @@ public class Car : MonoBehaviour
 
     public void BreakRightWheel()
     {
-        if (!isPlayer) return;
+        if (!isPlayer || raceFinished) return;
         if (!_brokenParts.Contains(BrokenPart.RightWheel)) _brokenParts.Add(BrokenPart.RightWheel);
         if (!sManager.wheelPinchazo.isPlaying && this.isPlayer) sManager.wheelPinchazo.Play();
         cableManager.SpawnProblem(1);
@@ -161,5 +153,13 @@ public class Car : MonoBehaviour
     {
         if (_brokenParts.Contains(BrokenPart.RightWheel)) _brokenParts.Remove(BrokenPart.RightWheel);
         if (!sManager.fixedThat.isPlaying && this.isPlayer) sManager.fixedThat.Play();
+    }
+
+    public void EnableIA()
+    {
+        isPlayer = false;
+        gameObject.GetComponent<CarAI>().enabled = true;
+        gameObject.GetComponent<CarMovement>().enabled = false;
+        gameObject.GetComponent<CarCollisions>().isPlayer = false;
     }
 }

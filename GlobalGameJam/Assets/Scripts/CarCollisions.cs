@@ -5,8 +5,8 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class CarCollisions : MonoBehaviour
-{
-    [SerializeField] private bool isPlayer;
+{ 
+    public bool isPlayer;
     private Car _car;
     private float timeSinceLastBrokenPiece = 0;
     private float nextPieceWillBreakIn;

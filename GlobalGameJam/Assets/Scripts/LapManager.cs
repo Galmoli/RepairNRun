@@ -12,7 +12,8 @@ public class LapManager : MonoBehaviour
     [SerializeField] private float midLapCheckSize = 20f;
     [SerializeField] private bool isPlayer;
     [SerializeField] private bool draw;
-    [SerializeField] private CinemachineVirtualCamera finsishCamera;
+    [SerializeField] private CinemachineVirtualCamera finishCamera;
+    [SerializeField] private CinemachineVirtualCamera cinematicCamera;
     [SerializeField] private GameObject replayButton;
     [SerializeField] private GameObject exitButton;
     [SerializeField] private GameObject finishedText;
@@ -70,7 +71,11 @@ public class LapManager : MonoBehaviour
                             break;
                     }
                     hinput.anyGamepad.StopVibration();
-                    finsishCamera.enabled = true;
+                    finishCamera.enabled = true;
+                    GetComponent<Car>().EnableIA();
+                    GetComponent<Car>().raceFinished = true;
+                    GetComponent<Car>()._brokenParts.Clear();
+                    StartCoroutine(CinematicCamera());
                 }
                 else LapsSingleton.Instance.carsFinished++;
             }
@@ -80,5 +85,11 @@ public class LapManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         if(draw) Gizmos.DrawSphere(midLapPos.position, midLapCheckSize);
+    }
+
+    IEnumerator CinematicCamera()
+    {
+        yield return new WaitForSeconds(3f);
+        cinematicCamera.enabled = true;
     }
 }
