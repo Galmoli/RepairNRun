@@ -894,7 +894,7 @@ GameObject:
   - component: {fileID: 4208487123045214799}
   m_Layer: 0
   m_Name: enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -999,6 +999,7 @@ MonoBehaviour:
   speedBrokenBothWheels: 6
   speedAllBroken: 3
   _brokenParts: 
+  sManager: {fileID: 0}
 --- !u!114 &1915571680
 MonoBehaviour:
   m_ObjectHideFlags: 0

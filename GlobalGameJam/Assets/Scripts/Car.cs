@@ -19,6 +19,7 @@ public class Car : MonoBehaviour
     [SerializeField] private float speedBrokenEngine = 5;
     [SerializeField] private float speedBrokenBothWheels = 6;
     [SerializeField] private float speedAllBroken = 3;
+    private ObjectSpawner cableManager;
     private CarAI _carAIMove;
     private CarMovement _carMovement;
     [HideInInspector] public List<BrokenPart> _brokenParts = new List<BrokenPart>();
@@ -33,7 +34,7 @@ public class Car : MonoBehaviour
         if (isPlayer)
         {
             _carMovement = GetComponent<CarMovement>();
-            //maxTorque = _carMovement.maxMotorTorque;
+            cableManager = GetComponentInChildren<ObjectSpawner>();
         }
         else
         {
@@ -44,10 +45,6 @@ public class Car : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L)) BreakLeftWheel();
-        if(Input.GetKeyDown(KeyCode.R)) BreakRightWheel();
-        if(Input.GetKeyDown(KeyCode.E)) BreakEngine();
-
         if (Input.GetKeyDown(KeyCode.S) || hinput.anyGamepad.rightBumper)
         {
             RepairEngine();
@@ -111,8 +108,10 @@ public class Car : MonoBehaviour
 
     public void BreakEngine()
     {
+        if (!isPlayer) return;
         if(!_brokenParts.Contains(BrokenPart.Engine)) _brokenParts.Add(BrokenPart.Engine);
         if (!sManager.embrague.isPlaying && this.isPlayer) sManager.embrague.Play();
+        cableManager.SpawnProblem(2);
     }
 
     public void RepairEngine()
@@ -123,8 +122,10 @@ public class Car : MonoBehaviour
 
     public void BreakLeftWheel()
     {
+        if (!isPlayer) return;
         if (!_brokenParts.Contains(BrokenPart.LeftWheel)) _brokenParts.Add(BrokenPart.LeftWheel);
         if (!sManager.wheelPinchazo.isPlaying && this.isPlayer) sManager.wheelPinchazo.Play();
+        cableManager.SpawnProblem(0);
     }
 
     public void RepairLeftWheel()
@@ -135,8 +136,10 @@ public class Car : MonoBehaviour
 
     public void BreakRightWheel()
     {
+        if (!isPlayer) return;
         if (!_brokenParts.Contains(BrokenPart.RightWheel)) _brokenParts.Add(BrokenPart.RightWheel);
         if (!sManager.wheelPinchazo.isPlaying && this.isPlayer) sManager.wheelPinchazo.Play();
+        cableManager.SpawnProblem(1);
     }
 
     public void RepairRightWheel()
