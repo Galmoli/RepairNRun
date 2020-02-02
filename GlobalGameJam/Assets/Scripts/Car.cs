@@ -123,7 +123,7 @@ public class Car : MonoBehaviour
         if(!_brokenParts.Contains(BrokenPart.Engine)) _brokenParts.Add(BrokenPart.Engine);
         if (!sManager.embrague.isPlaying && this.isPlayer) sManager.embrague.Play();
         cableManager.SpawnProblem(2);
-        hinput.anyGamepad.VibrateAdvanced(0, 0.25f);
+        hinput.anyGamepad.Vibrate(0.25f, 0.25f, 4f);
     }
 
     public void RepairEngine()
@@ -139,6 +139,7 @@ public class Car : MonoBehaviour
         if (!_brokenParts.Contains(BrokenPart.LeftWheel)) _brokenParts.Add(BrokenPart.LeftWheel);
         if (!sManager.wheelPinchazo.isPlaying && this.isPlayer) sManager.wheelPinchazo.Play();
         cableManager.SpawnProblem(0);
+        hinput.anyGamepad.Vibrate(0.5f, 0, 0.25f);
     }
 
     public void RepairLeftWheel()
@@ -153,6 +154,7 @@ public class Car : MonoBehaviour
         if (!_brokenParts.Contains(BrokenPart.RightWheel)) _brokenParts.Add(BrokenPart.RightWheel);
         if (!sManager.wheelPinchazo.isPlaying && this.isPlayer) sManager.wheelPinchazo.Play();
         cableManager.SpawnProblem(1);
+        hinput.anyGamepad.Vibrate(0, 0.5f, 0.25f);
     }
 
     public void RepairRightWheel()
