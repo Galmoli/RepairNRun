@@ -11,4 +11,14 @@ public class SoundManager : MonoBehaviour
     public AudioSource throughGrass;
     public AudioSource wheelPinchazo;
     public AudioSource carCrash;
+    public AudioSource objectAppeared;
+    public AudioSource woops;
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.W) && !woops.isPlaying)
+        {
+            objectAppeared.Play();
+        }
+    }
 }
