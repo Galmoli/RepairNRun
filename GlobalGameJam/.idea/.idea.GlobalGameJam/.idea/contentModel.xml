@@ -36,16 +36,36 @@
             </e>
           </e>
         </e>
+        <e p="IK" t="Include">
+          <e p="FastIKCCD.cs" t="Include" />
+          <e p="FastIKFabric.cs" t="Include" />
+          <e p="FastIKLook.cs" t="Include" />
+          <e p="SampleProcedualAnimation.cs" t="Include" />
+          <e p="SampleRotator.cs" t="Include" />
+          <e p="SampleSinMover.cs" t="Include" />
+        </e>
+        <e p="Ro_3D" t="Include">
+          <e p="codigoBandera.shader" t="Include" />
+        </e>
         <e p="Scripts" t="Include">
+          <e p="ButtonMenu.cs" t="Include" />
           <e p="CameraManager.cs" t="Include" />
           <e p="Car.cs" t="Include" />
           <e p="CarAI.cs" t="Include" />
+          <e p="CarCollisions.cs" t="Include" />
+          <e p="CarFlipper.cs" t="Include" />
           <e p="CarMovement.cs" t="Include" />
           <e p="CarWheel.cs" t="Include" />
           <e p="Hand.cs" t="Include" />
+          <e p="LapManager.cs" t="Include" />
+          <e p="LapsSingleton.cs" t="Include" />
+          <e p="MenuManager.cs" t="Include" />
           <e p="ObjectSpawner.cs" t="Include" />
           <e p="Path.cs" t="Include" />
+          <e p="ProblemBehaviour.cs" t="Include" />
+          <e p="SoundManager.cs" t="Include" />
           <e p="StartCountdown.cs" t="Include" />
+          <e p="VolanteController.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
