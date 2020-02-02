@@ -15,6 +15,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource woops;
     public AudioSource electroShock;
     public AudioSource backwardsBeep;
+    public AudioSource acceleration;
 
     private void Update()
     {
