@@ -19,7 +19,7 @@ public class Car : MonoBehaviour
     [SerializeField] private float speedBrokenEngine = 5;
     [SerializeField] private float speedBrokenBothWheels = 6;
     [SerializeField] private float speedAllBroken = 3;
-    private ObjectSpawner cableManager;
+    [SerializeField] private ObjectSpawner cableManager;
     private CarAI _carAIMove;
     private CarMovement _carMovement;
     [HideInInspector] public List<BrokenPart> _brokenParts = new List<BrokenPart>();
@@ -38,7 +38,6 @@ public class Car : MonoBehaviour
         if (isPlayer)
         {
             _carMovement = GetComponent<CarMovement>();
-            cableManager = GetComponentInChildren<ObjectSpawner>();
         }
         else
         {

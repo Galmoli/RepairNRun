@@ -140,11 +140,13 @@ public class CarMovement : MonoBehaviour
         {
             wheelFL.motorTorque = maxMotorTorque;
             wheelFR.motorTorque = maxMotorTorque;
+            if (!sManager.acceleration.isPlaying) sManager.acceleration.Play();
         }
         else if(!backwards)
         {
             wheelFL.motorTorque = 0;
             wheelFR.motorTorque = 0;
+            if (sManager.acceleration.isPlaying) sManager.acceleration.Stop();
         }
     }
 

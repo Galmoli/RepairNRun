@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class ButtonMenu : MonoBehaviour
 {
+    [SerializeField] private bool replay;
+    [SerializeField] private bool exit;
     [HideInInspector] public bool canPressButton = false;
     [HideInInspector] public Animator buttonAnimator;
     [HideInInspector] public bool triggerAnimationEnd = false;
@@ -30,11 +32,11 @@ public class ButtonMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canPressButton && (hinput.anyGamepad.A || hinput.anyGamepad.X || hinput.anyGamepad.B || hinput.anyGamepad.Y || hinput.anyGamepad.leftStickClick))
+        if (canPressButton && (hinput.anyGamepad.A || hinput.anyGamepad.X || hinput.anyGamepad.B || hinput.anyGamepad.Y || hinput.anyGamepad.rightStickClick))
         {
             buttonAnimator.SetTrigger("buttonClick");
             triggerAnimationEnd = true;
-            //SceneManager.LoadScene("MainScene");
+            
         }
         if (triggerAnimationEnd)
         {
@@ -50,9 +52,11 @@ public class ButtonMenu : MonoBehaviour
             if (!pSystem.isPlaying) pSystem.Play();
             lastSceneTimer += Time.deltaTime;
         }
-        if (lastSceneTimer >= 1)
+        if (lastSceneTimer >= 0.5f)
         {
-            SceneManager.LoadScene("MainScene");
+            if (replay) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            else if (exit) Application.Quit();
+            else SceneManager.LoadScene("VisualTest 1");
         }
     }
 
