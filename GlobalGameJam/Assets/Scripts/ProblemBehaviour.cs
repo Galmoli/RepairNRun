@@ -35,8 +35,8 @@ public class ProblemBehaviour : MonoBehaviour
         {
             hinput.anyGamepad.Vibrate(0.25f);
             if (!sManager.electroShock.isPlaying) sManager.electroShock.Play();
-            handerele.animatorController.SetBool("Idle", false);
-            handerele.animatorController.SetBool("Action", true);
+            handerele.animatorController.SetBool("NoAction", true);
+            handerele.animatorController.SetBool("Action", false);
             Destroy(this.gameObject);
             IKmaster1.transform.SetParent(null);
             objSpawner.CallCoroutineDisappear(1);
@@ -45,8 +45,8 @@ public class ProblemBehaviour : MonoBehaviour
         {
             hinput.anyGamepad.Vibrate(0.25f);
             if (!sManager.electroShock.isPlaying) sManager.electroShock.Play();
-            handerele.animatorController.SetBool("Idle", false);
-            handerele.animatorController.SetBool("Action", true);
+            handerele.animatorController.SetBool("NoAction", true);
+            handerele.animatorController.SetBool("Action", false);
             Destroy(this.gameObject);
             IKmaster2.transform.SetParent(null);
             objSpawner.CallCoroutineDisappear(2);
@@ -55,8 +55,8 @@ public class ProblemBehaviour : MonoBehaviour
         {
             hinput.anyGamepad.Vibrate(0.25f);
             if (!sManager.electroShock.isPlaying) sManager.electroShock.Play();
-            handerele.animatorController.SetBool("Idle", false);
-            handerele.animatorController.SetBool("Action", true);
+            handerele.animatorController.SetBool("NoAction", true);
+            handerele.animatorController.SetBool("Action", false);
             Destroy(this.gameObject);
             IKmaster3.transform.SetParent(null);
             objSpawner.CallCoroutineDisappear(3);
