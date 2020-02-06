@@ -20,6 +20,7 @@ public class Car : MonoBehaviour
     [SerializeField] private float speedBrokenBothWheels = 6;
     [SerializeField] private float speedAllBroken = 3;
     [SerializeField] private ObjectSpawner cableManager;
+    [SerializeField] private Transform grassChecker;
     private CarAI _carAIMove;
     private CarMovement _carMovement;
     [HideInInspector] public List<BrokenPart> _brokenParts = new List<BrokenPart>();
@@ -50,11 +51,11 @@ public class Car : MonoBehaviour
 
     private void Update()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out hit,  3))
+        if(Physics.Raycast(grassChecker.position, Vector3.down, out hit,  3))
         {
-            if (hit.collider.gameObject.name == "cespedA" || hit.collider.gameObject.name == "CespedB")
+            if (hit.collider.gameObject.CompareTag("Grass"))
             {
-                if (!sManager.throughGrass.isPlaying && this.isPlayer) sManager.throughGrass.Play();
+                if (!sManager.throughGrass.isPlaying && isPlayer) sManager.throughGrass.Play();
                 isInGrass = true;
                 _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, speedOnGrass);
             }
