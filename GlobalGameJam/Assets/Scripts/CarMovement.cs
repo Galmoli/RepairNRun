@@ -45,7 +45,6 @@ public class CarMovement : MonoBehaviour
         sManager = FindObjectOfType<SoundManager>();
         anim = GetComponent<Animator>();
     }
-
     private void FixedUpdate()
     {
         ApplySteer();
