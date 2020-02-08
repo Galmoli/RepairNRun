@@ -14151,7 +14151,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 439337530}
-  m_LocalRotation: {x: 0.1442403, y: -0.00043537447, z: 0.000063462154, w: 0.9895426}
+  m_LocalRotation: {x: 0.1442403, y: -0.00043534496, z: 0.000063457854, w: 0.9895426}
   m_LocalPosition: {x: -0.000005960469, y: 5.72, z: -11.11112}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -90340,7 +90340,7 @@ MeshCollider:
   m_GameObject: {fileID: 3125933112801721564}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -90509,6 +90509,7 @@ GameObject:
   - component: {fileID: 4212160071828809548}
   - component: {fileID: 6275883654796340994}
   - component: {fileID: 2071966871219004842}
+  - component: {fileID: 305777022729758390}
   - component: {fileID: 1489347258992847241}
   - component: {fileID: 1547899400}
   - component: {fileID: 6711159963559967453}
@@ -90578,21 +90579,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816b74a8b2a19ec4989ee5e242d3f46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 1
+  _brokenParts: 
+  isInGrass: 0
+  raceFinished: 0
+  sManager: {fileID: 0}
+  cableManager: {fileID: 0}
+  brokenMotorParticles: {fileID: 372260287}
+  brokenWheelRightParticles: {fileID: 1153714545}
+  brokenWheelLeftParticles: {fileID: 348639613}
+--- !u!114 &305777022729758390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4212160071829240684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420226d184ac3894daed5fe61e2cef9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   brokenTireAngle: 10
   speedOnGrass: 10
   speedBrokenEngine: 5
   speedBrokenBothWheels: 6
   speedAllBroken: 3
-  cableManager: {fileID: 0}
+  maxSteerAngle: 45
+  maxMotorTorque: 800
+  maxBreakTorque: 20000
+  maxSpeed: 100
+  maxTimeOnGrass: 20
+  wheelVisualAngle: 20
   grassChecker: {fileID: 1975691401}
-  _brokenParts: 
-  isInGrass: 0
-  raceFinished: 0
-  sManager: {fileID: 0}
-  brokenMotorParticles: {fileID: 372260287}
-  brokenWheelRightParticles: {fileID: 1153714545}
-  brokenWheelLeftParticles: {fileID: 348639613}
 --- !u!114 &1489347258992847241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90605,10 +90623,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68c8a0f89b373c479a791a3162fc0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMotorTorque: 800
-  maxBreakTorque: 20000
-  turnAngle: 30
-  wheelVisualAngle: 15
   wheelFL: {fileID: 7143873127149559659}
   wheelFR: {fileID: 3730782789254472748}
   wheelRL: {fileID: 1512464884159157166}
@@ -90645,8 +90659,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8841901, y: 1.1207595, z: 4.0515313}
-  m_Center: {x: 0.014860829, y: 0.90906954, z: -1.4018438}
+  m_Size: {x: 2.0255198, y: 1.1207595, z: 4.0515313}
+  m_Center: {x: -0.0014487903, y: 0.90906954, z: -1.4018438}
 --- !u!114 &7077718642416140956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90659,7 +90673,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5211328027e1d347ae6c75686883d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 1
 --- !u!114 &2883557622275894858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90720,18 +90733,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 0}
-  maxSteerAngle: 45
-  maxMotorTorque: 100
-  maxBreakTorque: 150
-  maxSpeed: 100
-  maxTimeOnGrass: 20
   wheelFL: {fileID: 7143873127149559659}
   wheelFR: {fileID: 3730782789254472748}
   wheelRL: {fileID: 1512464884159157166}
   wheelRR: {fileID: 5062798421273948314}
   rightWheel: {fileID: 8135813584098108327}
   leftWheel: {fileID: 2003209164147308735}
-  currentNode: 0
   steerVariance: 0
   sensorLength: 2
   frontSensorAngle: 30
@@ -91419,6 +91426,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44b9b00abd07f7d4e990696a9dbbe362, type: 3}
+--- !u!4 &8918806337863106607 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3593771088602359828, guid: 44b9b00abd07f7d4e990696a9dbbe362,
+    type: 3}
+  m_PrefabInstance: {fileID: 5339673628997003323}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8918806338337183986 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3593771088027594953, guid: 44b9b00abd07f7d4e990696a9dbbe362,
@@ -91431,9 +91444,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &8918806337863106607 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3593771088602359828, guid: 44b9b00abd07f7d4e990696a9dbbe362,
-    type: 3}
-  m_PrefabInstance: {fileID: 5339673628997003323}
-  m_PrefabAsset: {fileID: 0}
