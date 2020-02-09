@@ -21,8 +21,6 @@ public class Car : MonoBehaviour
     
     private CarMovement _carMovement;
     private CarBlackboard _blackboard;
-    
-    private RaycastHit hit;
     private Rigidbody _rb;
 
     public ParticleSystem brokenMotorParticles;
@@ -35,23 +33,6 @@ public class Car : MonoBehaviour
         _blackboard = GetComponent<CarBlackboard>();
         _carMovement = GetComponent<CarMovement>();
         sManager = FindObjectOfType<SoundManager>();
-    }
-
-    private void Update()
-    {
-        if(Physics.Raycast(_blackboard.grassChecker.position, Vector3.down, out hit,  3))
-        {
-            if (hit.collider.gameObject.CompareTag("Grass"))
-            {
-                if (!sManager.throughGrass.isPlaying) sManager.throughGrass.Play();
-                isInGrass = true;
-                _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, _blackboard.speedOnGrass);
-            }
-            else
-            {
-                isInGrass = false;
-            }
-        }
     }
 
     void FixedUpdate()
@@ -85,6 +66,7 @@ public class Car : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if(isInGrass) _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, _blackboard.speedOnGrass);
         if (_brokenParts.Count == 3)
         {
             _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, _blackboard.speedAllBroken);

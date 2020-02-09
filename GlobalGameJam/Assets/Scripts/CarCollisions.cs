@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.UIElements.GraphView;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class CarCollisions : MonoBehaviour
 { 
     private Car _car;
+    private CarBlackboard _blackboard;
+    private RaycastHit hit;
     private float timeSinceLastBrokenPiece = 0;
     private float nextPieceWillBreakIn;
     private bool canTrigger = true;
     private void Awake()
     {
         _car = GetComponentInParent<Car>();
+        _blackboard = GetComponent<CarBlackboard>();
     }
 
     private void Start()
@@ -23,9 +27,18 @@ public class CarCollisions : MonoBehaviour
     private void Update()
     {
         timeSinceLastBrokenPiece += Time.deltaTime;
-        if (timeSinceLastBrokenPiece >= nextPieceWillBreakIn)
+        if (timeSinceLastBrokenPiece >= nextPieceWillBreakIn) Break();
+        if(Physics.Raycast(_blackboard.grassChecker.position, Vector3.down, out hit,  3))
         {
-            Break();
+            if (hit.collider.gameObject.CompareTag("Grass"))
+            {
+                if (!_car.sManager.throughGrass.isPlaying) _car.sManager.throughGrass.Play();
+                _car.isInGrass = true;
+            }
+            else
+            {
+                _car.isInGrass = false;
+            }
         }
     }
 
