@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 51890261}
   - component: {fileID: 51890263}
   - component: {fileID: 51890262}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 161569663}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 182818532}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sensors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 302857309}
   - component: {fileID: 302857311}
   - component: {fileID: 302857310}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Car (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 556173335}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particulas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 663044243}
   - component: {fileID: 663044245}
   - component: {fileID: 663044244}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: vroom (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4963,7 +4963,7 @@ GameObject:
   - component: {fileID: 726801323}
   - component: {fileID: 726801325}
   - component: {fileID: 726801324}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Personita
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5029,6 +5029,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &863513308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 863513309}
+  m_Layer: 11
+  m_Name: GrassChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &863513309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863513308}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.293, z: -1.59}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4212160071828809548}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &999700588
 GameObject:
   m_ObjectHideFlags: 0
@@ -5040,7 +5070,7 @@ GameObject:
   - component: {fileID: 999700589}
   - component: {fileID: 999700591}
   - component: {fileID: 999700590}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Brazos (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5117,7 +5147,7 @@ GameObject:
   - component: {fileID: 1254767814}
   - component: {fileID: 1254767816}
   - component: {fileID: 1254767815}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cone (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5192,7 +5222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1303321245}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5224,7 +5254,7 @@ GameObject:
   - component: {fileID: 1323251524}
   - component: {fileID: 1323251526}
   - component: {fileID: 1323251525}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Brazos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5299,7 +5329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1407841095}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5333,7 +5363,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1610987196}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5365,7 +5395,7 @@ GameObject:
   - component: {fileID: 1693839416}
   - component: {fileID: 1693839418}
   - component: {fileID: 1693839417}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Personita (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5442,7 +5472,7 @@ GameObject:
   - component: {fileID: 1722341397}
   - component: {fileID: 1722341399}
   - component: {fileID: 1722341398}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: dirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10140,7 +10170,7 @@ GameObject:
   - component: {fileID: 1781079332}
   - component: {fileID: 1781079334}
   - component: {fileID: 1781079333}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: dirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14838,7 +14868,7 @@ GameObject:
   - component: {fileID: 1911715803}
   - component: {fileID: 1911715805}
   - component: {fileID: 1911715804}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: P2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14913,7 +14943,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2097428352}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14943,7 +14973,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2292842924935021741}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14979,7 +15009,7 @@ GameObject:
   - component: {fileID: 7523614530417644554}
   - component: {fileID: 2266727978767141736}
   - component: {fileID: 7633039145486695194}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Delanter_I
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15056,7 +15086,7 @@ GameObject:
   - component: {fileID: 1765891114624303135}
   - component: {fileID: 3748797543307244495}
   - component: {fileID: 8835816121251760902}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Delanter_D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15131,7 +15161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6623832148861809729}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15163,7 +15193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1395092774023941072}
   - component: {fileID: 3730782789254472748}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Delantera_D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15224,7 +15254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3028602528063649223}
   - component: {fileID: 1251835622}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Delantera_I
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15269,7 +15299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 550253403017795868}
   - component: {fileID: 1468761233}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trasera_D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15314,7 +15344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1521953528914235081}
   - component: {fileID: 1512464884159157166}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trasera_I
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15375,7 +15405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4516545885224399483}
   - component: {fileID: 418822799}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trasera_I
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15419,7 +15449,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6260848389562840615}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wheels Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15452,7 +15482,7 @@ GameObject:
   - component: {fileID: 4212160071828809536}
   - component: {fileID: 4212160071825942368}
   - component: {fileID: 4212160071827039648}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Personita
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15529,7 +15559,7 @@ GameObject:
   - component: {fileID: 4212160071828809542}
   - component: {fileID: 4212160071825942374}
   - component: {fileID: 4212160071827039654}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: P1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15607,7 +15637,7 @@ GameObject:
   - component: {fileID: 4212160071825942376}
   - component: {fileID: 4212160071827039656}
   - component: {fileID: 8603856915783149584}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15697,14 +15727,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4212160071828809548}
   - component: {fileID: 6275883654796340994}
+  - component: {fileID: 7922096298792677914}
   - component: {fileID: 1640233021}
   - component: {fileID: 393760833}
-  - component: {fileID: 3517155144769214963}
-  - component: {fileID: 1915571680}
   - component: {fileID: 1915571681}
   - component: {fileID: 4208487123045214799}
   - component: {fileID: 557856878}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -15733,6 +15762,7 @@ Transform:
   - {fileID: 8620149799526886649}
   - {fileID: 1407841095}
   - {fileID: 161569663}
+  - {fileID: 863513309}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15752,6 +15782,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7922096298792677914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4212160071829240684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420226d184ac3894daed5fe61e2cef9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenTireAngle: 0
+  speedOnGrass: 10
+  speedBrokenEngine: 5
+  speedBrokenBothWheels: 6
+  speedAllBroken: 3
+  maxSteerAngle: 45
+  maxMotorTorque: 500
+  maxBreakTorque: 150
+  maxSpeed: 100
+  maxTimeOnGrass: 15
+  wheelVisualAngle: 20
+  grassChecker: {fileID: 863513309}
 --- !u!114 &1640233021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15765,18 +15819,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 0}
-  maxSteerAngle: 30
-  maxMotorTorque: 1000
-  maxBreakTorque: 150
-  maxSpeed: 100
-  maxTimeOnGrass: 20
   wheelFL: {fileID: 7143873127149559659}
   wheelFR: {fileID: 3730782789254472748}
   wheelRL: {fileID: 1512464884159157166}
   wheelRR: {fileID: 5062798421273948314}
   rightWheel: {fileID: 8135813584098108327}
   leftWheel: {fileID: 2003209164147308735}
-  currentNode: 0
   steerVariance: 0
   sensorLength: 2
   frontSensorAngle: 30
@@ -15796,44 +15844,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToFlip: 2.5
---- !u!114 &3517155144769214963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212160071829240684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 816b74a8b2a19ec4989ee5e242d3f46d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPlayer: 0
-  brokenTireAngle: 10
-  speedOnGrass: 10
-  speedBrokenEngine: 5
-  speedBrokenBothWheels: 6
-  speedAllBroken: 3
-  cableManager: {fileID: 0}
-  _brokenParts: 
-  isInGrass: 0
-  sManager: {fileID: 0}
-  brokenMotorParticles: {fileID: 0}
-  brokenWheelRightParticles: {fileID: 0}
-  brokenWheelLeftParticles: {fileID: 0}
---- !u!114 &1915571680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212160071829240684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5211328027e1d347ae6c75686883d25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPlayer: 0
 --- !u!114 &1915571681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15850,7 +15860,8 @@ MonoBehaviour:
   midLapCheckSize: 20
   isPlayer: 0
   draw: 0
-  finsishCamera: {fileID: 0}
+  finishCamera: {fileID: 0}
+  cinematicCamera: {fileID: 0}
   replayButton: {fileID: 0}
   exitButton: {fileID: 0}
   finishedText: {fileID: 0}
@@ -15858,6 +15869,8 @@ MonoBehaviour:
   secondPos: {fileID: 0}
   thirdPos: {fileID: 0}
   otherPos: {fileID: 0}
+  volante: {fileID: 0}
+  Aparato: {fileID: 0}
   otherText: {fileID: 0}
 --- !u!65 &4208487123045214799
 BoxCollider:
@@ -15902,7 +15915,7 @@ GameObject:
   - component: {fileID: 4212160071828809550}
   - component: {fileID: 4212160071825942382}
   - component: {fileID: 4212160071827039662}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Brazos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15979,7 +15992,7 @@ GameObject:
   - component: {fileID: 4212160071828809564}
   - component: {fileID: 4212160071825942396}
   - component: {fileID: 4212160071827039676}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trasera_I
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16056,7 +16069,7 @@ GameObject:
   - component: {fileID: 8620149799526886649}
   - component: {fileID: 6256763613362690302}
   - component: {fileID: 4190081936261220683}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Car1Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16132,7 +16145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8796550776036026746}
   - component: {fileID: 7143873127149559659}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Delantera_I
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16192,7 +16205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1569433108561192090}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16227,7 +16240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8612445549165888025}
   - component: {fileID: 1444158047}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Delantera_D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16273,7 +16286,7 @@ GameObject:
   - component: {fileID: 5303560153401142346}
   - component: {fileID: 1739272763998305731}
   - component: {fileID: 4079200013385160681}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trasera_D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16349,7 +16362,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6003467890237128543}
   - component: {fileID: 5062798421273948314}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trasera_D
   m_TagString: Untagged
   m_Icon: {fileID: 0}

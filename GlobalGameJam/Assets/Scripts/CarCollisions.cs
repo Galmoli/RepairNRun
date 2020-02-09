@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.UIElements.GraphView;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class CarCollisions : MonoBehaviour
 { 
-    public bool isPlayer;
     private Car _car;
+    private CarBlackboard _blackboard;
+    private RaycastHit hit;
     private float timeSinceLastBrokenPiece = 0;
     private float nextPieceWillBreakIn;
     private bool canTrigger = true;
     private void Awake()
     {
         _car = GetComponentInParent<Car>();
+        _blackboard = GetComponent<CarBlackboard>();
     }
 
     private void Start()
@@ -24,27 +27,33 @@ public class CarCollisions : MonoBehaviour
     private void Update()
     {
         timeSinceLastBrokenPiece += Time.deltaTime;
-        if (timeSinceLastBrokenPiece >= nextPieceWillBreakIn)
+        if (timeSinceLastBrokenPiece >= nextPieceWillBreakIn) Break();
+        if(Physics.Raycast(_blackboard.grassChecker.position, Vector3.down, out hit,  3))
         {
-            Break();
+            if (hit.collider.gameObject.CompareTag("Grass"))
+            {
+                if (!_car.sManager.throughGrass.isPlaying) _car.sManager.throughGrass.Play();
+                _car.isInGrass = true;
+            }
+            else
+            {
+                _car.isInGrass = false;
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("LapChecker")) GetComponentInParent<LapManager>().CheckLap();
-        if(isPlayer) if(other.CompareTag("Enemy")) Break();
+        if(other.CompareTag("Enemy")) Break();
     }
 
     private void Break()
     {
         if (!canTrigger) return;
-        if (isPlayer)
-        {
-            hinput.anyGamepad.Vibrate(0.55f, 0.25f, 0.5f);
-            SoundManager sm = FindObjectOfType<SoundManager>();
-            if (!sm.carCrash.isPlaying) sm.carCrash.Play();
-        }
+        hinput.anyGamepad.Vibrate(0.55f, 0.25f, 0.5f);
+        SoundManager sm = FindObjectOfType<SoundManager>();
+        if (!sm.carCrash.isPlaying) sm.carCrash.Play();
         if (_car._brokenParts.Count == 3) return; //All things broken
         bool broken = false;
         do
@@ -59,7 +68,6 @@ public class CarCollisions : MonoBehaviour
                         _car.BreakEngine();
                         broken = true;
                     }
-
                     break;
                 }
                 case 1:
@@ -69,7 +77,6 @@ public class CarCollisions : MonoBehaviour
                         _car.BreakRightWheel();
                         broken = true;
                     }
-
                     break;
                 }
                 case 2:
@@ -79,7 +86,6 @@ public class CarCollisions : MonoBehaviour
                         _car.BreakLeftWheel();
                         broken = true;
                     }
-
                     break;
                 }
             }

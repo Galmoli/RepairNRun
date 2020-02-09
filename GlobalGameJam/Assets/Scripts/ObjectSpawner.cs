@@ -49,19 +49,6 @@ public class ObjectSpawner : MonoBehaviour
 
         sManager = FindObjectOfType<SoundManager>();
     }
-
-    /*void Update()
-    {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
-        {
-
-
-            if (!sManager.objectAppeared.isPlaying) sManager.objectAppeared.Play();
-
-            timer = Random.Range(maxTimerValue - timerVariator, maxTimerValue + (timerVariator/3)); //Fer que a mesura que avanci la partida, aquest timer cada vegada sigui mes petit
-        }
-    }*/
     public void SpawnProblem(int i)
     {
         Vector3 transformPosition = new Vector3(Mathf.RoundToInt(Random.Range(-xMaxValue, xMaxValue)), Mathf.RoundToInt(Random.Range(-yMaxValue, yMaxValue)), 0);
@@ -101,40 +88,41 @@ public class ObjectSpawner : MonoBehaviour
     {
         StartCoroutine(DisappearProblem(i));
     }
-    public IEnumerator DisappearProblem(int i)
+
+    private IEnumerator DisappearProblem(int i)
     {
-        if (i == 1)
+        switch (i)
         {
-            lightOn1.SetActive(true);
-            lightOff1.SetActive(false);
-            yield return new WaitForSeconds(1);
-            IKmaster1.transform.position = ikStartPos1;
-            isHavingFirstProblem = false;
-            lightOn1.SetActive(false);
-            lightOff1.SetActive(true);
-            _car.RepairLeftWheel();
-        }
-        else if (i == 2)
-        {
-            lightOn2.SetActive(true);
-            lightOff2.SetActive(false);
-            yield return new WaitForSeconds(0.5f);
-            IKmaster2.transform.position = ikStartPos2;
-            isHavingSecondProblem = false;
-            lightOn2.SetActive(false);
-            lightOff2.SetActive(true);
-            _car.RepairRightWheel();
-        }
-        else if (i == 3)
-        {
-            lightOn3.SetActive(true);
-            lightOff3.SetActive(false);
-            yield return new WaitForSeconds(0.5f);
-            IKmaster3.transform.position = ikStartPos3;
-            isHavingThirdProblem = false;
-            lightOn3.SetActive(false);
-            lightOff3.SetActive(true);
-            _car.RepairEngine();
+            case 1:
+                lightOn1.SetActive(true);
+                lightOff1.SetActive(false);
+                yield return new WaitForSeconds(1);
+                IKmaster1.transform.position = ikStartPos1;
+                isHavingFirstProblem = false;
+                lightOn1.SetActive(false);
+                lightOff1.SetActive(true);
+                _car.RepairLeftWheel();
+                break;
+            case 2:
+                lightOn2.SetActive(true);
+                lightOff2.SetActive(false);
+                yield return new WaitForSeconds(0.5f);
+                IKmaster2.transform.position = ikStartPos2;
+                isHavingSecondProblem = false;
+                lightOn2.SetActive(false);
+                lightOff2.SetActive(true);
+                _car.RepairRightWheel();
+                break;
+            case 3:
+                lightOn3.SetActive(true);
+                lightOff3.SetActive(false);
+                yield return new WaitForSeconds(0.5f);
+                IKmaster3.transform.position = ikStartPos3;
+                isHavingThirdProblem = false;
+                lightOn3.SetActive(false);
+                lightOff3.SetActive(true);
+                _car.RepairEngine();
+                break;
         }
     }
 }
