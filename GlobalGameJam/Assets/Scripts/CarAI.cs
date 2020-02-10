@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarAI : MonoBehaviour
+public class CarAI : MonoBehaviour, ICar
 {
     [SerializeField] private Transform path;
     [SerializeField] private WheelCollider wheelFL;
@@ -48,12 +48,12 @@ public class CarAI : MonoBehaviour
     {
         Sensors();
         ApplySteer();
-        Breaking();
+        Break();
         Drive();
         CheckWayPointDistance();
     }
 
-    private void ApplySteer()
+    public void ApplySteer()
     {
         if(avoiding) return;
         Vector3 relativeVector = transform.InverseTransformPoint(nodes[currentNode].position);
@@ -124,7 +124,7 @@ public class CarAI : MonoBehaviour
 
         if (Physics.Raycast(transform.position, Vector3.down, out hit, sensorLength))
         {
-            if (hit.collider.gameObject.name == "cespedA" || hit.collider.gameObject.name == "CespedB")
+            if (hit.collider.CompareTag("Grass"))
             {
                 currentTimeOnGrass += Time.deltaTime;
                 if (currentTimeOnGrass >= _blackboard.maxTimeOnGrass)
@@ -143,7 +143,7 @@ public class CarAI : MonoBehaviour
         }
     }
 
-    private void Drive()
+    public void Drive()
     {
         currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60 / 1000;
         if (currentSpeed < _blackboard.maxSpeed && !isBreaking)
@@ -158,7 +158,7 @@ public class CarAI : MonoBehaviour
         }
     }
 
-    private void Breaking()
+    public void Break()
     {
         if (isBreaking)
         {
