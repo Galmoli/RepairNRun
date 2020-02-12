@@ -170,7 +170,6 @@ public class CarAI : MonoBehaviour, ICar
             wheelRL.brakeTorque = 0;
             wheelRR.brakeTorque = 0;
         }
-        
     }
 
     private void CheckWayPointDistance()
@@ -180,6 +179,20 @@ public class CarAI : MonoBehaviour, ICar
             lastNodePos = nodes[currentNode].position;
             if (currentNode == nodes.Count - 1) currentNode = 0;
             else currentNode++;
+            AdaptVelocityToPlayerNode();
         }
+    }
+
+    private void AdaptVelocityToPlayerNode()
+    {
+        if (currentNode - 1 < path.GetComponent<Path>().GetLastAchievedNode())
+        {
+            _blackboard.maxMotorTorque = 950;
+        }
+        else if (currentNode - 2 > path.GetComponent<Path>().GetLastAchievedNode())
+        {
+            _blackboard.maxMotorTorque = 400;
+        }
+        else _blackboard.maxMotorTorque = 700;
     }
 }
