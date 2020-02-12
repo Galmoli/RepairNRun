@@ -54,7 +54,6 @@ public class CarMovement : MonoBehaviour, ICar
     // Update is called once per frame
     private void Update()
     {
-
         if (hinput.anyGamepad.leftStick.right) currentDirection = Direction.Right;
         if (hinput.anyGamepad.leftStick.left) currentDirection = Direction.Left;
         if (hinput.anyGamepad.leftStick.inDeadZone) currentDirection = Direction.None;

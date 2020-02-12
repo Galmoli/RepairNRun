@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class CarAI : MonoBehaviour, ICar
 {
+    [Header("Torques")] 
+    [SerializeField] private float fastTorque;
+    [SerializeField] private float defaultTorque;
+    [SerializeField] private float slowTorque;
+
+    [Header("Wheels")]
     [SerializeField] private Transform path;
     [SerializeField] private WheelCollider wheelFL;
     [SerializeField] private WheelCollider wheelFR;
@@ -23,6 +29,7 @@ public class CarAI : MonoBehaviour, ICar
     private bool isBreaking;
     private bool avoiding;
     private Vector3 lastNodePos;
+    private Rigidbody rb;
 
     [Header("Sensors")] 
     [SerializeField] private float sensorLength = 5f;
@@ -34,6 +41,7 @@ public class CarAI : MonoBehaviour, ICar
     // Start is called before the first frame update
     void OnEnable()
     {
+        rb = GetComponent<Rigidbody>();
         _blackboard = GetComponent<CarBlackboard>();
         Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
         nodes = new List<Transform>();
@@ -145,7 +153,7 @@ public class CarAI : MonoBehaviour, ICar
 
     public void Drive()
     {
-        currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60 / 1000;
+        currentSpeed = rb.velocity.magnitude;
         if (currentSpeed < _blackboard.maxSpeed && !isBreaking)
         {
             wheelFL.motorTorque = _blackboard.maxMotorTorque;
@@ -187,12 +195,17 @@ public class CarAI : MonoBehaviour, ICar
     {
         if (currentNode - 1 < path.GetComponent<Path>().GetLastAchievedNode())
         {
-            _blackboard.maxMotorTorque = 950;
+            _blackboard.maxMotorTorque = fastTorque;
         }
         else if (currentNode - 2 > path.GetComponent<Path>().GetLastAchievedNode())
         {
-            _blackboard.maxMotorTorque = 400;
+            _blackboard.maxMotorTorque = slowTorque;
         }
-        else _blackboard.maxMotorTorque = 700;
+        else _blackboard.maxMotorTorque = defaultTorque;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("LapChecker")) GetComponent<LapManager>().CheckLap();
     }
 }
