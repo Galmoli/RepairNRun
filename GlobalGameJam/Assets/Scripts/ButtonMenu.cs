@@ -8,6 +8,7 @@ public class ButtonMenu : MonoBehaviour
 {
     [SerializeField] private bool replay;
     [SerializeField] private bool exit;
+    [SerializeField] private bool resume;
     [HideInInspector] public bool canPressButton = false;
     [HideInInspector] public Animator buttonAnimator;
     [HideInInspector] public bool triggerAnimationEnd = false;
@@ -56,6 +57,18 @@ public class ButtonMenu : MonoBehaviour
         {
             if (replay) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             else if (exit) Application.Quit();
+            else if (resume)
+            {
+                buttonAnimator.SetTrigger("back2newState");
+                Debug.Log("lololo");
+                lastSceneTimer = 0;
+                canPressButton = true;
+                triggerAnimationEnd = false;
+                animationEndTimer = 0.15f;
+                pSystem.Stop();
+                buttonClick.Stop();
+                FindObjectOfType<PauseMenu>().ResumeGame();
+            }
             else SceneManager.LoadScene("VisualsTest");
         }
     }

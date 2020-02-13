@@ -35,7 +35,7 @@ public class Hand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.gameObject.transform.position += player1Hand.rightStick.worldPositionCamera * handSpeed * Time.deltaTime;
+        this.gameObject.transform.position += player1Hand.rightStick.worldPositionCamera * handSpeed * Time.unscaledDeltaTime;
 
         if (transform.localPosition.x > XClamper)
             transform.localPosition = new Vector3(XClamper, transform.localPosition.y, transform.localPosition.z);
