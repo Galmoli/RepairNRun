@@ -7,6 +7,12 @@ public class PauseMenu : MonoBehaviour
     public GameObject RestartButton;
     public GameObject ExitButton;
 
+    public GameObject GreyFader;
+    public GameObject UIText;
+
+    public GameObject handToMove;
+    public GameObject handToHideTemporarly;
+
     [HideInInspector] public bool isPaused = false;
 
     // Start is called before the first frame update
@@ -23,6 +29,10 @@ public class PauseMenu : MonoBehaviour
             isPaused = true;
             RestartButton.SetActive(true);
             ExitButton.SetActive(true);
+            GreyFader.SetActive(true);
+            UIText.SetActive(true);
+            handToMove.SetActive(true);
+            handToHideTemporarly.SetActive(false);
             Time.timeScale = 0.15f;
         }
         else if (isPaused && (Input.GetButtonDown("Pause") || Input.GetKeyDown(KeyCode.M)))
@@ -36,6 +46,10 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         RestartButton.SetActive(false);
         ExitButton.SetActive(false);
+        GreyFader.SetActive(false);
+        UIText.SetActive(false);
+        handToMove.SetActive(false);
+        handToHideTemporarly.SetActive(true);
         Time.timeScale = 1;
     }
 }
