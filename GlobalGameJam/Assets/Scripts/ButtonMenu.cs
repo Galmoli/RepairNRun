@@ -37,6 +37,7 @@ public class ButtonMenu : MonoBehaviour
         {
             buttonAnimator.SetTrigger("buttonClick");
             triggerAnimationEnd = true;
+            Time.timeScale = 1;
             
         }
         if (triggerAnimationEnd)
@@ -60,7 +61,6 @@ public class ButtonMenu : MonoBehaviour
             else if (resume)
             {
                 buttonAnimator.SetTrigger("back2newState");
-                Debug.Log("lololo");
                 lastSceneTimer = 0;
                 canPressButton = true;
                 triggerAnimationEnd = false;

@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class PauseMenu : MonoBehaviour
             isPaused = true;
             RestartButton.SetActive(true);
             ExitButton.SetActive(true);
-            Time.timeScale = 0.25f;
+            Time.timeScale = 0.15f;
         }
         else if (isPaused && (Input.GetButtonDown("Pause") || Input.GetKeyDown(KeyCode.M)))
         {
