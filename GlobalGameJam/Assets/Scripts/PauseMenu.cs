@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
             UIText.SetActive(true);
             handToMove.SetActive(true);
             handToHideTemporarly.SetActive(false);
-            Time.timeScale = 0.15f;
+            Time.timeScale = 0.05f;
         }
         else if (isPaused && (Input.GetButtonDown("Pause") || Input.GetKeyDown(KeyCode.M)))
         {
