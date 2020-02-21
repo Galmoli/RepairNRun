@@ -34,7 +34,6 @@ public class CarMovement : MonoBehaviour, ICar
     private CarBlackboard _blackboard;
     public ParticleSystem accelerateParticles;
     public ParticleSystem accelerateGrassParticles;
-    public ParticleSystem breakParticles;
     public ParticleSystem vroom;
 
     private void Awake()
@@ -60,16 +59,7 @@ public class CarMovement : MonoBehaviour, ICar
         if (hinput.anyGamepad.leftStick.inDeadZone) currentDirection = Direction.None;
         if (hinput.anyGamepad.rightTrigger.pressed) isAccelerating = true;
         else isAccelerating = false;
-
-        /*//Cosas chungas temporales para que me vaya con teclado by daniriwez
-        if (Input.GetKey(KeyCode.D)) currentDirection = Direction.Right;
-        else if (Input.GetKey(KeyCode.A)) currentDirection = Direction.Left;
-        else currentDirection = Direction.None;
-        if (Input.GetKey(KeyCode.W)) isAccelerating = true;
-        else isAccelerating = false;
-        ///////////////////////////////////////////////////////////////////////*/
-
-        if (hinput.anyGamepad.leftTrigger.pressed)//|| Input.GetKey(KeyCode.S)) //Mas cosas chungas
+        if (hinput.anyGamepad.leftTrigger.pressed)
         {
             isBreaking = true;
             var velocity = rb.velocity;
@@ -85,11 +75,9 @@ public class CarMovement : MonoBehaviour, ICar
             isBreaking = false;
             backwards = false;
         }
-
         if (isAccelerating || backwards || isBreaking)
         {
             if (!vroom.isPlaying) vroom.Play();
-            if (isBreaking) vroom.Stop();
             anim.SetBool("run", true);
         }
         else
@@ -97,7 +85,6 @@ public class CarMovement : MonoBehaviour, ICar
             vroom.Stop();
             anim.SetBool("run", false);
         }
-
         if (rb.velocity.magnitude > 0.5f) 
         {
             if (car.isInGrass)
@@ -190,10 +177,5 @@ public class CarMovement : MonoBehaviour, ICar
             wheelFL.motorTorque = 0;
             wheelFR.motorTorque = 0;
         }
-    }
-
-    public float GetCarVelocity()
-    {
-        return rb.velocity.magnitude;
     }
 }
