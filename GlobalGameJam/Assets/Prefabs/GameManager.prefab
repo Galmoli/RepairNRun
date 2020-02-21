@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8033703827189771355}
   - component: {fileID: 8033703827189771352}
+  - component: {fileID: 140008881519762197}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -43,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45079ff306c212a448f527557a9e3302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCarMovement: {fileID: 0}
   allCarsMovement: []
   timer: 0
   maxTimer: 3
@@ -51,3 +53,24 @@ MonoBehaviour:
   restartThisTimer: 1
   restartThisSecondTimer: 1
   restartThisThirdTimer: 1
+  cantPlayAnymore: 1
+  countdownSounds: {fileID: 0}
+--- !u!114 &140008881519762197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8033703827189771353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb222204a97bbf4cb3c1b5d76a85ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RestartButton: {fileID: 0}
+  ExitButton: {fileID: 0}
+  GreyFader: {fileID: 0}
+  UIText: {fileID: 0}
+  handToMove: {fileID: 0}
+  handToHideTemporarly: {fileID: 0}
+  isPaused: 0

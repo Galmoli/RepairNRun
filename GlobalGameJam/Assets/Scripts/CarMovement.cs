@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarMovement : MonoBehaviour
+public class CarMovement : MonoBehaviour, ICar
 {
     private enum Direction
     {
@@ -48,13 +48,12 @@ public class CarMovement : MonoBehaviour
     {
         ApplySteer();
         Drive();
-        Breaking();
+        Break();
     }
 
     // Update is called once per frame
     private void Update()
     {
-
         if (hinput.anyGamepad.leftStick.right) currentDirection = Direction.Right;
         if (hinput.anyGamepad.leftStick.left) currentDirection = Direction.Left;
         if (hinput.anyGamepad.leftStick.inDeadZone) currentDirection = Direction.None;
@@ -106,7 +105,7 @@ public class CarMovement : MonoBehaviour
         }
     }
 
-    private void ApplySteer()
+    public void ApplySteer()
     {
         float newSteer = 0;
         switch (currentDirection)
@@ -132,7 +131,7 @@ public class CarMovement : MonoBehaviour
         wheelFR.steerAngle = newSteer;
     }
 
-    private void Drive()
+    public void Drive()
     {
         if (!canMove) return;
         if (isAccelerating && !isBreaking)
@@ -149,7 +148,7 @@ public class CarMovement : MonoBehaviour
         }
     }
 
-    private void Breaking()
+    public void Break()
     {
         if (!canMove) return;
         if (isBreaking)

@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:GlobalGameJam/Assets/Materials/UnlitShadows.meta
 guid: 9d2905e4a1505664e86e4ce5ce20d4df
 folderAsset: yes
 DefaultImporter:
+=======
+guid: e5b832f8d1a696649b3fca7a0ca06a52
+PrefabImporter:
+>>>>>>> Dev:GlobalGameJam/Assets/Prefabs/Path.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
