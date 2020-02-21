@@ -3,8 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarAI : MonoBehaviour
+public class CarAI : MonoBehaviour, ICar
 {
+    [Header("Torques")] 
+    [SerializeField] private float fastTorque;
+    [SerializeField] private float defaultTorque;
+    [SerializeField] private float slowTorque;
+
+    [Header("Wheels")]
     [SerializeField] private Transform path;
     [SerializeField] private WheelCollider wheelFL;
     [SerializeField] private WheelCollider wheelFR;
@@ -23,6 +29,7 @@ public class CarAI : MonoBehaviour
     private bool isBreaking;
     private bool avoiding;
     private Vector3 lastNodePos;
+    private Rigidbody rb;
 
     [Header("Sensors")] 
     [SerializeField] private float sensorLength = 5f;
@@ -34,6 +41,7 @@ public class CarAI : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
+        rb = GetComponent<Rigidbody>();
         _blackboard = GetComponent<CarBlackboard>();
         Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
         nodes = new List<Transform>();
@@ -48,12 +56,12 @@ public class CarAI : MonoBehaviour
     {
         Sensors();
         ApplySteer();
-        Breaking();
+        Break();
         Drive();
         CheckWayPointDistance();
     }
 
-    private void ApplySteer()
+    public void ApplySteer()
     {
         if(avoiding) return;
         Vector3 relativeVector = transform.InverseTransformPoint(nodes[currentNode].position);
@@ -124,7 +132,7 @@ public class CarAI : MonoBehaviour
 
         if (Physics.Raycast(transform.position, Vector3.down, out hit, sensorLength))
         {
-            if (hit.collider.gameObject.name == "cespedA" || hit.collider.gameObject.name == "CespedB")
+            if (hit.collider.CompareTag("Grass"))
             {
                 currentTimeOnGrass += Time.deltaTime;
                 if (currentTimeOnGrass >= _blackboard.maxTimeOnGrass)
@@ -143,9 +151,9 @@ public class CarAI : MonoBehaviour
         }
     }
 
-    private void Drive()
+    public void Drive()
     {
-        currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60 / 1000;
+        currentSpeed = rb.velocity.magnitude;
         if (currentSpeed < _blackboard.maxSpeed && !isBreaking)
         {
             wheelFL.motorTorque = _blackboard.maxMotorTorque;
@@ -158,7 +166,7 @@ public class CarAI : MonoBehaviour
         }
     }
 
-    private void Breaking()
+    public void Break()
     {
         if (isBreaking)
         {
@@ -170,7 +178,6 @@ public class CarAI : MonoBehaviour
             wheelRL.brakeTorque = 0;
             wheelRR.brakeTorque = 0;
         }
-        
     }
 
     private void CheckWayPointDistance()
@@ -180,6 +187,25 @@ public class CarAI : MonoBehaviour
             lastNodePos = nodes[currentNode].position;
             if (currentNode == nodes.Count - 1) currentNode = 0;
             else currentNode++;
+            AdaptVelocityToPlayerNode();
         }
+    }
+
+    private void AdaptVelocityToPlayerNode()
+    {
+        if (currentNode - 1 < path.GetComponent<Path>().GetLastAchievedNode())
+        {
+            _blackboard.maxMotorTorque = fastTorque;
+        }
+        else if (currentNode - 2 > path.GetComponent<Path>().GetLastAchievedNode())
+        {
+            _blackboard.maxMotorTorque = slowTorque;
+        }
+        else _blackboard.maxMotorTorque = defaultTorque;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("LapChecker")) GetComponent<LapManager>().CheckLap();
     }
 }
