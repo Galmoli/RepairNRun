@@ -12,10 +12,9 @@ public class Hand : MonoBehaviour
     //public float fixinTimer = 1f;
     //[HideInInspector] float fixinTimerCapsule = 0;
 
-    [HideInInspector] public bool heJusPressFam = false;
-    [HideInInspector] public int heJusPressFamIntTimer = 0;
+    [HideInInspector] public bool heJusPressFam = true;
 
-    [HideInInspector] public bool heJusReleaseFam = false;
+    [HideInInspector] public bool heJusReleaseFam = true;
     [HideInInspector] public int heJusReleaseFamIntTimer = 0;
 
     public float XClamper = 3.14f;
@@ -28,7 +27,9 @@ public class Hand : MonoBehaviour
     {
         player1Hand = hinput.anyGamepad;
 
-        if(!isIniScene)animatorController.SetBool("NoAction", false);
+        heJusPressFam = true;
+
+        if (!isIniScene)animatorController.SetBool("NoAction", false);
         if(!isIniScene)animatorController.SetBool("Action", false);
     }
 
@@ -46,20 +47,6 @@ public class Hand : MonoBehaviour
             transform.localPosition = new Vector3(transform.localPosition.x, YClamper, transform.localPosition.z);
         if (transform.localPosition.y < -YClamper)
             transform.localPosition = new Vector3(transform.localPosition.x, -YClamper, transform.localPosition.z);
-
-        if (player1Hand.rightStickClick.justPressed)
-        {
-            heJusPressFam = true;
-            heJusPressFamIntTimer = 10;
-        }
-        if (heJusPressFam)
-        {
-            heJusPressFamIntTimer--;
-        }
-        if (heJusPressFamIntTimer <= 0)
-        {
-            heJusPressFam = false;
-        }
     }
     private void OnTriggerStay(Collider other)
     {
@@ -70,7 +57,7 @@ public class Hand : MonoBehaviour
             if(!isIniScene)animatorController.SetBool("Action", true);
             if(!isIniScene)animatorController.SetBool("NoAction", false);
         }
-        if ((other.CompareTag("firstProblem") || other.CompareTag("secondProblem") || other.CompareTag("thirdProblem")) && heJusReleaseFam)
+        if ((other.CompareTag("FirstSolution") || other.CompareTag("SecondSolution") || other.CompareTag("ThirdSolution")) && heJusReleaseFam)
         {
             other.transform.parent = FindObjectOfType<ObjectSpawner>().gameObject.transform;
             if(!isIniScene)animatorController.SetBool("Action", false);
