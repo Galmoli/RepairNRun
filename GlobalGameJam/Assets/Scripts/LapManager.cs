@@ -75,6 +75,7 @@ public class LapManager : MonoBehaviour
                     hinput.anyGamepad.StopVibration();
                     finishCamera.enabled = true;
                     GetComponent<Car>().EnableIA();
+                    FindObjectOfType<PauseMenu>().forceEndPause = true;
                     GetComponent<Car>().raceFinished = true;
                     GetComponent<Car>()._brokenParts.Clear();
                     volante.SetActive(false);
