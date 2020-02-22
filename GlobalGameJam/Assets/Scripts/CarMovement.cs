@@ -35,6 +35,7 @@ public class CarMovement : MonoBehaviour, ICar
     public ParticleSystem accelerateParticles;
     public ParticleSystem accelerateGrassParticles;
     public ParticleSystem vroom;
+    public ParticleSystem breakParticles;
 
     private void Awake()
     {
@@ -59,7 +60,15 @@ public class CarMovement : MonoBehaviour, ICar
         if (hinput.anyGamepad.leftStick.inDeadZone) currentDirection = Direction.None;
         if (hinput.anyGamepad.rightTrigger.pressed) isAccelerating = true;
         else isAccelerating = false;
-        if (hinput.anyGamepad.leftTrigger.pressed)
+
+        //COSAS CHUNGAS MADE BY DANIRIWEZ
+        if (Input.GetKey(KeyCode.D)) currentDirection = Direction.Right;
+        else if (Input.GetKey(KeyCode.A)) currentDirection = Direction.Left;
+        else currentDirection = Direction.None;
+        if (Input.GetKey(KeyCode.W)) isAccelerating = true;
+        else isAccelerating = false;
+        ////////////////////////////////////
+        if (hinput.anyGamepad.leftTrigger.pressed || Input.GetKey(KeyCode.S))//MAS COSAS CHUNGAS
         {
             isBreaking = true;
             var velocity = rb.velocity;
@@ -78,11 +87,19 @@ public class CarMovement : MonoBehaviour, ICar
         if (isAccelerating || backwards || isBreaking)
         {
             if (!vroom.isPlaying) vroom.Play();
+            if (isBreaking)
+            {
+                Debug.Log("isBreaking");
+                vroom.Stop();
+                breakParticles.Play();
+            }
+            else breakParticles.Stop();
             anim.SetBool("run", true);
         }
         else
         {
             vroom.Stop();
+            breakParticles.Stop();
             anim.SetBool("run", false);
         }
         if (rb.velocity.magnitude > 0.5f) 
@@ -177,5 +194,10 @@ public class CarMovement : MonoBehaviour, ICar
             wheelFL.motorTorque = 0;
             wheelFR.motorTorque = 0;
         }
+    }
+
+    public float GetCarVelocity()
+    {
+        return rb.velocity.magnitude;
     }
 }
