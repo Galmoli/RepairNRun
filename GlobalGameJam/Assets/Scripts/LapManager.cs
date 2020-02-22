@@ -76,6 +76,7 @@ public class LapManager : MonoBehaviour
                     FindObjectOfType<PauseMenu>().forceEndPause = true;
                     finishCamera.enabled = true;
                     GetComponent<Car>().EnableIA();
+                    FindObjectOfType<PauseMenu>().forceEndPause = true;
                     GetComponent<Car>().raceFinished = true;
                     GetComponent<Car>()._brokenParts.Clear();
                     volante.SetActive(false);
