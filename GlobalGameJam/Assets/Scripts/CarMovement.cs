@@ -61,14 +61,7 @@ public class CarMovement : MonoBehaviour, ICar
         if (hinput.anyGamepad.rightTrigger.pressed) isAccelerating = true;
         else isAccelerating = false;
 
-        //COSAS CHUNGAS MADE BY DANIRIWEZ
-        if (Input.GetKey(KeyCode.D)) currentDirection = Direction.Right;
-        else if (Input.GetKey(KeyCode.A)) currentDirection = Direction.Left;
-        else currentDirection = Direction.None;
-        if (Input.GetKey(KeyCode.W)) isAccelerating = true;
-        else isAccelerating = false;
-        ////////////////////////////////////
-        if (hinput.anyGamepad.leftTrigger.pressed || Input.GetKey(KeyCode.S))//MAS COSAS CHUNGAS
+        if (hinput.anyGamepad.leftTrigger.pressed)
         {
             isBreaking = true;
             var velocity = rb.velocity;
