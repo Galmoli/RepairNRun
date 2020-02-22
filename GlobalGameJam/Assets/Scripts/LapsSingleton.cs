@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,8 +15,20 @@ public class LapsSingleton : MonoBehaviour
         }
     }
 
-    public int totalLaps = 0;
     [HideInInspector] public int carsFinished = 0;
+    public int totalLaps = 0;
+    private int numOfEnemies;
+
+    private void Awake()
+    {
+        numOfEnemies = FindObjectsOfType<CarAI>().Length;
+    }
+
+    public void CarFinished()
+    {
+        if (carsFinished >= numOfEnemies) return;
+        carsFinished++;
+    }
 
     public int GetMyFinalPosition()
     {

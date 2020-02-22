@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarMovement : MonoBehaviour
+public class CarMovement : MonoBehaviour, ICar
 {
     private enum Direction
     {
@@ -35,6 +35,7 @@ public class CarMovement : MonoBehaviour
     public ParticleSystem accelerateParticles;
     public ParticleSystem accelerateGrassParticles;
     public ParticleSystem vroom;
+    public ParticleSystem breakParticles;
 
     private void Awake()
     {
@@ -48,18 +49,18 @@ public class CarMovement : MonoBehaviour
     {
         ApplySteer();
         Drive();
-        Breaking();
+        Break();
     }
 
     // Update is called once per frame
     private void Update()
     {
-
         if (hinput.anyGamepad.leftStick.right) currentDirection = Direction.Right;
         if (hinput.anyGamepad.leftStick.left) currentDirection = Direction.Left;
         if (hinput.anyGamepad.leftStick.inDeadZone) currentDirection = Direction.None;
         if (hinput.anyGamepad.rightTrigger.pressed) isAccelerating = true;
         else isAccelerating = false;
+
         if (hinput.anyGamepad.leftTrigger.pressed)
         {
             isBreaking = true;
@@ -79,11 +80,19 @@ public class CarMovement : MonoBehaviour
         if (isAccelerating || backwards || isBreaking)
         {
             if (!vroom.isPlaying) vroom.Play();
+            if (isBreaking)
+            {
+                Debug.Log("isBreaking");
+                vroom.Stop();
+                breakParticles.Play();
+            }
+            else breakParticles.Stop();
             anim.SetBool("run", true);
         }
         else
         {
             vroom.Stop();
+            breakParticles.Stop();
             anim.SetBool("run", false);
         }
         if (rb.velocity.magnitude > 0.5f) 
@@ -106,7 +115,7 @@ public class CarMovement : MonoBehaviour
         }
     }
 
-    private void ApplySteer()
+    public void ApplySteer()
     {
         float newSteer = 0;
         switch (currentDirection)
@@ -132,7 +141,7 @@ public class CarMovement : MonoBehaviour
         wheelFR.steerAngle = newSteer;
     }
 
-    private void Drive()
+    public void Drive()
     {
         if (!canMove) return;
         if (isAccelerating && !isBreaking)
@@ -149,7 +158,7 @@ public class CarMovement : MonoBehaviour
         }
     }
 
-    private void Breaking()
+    public void Break()
     {
         if (!canMove) return;
         if (isBreaking)
@@ -178,5 +187,10 @@ public class CarMovement : MonoBehaviour
             wheelFL.motorTorque = 0;
             wheelFR.motorTorque = 0;
         }
+    }
+
+    public float GetCarVelocity()
+    {
+        return rb.velocity.magnitude;
     }
 }

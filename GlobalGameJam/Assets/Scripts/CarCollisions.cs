@@ -13,6 +13,8 @@ public class CarCollisions : MonoBehaviour
     private float timeSinceLastBrokenPiece = 0;
     private float nextPieceWillBreakIn;
     private bool canTrigger = true;
+    public ParticleSystem collisionParticles;
+
     private void Awake()
     {
         _car = GetComponentInParent<Car>();
@@ -50,11 +52,24 @@ public class CarCollisions : MonoBehaviour
 
     private void Break()
     {
-        if (!canTrigger) return;
+        //if (!canTrigger) return;
         hinput.anyGamepad.Vibrate(0.55f, 0.25f, 0.5f);
         SoundManager sm = FindObjectOfType<SoundManager>();
-        if (!sm.carCrash.isPlaying) sm.carCrash.Play();
-        if (_car._brokenParts.Count == 3) return; //All things broken
+        if (!canTrigger || _car._brokenParts.Count == 3)
+        {
+            if (timeSinceLastBrokenPiece < nextPieceWillBreakIn)
+            {
+                sm.carCrash.Play();
+                collisionParticles.Play();
+            }
+            timeSinceLastBrokenPiece = 0;
+            nextPieceWillBreakIn = Random.Range(20, 30);
+            return;
+        }
+        sm.carCrash.Play();
+        collisionParticles.Play();
+        //if (!sm.carCrash.isPlaying) sm.carCrash.Play();
+        //if (_car._brokenParts.Count == 3) return; //All things broken
         bool broken = false;
         do
         {

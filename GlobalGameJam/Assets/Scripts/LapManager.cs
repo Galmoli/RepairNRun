@@ -82,7 +82,7 @@ public class LapManager : MonoBehaviour
                     Aparato.SetActive(false);
                     StartCoroutine(CinematicCamera());
                 }
-                else LapsSingleton.Instance.carsFinished++;
+                else LapsSingleton.Instance.CarFinished();
             }
         }
     }
