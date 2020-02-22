@@ -73,6 +73,7 @@ public class LapManager : MonoBehaviour
                             break;
                     }
                     hinput.anyGamepad.StopVibration();
+                    FindObjectOfType<PauseMenu>().forceEndPause = true;
                     finishCamera.enabled = true;
                     GetComponent<Car>().EnableIA();
                     GetComponent<Car>().raceFinished = true;
