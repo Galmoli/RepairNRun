@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class ButtonMenu : MonoBehaviour
 {
+    public int difficulty;
+
     [SerializeField] private bool replay;
     [SerializeField] private bool exit;
     [SerializeField] private bool resume;
@@ -35,6 +37,7 @@ public class ButtonMenu : MonoBehaviour
     {
         if (canPressButton && (hinput.anyGamepad.A || hinput.anyGamepad.X || hinput.anyGamepad.B || hinput.anyGamepad.Y || hinput.anyGamepad.rightStickClick))
         {
+            PlayerPrefs.SetInt("Difficulty", difficulty);
             buttonAnimator.SetTrigger("buttonClick");
             triggerAnimationEnd = true;
             Time.timeScale = 1;
@@ -57,7 +60,7 @@ public class ButtonMenu : MonoBehaviour
         if (lastSceneTimer >= 0.5f)
         {
             if (replay) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            else if (exit) Application.Quit();
+            else if (exit) SceneManager.LoadScene(0);
             else if (resume)
             {
                 buttonAnimator.SetTrigger("back2newState");
@@ -69,7 +72,7 @@ public class ButtonMenu : MonoBehaviour
                 buttonClick.Stop();
                 FindObjectOfType<PauseMenu>().ResumeGame();
             }
-            else SceneManager.LoadScene("VisualsTest");
+            else SceneManager.LoadScene("GameScene1");
         }
     }
 
