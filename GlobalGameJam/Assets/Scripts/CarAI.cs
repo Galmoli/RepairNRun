@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class CarAI : MonoBehaviour, ICar
 {
-    [Header("Torques")] 
-    [SerializeField] private float fastTorque;
-    [SerializeField] private float defaultTorque;
-    [SerializeField] private float slowTorque;
+    [HideInInspector] public float fastTorque;
+    [HideInInspector] public float defaultTorque;
+    [HideInInspector] public float slowTorque;
 
     [Header("Wheels")]
     [SerializeField] private Transform path;
