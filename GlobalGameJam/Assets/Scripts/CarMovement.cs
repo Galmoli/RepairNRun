@@ -85,8 +85,13 @@ public class CarMovement : MonoBehaviour, ICar
                 Debug.Log("isBreaking");
                 vroom.Stop();
                 breakParticles.Play();
+                if(!sManager.braking.isPlaying) sManager.braking.Play();
             }
-            else breakParticles.Stop();
+            else
+            {
+                breakParticles.Stop();
+                sManager.braking.Stop();
+            }
             anim.SetBool("run", true);
         }
         else
@@ -178,7 +183,6 @@ public class CarMovement : MonoBehaviour, ICar
         
         if (backwards)
         {
-            if (!sManager.backwardsBeep.isPlaying) sManager.backwardsBeep.Play();
             wheelFL.motorTorque = -_blackboard.maxMotorTorque;
             wheelFR.motorTorque = -_blackboard.maxMotorTorque;
         }

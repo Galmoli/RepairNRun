@@ -46,7 +46,7 @@ public class PauseMenu : MonoBehaviour
             isPaused = true;
             RestartButton.SetActive(true);
             ExitButton.SetActive(true);
-            GreyFader.SetActive(true);
+            //GreyFader.SetActive(true);
             //UIText.SetActive(true);
             handToMove.SetActive(true);
             handToHideTemporarly.SetActive(false);

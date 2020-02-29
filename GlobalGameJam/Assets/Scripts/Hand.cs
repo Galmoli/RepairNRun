@@ -36,15 +36,14 @@ public class Hand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.gameObject.transform.position += player1Hand.rightStick.worldPositionCamera * handSpeed * Time.unscaledDeltaTime;
+        this.gameObject.transform.position += player1Hand.rightStick.worldPositionCamera * handSpeed * Time.deltaTime;
 
         if (transform.localPosition.x > XClamper)
             transform.localPosition = new Vector3(XClamper, transform.localPosition.y, transform.localPosition.z);
         if (transform.localPosition.x < -XClamper)
-            transform.localPosition = new Vector3(-XClamper, transform.localPosition.y, transform.localPosition.z);
-
+             transform.localPosition = new Vector3(-XClamper, transform.localPosition.y, transform.localPosition.z);
         if (transform.localPosition.y > YClamper)
-            transform.localPosition = new Vector3(transform.localPosition.x, YClamper, transform.localPosition.z);
+              transform.localPosition = new Vector3(transform.localPosition.x, YClamper, transform.localPosition.z);
         if (transform.localPosition.y < -YClamper)
             transform.localPosition = new Vector3(transform.localPosition.x, -YClamper, transform.localPosition.z);
     }
