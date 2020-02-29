@@ -560,10 +560,6 @@ GameObject:
   - component: {fileID: 4779324518555971094}
   - component: {fileID: 383435789369127599}
   - component: {fileID: 1463909613}
-  - component: {fileID: 869245176}
-  - component: {fileID: 984013557}
-  - component: {fileID: 1330159059610988054}
-  - component: {fileID: 1255852118}
   m_Layer: 0
   m_Name: Tree 1
   m_TagString: Untagged
@@ -661,66 +657,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.9168111
-  m_Height: 6.099088
+  m_Radius: 0.61821383
+  m_Height: 4.36141
   m_Direction: 1
-  m_Center: {x: 0.42477623, y: 3.049544, z: -0.20275673}
---- !u!136 &869245176
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1823465347286895185}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.9168111
-  m_Height: 6.099088
-  m_Direction: 1
-  m_Center: {x: 0.42477623, y: 3.0495446, z: -0.20275292}
---- !u!136 &984013557
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1823465347286895185}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.9168111
-  m_Height: 6.099088
-  m_Direction: 1
-  m_Center: {x: 0.42477623, y: 3.0495446, z: -0.20275673}
---- !u!136 &1330159059610988054
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1823465347286895185}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.9168111
-  m_Height: 6.099088
-  m_Direction: 1
-  m_Center: {x: 0.42477623, y: 3.0495446, z: -0.20275673}
---- !u!136 &1255852118
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1823465347286895185}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.9168116
-  m_Height: 6.099088
-  m_Direction: 1
-  m_Center: {x: 0.42479166, y: 3.0495446, z: -0.20277207}
+  m_Center: {x: 0.019317204, y: 1.543554, z: 0.037917763}
 --- !u!1 &1865375001564374101
 GameObject:
   m_ObjectHideFlags: 0

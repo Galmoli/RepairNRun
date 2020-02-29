@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45079ff306c212a448f527557a9e3302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCarMovement: {fileID: 0}
   allCarsMovement: []
   timer: 0
   maxTimer: 3
@@ -51,3 +52,5 @@ MonoBehaviour:
   restartThisTimer: 1
   restartThisSecondTimer: 1
   restartThisThirdTimer: 1
+  cantPlayAnymore: 1
+  countdownSounds: {fileID: 0}

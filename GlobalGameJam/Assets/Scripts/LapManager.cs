@@ -73,15 +73,17 @@ public class LapManager : MonoBehaviour
                             break;
                     }
                     hinput.anyGamepad.StopVibration();
+                    FindObjectOfType<PauseMenu>().forceEndPause = true;
                     finishCamera.enabled = true;
                     GetComponent<Car>().EnableIA();
+                    FindObjectOfType<PauseMenu>().forceEndPause = true;
                     GetComponent<Car>().raceFinished = true;
                     GetComponent<Car>()._brokenParts.Clear();
                     volante.SetActive(false);
                     Aparato.SetActive(false);
                     StartCoroutine(CinematicCamera());
                 }
-                else LapsSingleton.Instance.carsFinished++;
+                else LapsSingleton.Instance.CarFinished();
             }
         }
     }

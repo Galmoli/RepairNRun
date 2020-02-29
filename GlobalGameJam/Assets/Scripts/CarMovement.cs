@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarMovement : MonoBehaviour
+public class CarMovement : MonoBehaviour, ICar
 {
     private enum Direction
     {
@@ -11,11 +11,6 @@ public class CarMovement : MonoBehaviour
         Left,
         None
     }
-    
-    public float maxMotorTorque = 100f;
-    [SerializeField] private float maxBreakTorque = 150f;
-    [SerializeField] private float turnAngle = 50f;
-    [SerializeField] private float wheelVisualAngle = 20f;
     public WheelCollider wheelFL;
     public WheelCollider wheelFR;
     [SerializeField] private WheelCollider wheelRL;
@@ -24,19 +19,23 @@ public class CarMovement : MonoBehaviour
     [SerializeField] private GameObject rightWheel;
     [HideInInspector] public float steerVariance = 0;
     [HideInInspector] public bool canMove = false;
+    
     private float avoidMultiplier;
     private bool isBreaking;
     private bool isAccelerating;
     private bool backwards;
+    
     private Direction currentDirection = Direction.None;
     private Rigidbody rb;
     [HideInInspector] public SoundManager sManager;
 
     private Animator anim;
     private Car car;
+    private CarBlackboard _blackboard;
     public ParticleSystem accelerateParticles;
     public ParticleSystem accelerateGrassParticles;
     public ParticleSystem vroom;
+    public ParticleSystem breakParticles;
 
     private void Awake()
     {
@@ -44,24 +43,24 @@ public class CarMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         sManager = FindObjectOfType<SoundManager>();
         anim = GetComponent<Animator>();
+        _blackboard = GetComponent<CarBlackboard>();
     }
-
     private void FixedUpdate()
     {
         ApplySteer();
         Drive();
-        Breaking();
+        Break();
     }
 
     // Update is called once per frame
     private void Update()
     {
-
         if (hinput.anyGamepad.leftStick.right) currentDirection = Direction.Right;
         if (hinput.anyGamepad.leftStick.left) currentDirection = Direction.Left;
         if (hinput.anyGamepad.leftStick.inDeadZone) currentDirection = Direction.None;
         if (hinput.anyGamepad.rightTrigger.pressed) isAccelerating = true;
         else isAccelerating = false;
+
         if (hinput.anyGamepad.leftTrigger.pressed)
         {
             isBreaking = true;
@@ -78,15 +77,27 @@ public class CarMovement : MonoBehaviour
             isBreaking = false;
             backwards = false;
         }
-        //if (!accelerateParticles.isPlaying) accelerateParticles.Play();
         if (isAccelerating || backwards || isBreaking)
         {
             if (!vroom.isPlaying) vroom.Play();
+            if (isBreaking)
+            {
+                Debug.Log("isBreaking");
+                vroom.Stop();
+                breakParticles.Play();
+                if(!sManager.braking.isPlaying) sManager.braking.Play();
+            }
+            else
+            {
+                breakParticles.Stop();
+                sManager.braking.Stop();
+            }
             anim.SetBool("run", true);
         }
         else
         {
             vroom.Stop();
+            breakParticles.Stop();
             anim.SetBool("run", false);
         }
         if (rb.velocity.magnitude > 0.5f) 
@@ -109,20 +120,20 @@ public class CarMovement : MonoBehaviour
         }
     }
 
-    private void ApplySteer()
+    public void ApplySteer()
     {
         float newSteer = 0;
         switch (currentDirection)
         {
             case Direction.Right:
-                newSteer = turnAngle;
-                rightWheel.transform.localRotation = Quaternion.AngleAxis(wheelVisualAngle, Vector3.up);
-                leftWheel.transform.localRotation = Quaternion.AngleAxis(wheelVisualAngle, Vector3.up);
+                newSteer = _blackboard.maxSteerAngle;
+                rightWheel.transform.localRotation = Quaternion.AngleAxis(_blackboard.wheelVisualAngle, Vector3.up);
+                leftWheel.transform.localRotation = Quaternion.AngleAxis(_blackboard.wheelVisualAngle, Vector3.up);
                 break;
             case Direction.Left:
-                newSteer = -turnAngle;
-                rightWheel.transform.localRotation = Quaternion.AngleAxis(-wheelVisualAngle, Vector3.up);
-                leftWheel.transform.localRotation = Quaternion.AngleAxis(-wheelVisualAngle, Vector3.up);
+                newSteer = -_blackboard.maxSteerAngle;
+                rightWheel.transform.localRotation = Quaternion.AngleAxis(-_blackboard.wheelVisualAngle, Vector3.up);
+                leftWheel.transform.localRotation = Quaternion.AngleAxis(-_blackboard.wheelVisualAngle, Vector3.up);
                 break;
             case Direction.None:
                 rightWheel.transform.localRotation = Quaternion.AngleAxis(0, Vector3.up);
@@ -135,13 +146,13 @@ public class CarMovement : MonoBehaviour
         wheelFR.steerAngle = newSteer;
     }
 
-    private void Drive()
+    public void Drive()
     {
         if (!canMove) return;
         if (isAccelerating && !isBreaking)
         {
-            wheelFL.motorTorque = maxMotorTorque;
-            wheelFR.motorTorque = maxMotorTorque;
+            wheelFL.motorTorque = _blackboard.maxMotorTorque;
+            wheelFR.motorTorque = _blackboard.maxMotorTorque;
             if (!sManager.acceleration.isPlaying) sManager.acceleration.Play();
         }
         else if(!backwards)
@@ -152,15 +163,15 @@ public class CarMovement : MonoBehaviour
         }
     }
 
-    private void Breaking()
+    public void Break()
     {
         if (!canMove) return;
         if (isBreaking)
         {
-            wheelFL.brakeTorque = maxBreakTorque;
-            wheelFR.brakeTorque = maxBreakTorque;
-            wheelRL.brakeTorque = maxBreakTorque;
-            wheelRR.brakeTorque = maxBreakTorque;
+            wheelFL.brakeTorque = _blackboard.maxBreakTorque;
+            wheelFR.brakeTorque = _blackboard.maxBreakTorque;
+            wheelRL.brakeTorque = _blackboard.maxBreakTorque;
+            wheelRR.brakeTorque = _blackboard.maxBreakTorque;
         }
         else
         {
@@ -172,14 +183,18 @@ public class CarMovement : MonoBehaviour
         
         if (backwards)
         {
-            if (!sManager.backwardsBeep.isPlaying) sManager.backwardsBeep.Play();
-            wheelFL.motorTorque = -maxMotorTorque;
-            wheelFR.motorTorque = -maxMotorTorque;
+            wheelFL.motorTorque = -_blackboard.maxMotorTorque;
+            wheelFR.motorTorque = -_blackboard.maxMotorTorque;
         }
         else if(!isAccelerating)
         {
             wheelFL.motorTorque = 0;
             wheelFR.motorTorque = 0;
         }
+    }
+
+    public float GetCarVelocity()
+    {
+        return rb.velocity.magnitude;
     }
 }

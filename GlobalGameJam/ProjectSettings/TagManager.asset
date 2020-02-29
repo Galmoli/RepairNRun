@@ -17,6 +17,8 @@ TagManager:
   - LapChecker
   - Enemy
   - Button
+  - Grass
+  - Wheel
   layers:
   - Default
   - TransparentFX
@@ -28,8 +30,8 @@ TagManager:
   - 
   - PostProcessing
   - RepairingHand
-  - 
-  - 
+  - Wheel
+  - Enemy
   - 
   - 
   - 

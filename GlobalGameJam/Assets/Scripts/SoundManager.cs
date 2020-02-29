@@ -14,7 +14,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource objectAppeared;
     public AudioSource woops;
     public AudioSource electroShock;
-    public AudioSource backwardsBeep;
+    public AudioSource braking;
     public AudioSource acceleration;
 
     public ParticleSystem honk;
